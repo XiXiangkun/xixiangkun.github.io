@@ -5,19 +5,19 @@
   
 
   
-  <title>Django | Hexo</title>
+  <title>Django基本流程 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django cmd下，django-admin startproject project_1 创建项目 tree . /F 显示层级目录层">
+  <meta name="description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    　　核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django基本流程 1.目录层级 manage 用多种方式对django交互   init 完成python包   settings">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django">
+<meta property="og:title" content="Django基本流程">
 <meta property="og:url" content="http://yoursite.com/2019/03/03/Django/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django cmd下，django-admin startproject project_1 创建项目 tree . /F 显示层级目录层">
+<meta property="og:description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    　　核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django基本流程 1.目录层级 manage 用多种方式对django交互   init 完成python包   settings">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-03T14:14:46.804Z">
+<meta property="og:updated_time" content="2019-03-13T16:13:11.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Django">
-<meta name="twitter:description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django cmd下，django-admin startproject project_1 创建项目 tree . /F 显示层级目录层">
+<meta name="twitter:title" content="Django基本流程">
+<meta name="twitter:description" content="About MVCmodel模型、view视图、controller控制器 模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图    　　核心思想就是解耦，分成独立的单独模块。 About MTVmodel模型、template模板、view视图Django基本流程 1.目录层级 manage 用多种方式对django交互   init 完成python包   settings">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Django
+      Django基本流程
     </h1>
   
 
@@ -93,21 +93,304 @@
         <h2 id="About-MVC"><a href="#About-MVC" class="headerlink" title="About MVC"></a>About MVC</h2><h3 id="model模型、view视图、controller控制器"><a href="#model模型、view视图、controller控制器" class="headerlink" title="model模型、view视图、controller控制器"></a>model模型、view视图、controller控制器</h3><ul>
 <li>模型管理数据；视图处理数据显示；控制器从视图读取数据，关联模型和视图  </li>
 </ul>
-<p>核心思想就是解耦，分成独立的单独模块。</p>
-<h2 id="About-MTV"><a href="#About-MTV" class="headerlink" title="About MTV"></a>About MTV</h2><h3 id="model模型、template模板、view视图"><a href="#model模型、template模板、view视图" class="headerlink" title="model模型、template模板、view视图"></a>model模型、template模板、view视图</h3><h1 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h1><ul>
-<li>cmd下，django-admin startproject project_1 创建项目</li>
-<li>tree . /F 显示层级<h3 id="目录层级"><a href="#目录层级" class="headerlink" title="目录层级"></a>目录层级</h3></li>
+<p>　　核心思想就是解耦，分成独立的单独模块。</p>
+<h2 id="About-MTV"><a href="#About-MTV" class="headerlink" title="About MTV"></a>About MTV</h2><h3 id="model模型、template模板、view视图"><a href="#model模型、template模板、view视图" class="headerlink" title="model模型、template模板、view视图"></a>model模型、template模板、view视图</h3><h1 id="Django基本流程"><a href="#Django基本流程" class="headerlink" title="Django基本流程"></a>Django基本流程</h1><hr>
+<h3 id="1-目录层级"><a href="#1-目录层级" class="headerlink" title="1.目录层级"></a>1.目录层级</h3><ul>
 <li>manage 用多种方式对django交互  </li>
 <li>init 完成python包  </li>
 <li>settings 项目配置文件  </li>
 <li>urls URL声明</li>
 <li>wsgi 与WSGI兼容的web服务器入口  </li>
 </ul>
+<hr>
+<h3 id="2-创建项目："><a href="#2-创建项目：" class="headerlink" title="2.创建项目："></a>2.创建项目：</h3><ul>
+<li>cmd下，django-admin startproject project_1 创建项目</li>
+<li>tree . /F 显示层级  </li>
+</ul>
+<hr>
+<h3 id="3-Pycharm软件操作："><a href="#3-Pycharm软件操作：" class="headerlink" title="3.Pycharm软件操作："></a>3.Pycharm软件操作：</h3><ul>
+<li><h4 id="a-init输入两条语句"><a href="#a-init输入两条语句" class="headerlink" title="a)init输入两条语句"></a>a)init输入两条语句</h4>　　安装mysql  <pre><code>import mysql  
+mysql.install_as_MySQLdb()  
+</code></pre></li>
+<li><h4 id="b-settings配置databases（自己用的mysql5，root-root）"><a href="#b-settings配置databases（自己用的mysql5，root-root）" class="headerlink" title="b)settings配置databases（自己用的mysql5，root-root）"></a>b)settings配置databases（自己用的mysql5，root-root）</h4>　　default内容：  <pre><code>&apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
+&apos;NAME&apos;: &quot;sunck&quot;,
+&apos;USER&apos;:&apos;root&apos;,
+&apos;PASSWORD&apos;:&apos;root&apos;,
+&apos;HOST&apos;:&apos;localhost&apos;,
+&apos;PORT&apos;:&apos;3306&apos;,　
+</code></pre></li>
+<li><h4 id="c-数据库操作（cmd）："><a href="#c-数据库操作（cmd）：" class="headerlink" title="c)数据库操作（cmd）："></a>c)数据库操作（cmd）：</h4><pre><code>net start mysql;   
+mysql -u root -p;   
+create database django_try_1;  
+</code></pre></li>
+<li><h4 id="d-创建应用："><a href="#d-创建应用：" class="headerlink" title="d)创建应用："></a>d)创建应用：</h4><pre><code>pyhton manage.py startapp myAPP(这是名字)  
+</code></pre>　　其中admin是站点配置；model写模型；view视图  </li>
+<li><h4 id="e-激活应用（settings中的INSTALLED-APPS）："><a href="#e-激活应用（settings中的INSTALLED-APPS）：" class="headerlink" title="e)激活应用（settings中的INSTALLED_APPS）："></a>e)激活应用（settings中的INSTALLED_APPS）：</h4>　　添加’myAPP’，INSTALLED_APPS:<pre><code>&apos;django.contrib.admin&apos;,
+&apos;django.contrib.auth&apos;,
+&apos;django.contrib.contenttypes&apos;,
+&apos;django.contrib.sessions&apos;,
+&apos;django.contrib.messages&apos;,
+&apos;django.contrib.staticfiles&apos;,
+&apos;myAPP&apos;
+</code></pre></li>
+<li><h4 id="f-定义模型（myAPP中的models）"><a href="#f-定义模型（myAPP中的models）" class="headerlink" title="f)定义模型（myAPP中的models）"></a>f)定义模型（myAPP中的models）</h4>　　（一个数据表定义一个模型）应用有了，数据库配置了，去找模型  <h4 id="①models添加："><a href="#①models添加：" class="headerlink" title="①models添加："></a>①models添加：</h4><pre><code>form django.db import models  
+class Grades(models.Model):  
+　　gname=models.CharField(max_length=20)  
+　　gdate=models.DateTimeField()  
+　　ggirlnum=models.IntegerField()  
+　　gboynum=models.IntegerField()  
+　　isDelete=models.BooleanField(default=False)  
+</code></pre>　　BooleanField只有true和false；NullBooleanField增有NULL；<br>　　一个模型类对应数据库中一张表，类里面的属性对应表中的字段；<br>　　学生的所在班级属性，需要用到表关联。grade与student是一对多的关系，外键写在多的里面。不规定主键，会自动生成主键。  <h4 id="②students类中关联外键，关联grade："><a href="#②students类中关联外键，关联grade：" class="headerlink" title="②students类中关联外键，关联grade："></a>②students类中关联外键，关联grade：</h4><pre><code>  　　sgrade=models.ForeignKey(&quot;Grades&quot;,on_delete=models.CASCADE)     
+</code></pre></li>
+<li><h4 id="g-数据库中生成数据表"><a href="#g-数据库中生成数据表" class="headerlink" title="g)数据库中生成数据表"></a>g)数据库中生成数据表</h4><p>　　生成迁移文件：Django2.1只支持mysql5.6以上的版本(project_3目录下)</p>
+<pre><code>  　　python manage.py makemigrations
+  　　python manage.py migrate
+</code></pre><h4 id="①测试数据"><a href="#①测试数据" class="headerlink" title="①测试数据"></a>①测试数据</h4><pre><code>  　　python manage.py shell
+</code></pre><h4 id="②然后在shell中输入："><a href="#②然后在shell中输入：" class="headerlink" title="②然后在shell中输入："></a>②然后在shell中输入：</h4><h4 id="引入包"><a href="#引入包" class="headerlink" title="引入包"></a>引入包</h4><pre><code>  　　from myApp.models import Grades,Students
+  　　from django.utils import timezone
+  　　from datetime import *
+</code></pre><h4 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h4><pre><code>  　　Grades.objects.all()#类名.objects.all()
+</code></pre><h4 id="③添加数据（本质是创建模型类的对象实例）"><a href="#③添加数据（本质是创建模型类的对象实例）" class="headerlink" title="③添加数据（本质是创建模型类的对象实例）"></a>③添加数据（本质是创建模型类的对象实例）</h4><pre><code>  　　grade1=Grades()
+  　　grade1.gname=&quot;python00&quot;
+  　　grade1.gdate=datetime(year=2019,month=3,day=8)
+</code></pre><h4 id="④查看数据库"><a href="#④查看数据库" class="headerlink" title="④查看数据库"></a>④查看数据库</h4><pre><code>  　　select * from myapp_grades
+</code></pre><p>　　没有数据，想把数据存进去，需要保存。回去project_3的cmd  </p>
+<pre><code>  　　grade1.save()
+</code></pre><p>　　查看数据会有显示</p>
+<pre><code>  　　Grades.objects.all()
+</code></pre><p>　　显示不方便，在models的Grades类中重定义<strong>str</strong>(self)函数：</p>
+<pre><code>  　　def __str__(self):
+  　　    return &quot;%s-%d-%d&quot;%(self.gname,self.ggirlnum,self.gboynum)
+</code></pre><p>　　重新打开shell，导入包，显示all，可以看到信息<br>　　查看某个对象，在插入对个对象后，shell中：  </p>
+<pre><code>  　　Grades.objects.get(pk=2)#primarykey
+</code></pre><h4 id="⑤修改数据"><a href="#⑤修改数据" class="headerlink" title="⑤修改数据"></a>⑤修改数据</h4><pre><code>  　　grade1.gboynum=0
+  　　grade1.save()
+</code></pre><h4 id="⑥删除数据"><a href="#⑥删除数据" class="headerlink" title="⑥删除数据"></a>⑥删除数据</h4><pre><code>  　　grade1.delete() #物理删除
+</code></pre><p>#逻辑删除 ？？</p>
+</li>
+<li><h4 id="h-关联对象（创建学生）"><a href="#h-关联对象（创建学生）" class="headerlink" title="h)关联对象（创建学生）"></a>h)关联对象（创建学生）</h4><pre><code>  　　grade1=Grades.objects.get(pk=1)
+  　　stu=Students()
+  　　……整理信息
+  　　stu.sgrade=grade1
+  　　stu.save()
+</code></pre><p>　　获取关联对象的集合（拿到1班所有学生）  </p>
+<pre><code>  　　grade1.students_set.all() #这是自带的函数，一对多的多.类名小写_set.all()
+  　　创建一个学生属于一个班级:  
+  　　stu3=grade1.students_set.create(sname=u&apos;XXK&apos;,sgender=True,scontend=&apos;I am XXK&apos;,sage=13)
+  　　# 不用save
+</code></pre></li>
+</ul>
+<ul>
+<li><h4 id="i-启动服务器"><a href="#i-启动服务器" class="headerlink" title="i)启动服务器"></a>i)启动服务器</h4><pre><code>  　　python manage.py runserver #可加ip:port
+</code></pre>　　#ip不写代表本机ip，port默认8000。是一个轻量级的测试网页</li>
+</ul>
+<hr>
+<h3 id="4-admin站点管理"><a href="#4-admin站点管理" class="headerlink" title="4.admin站点管理"></a>4.admin站点管理</h3><p>　　#内容发布（负责添加、修改、删除内容）+公告访问<br>　　配置admin应用（settings中的INSTALLED_APPS中得到django.contrib.admin，默认已经添加）  </p>
+<ul>
+<li><h4 id="a-创建管理员用户"><a href="#a-创建管理员用户" class="headerlink" title="a)创建管理员用户"></a>a)创建管理员用户</h4><pre><code>  　　python manage.py createsuperuser
+</code></pre>　　账户名、邮箱、密码<pre><code>  　　sunck、akun2018
+</code></pre>　　页面中url添加’/admin’，可以观察登录runserver</li>
+<li><h4 id="b-汉化"><a href="#b-汉化" class="headerlink" title="b)汉化"></a>b)汉化</h4><p>　　去settings中的</p>
+<pre><code>  　　language_code=&apos;zh-Hans&apos;
+  　　time_zone=&apos;Asia/Shanghai&apos;
+</code></pre></li>
+<li><h4 id="c-管理数据表（修改admin文件）"><a href="#c-管理数据表（修改admin文件）" class="headerlink" title="c)管理数据表（修改admin文件）"></a>c)管理数据表（修改admin文件）</h4><pre><code>  　　from .models import Grades,Students
+
+  　　admin.site.register(Grades)
+  　　admin.site.register(Students)
+</code></pre><p>　　去网页端测试，可以看到信息</p>
+</li>
+<li><h4 id="d-自定义管理页面（在admin中）"><a href="#d-自定义管理页面（在admin中）" class="headerlink" title="d)自定义管理页面（在admin中）"></a>d)自定义管理页面（在admin中）</h4><p>　　添加的类要放到参数里面才能用</p>
+<pre><code>  　　class GradesAdmin(admin.ModelAdmin):
+  　　    #列表页属性
+  　　    list_display=[&apos;pk&apos;,&apos;gdate&apos;,&apos;ggirlnum&apos;]#显示字段
+  　　    list_filter=[&apos;gname&apos;]#过滤器，过滤条件的
+  　　    search_fields=[&apos;gname&apos;]#可以按gname搜索
+  　　    list_per_page=5#分页
+</code></pre></li>
+</ul>
+<pre><code>    　　admin.site.register(Grades,GradesAdmin)
+</code></pre><ul>
+<li><h4 id="e-关联对象"><a href="#e-关联对象" class="headerlink" title="e)关联对象"></a>e)关联对象</h4><p>　　创建一个班级时，直接添加几个学生</p>
+<pre><code>  　　class StudentsInfo(admin.TabularInline):
+  　　    model=Students #添加学生
+  　　    extra=2 #添加两个学生
+
+  　　class GradesAdmin(admin.ModelAdmin):
+  　　    inlines=[StudentInfo] #
+</code></pre></li>
+<li><h4 id="f-布尔值显示问题"><a href="#f-布尔值显示问题" class="headerlink" title="f)布尔值显示问题"></a>f)布尔值显示问题</h4><pre><code>  　　def gender(self):
+  　　    if self.isDelete:
+  　　        return &quot;男&quot;
+  　　    else:
+  　　        return &quot;女&quot;
+  　　gender.short_description=&quot;性别&quot;  #修改网页上面的显示（似乎只有函数可以）
+</code></pre><p>　　再显示调用直接就是gender</p>
+</li>
+<li><h4 id="h-执行动作的位置问题"><a href="#h-执行动作的位置问题" class="headerlink" title="h)执行动作的位置问题"></a>h)执行动作的位置问题</h4><pre><code>  　　action_on_top=True
+  　　action_on_bottom=False
+</code></pre></li>
+</ul>
+<ul>
+<li><h4 id="i-使用装饰器完成注册，类还是有，不过"><a href="#i-使用装饰器完成注册，类还是有，不过" class="headerlink" title="i)使用装饰器完成注册，类还是有，不过"></a>i)使用装饰器完成注册，类还是有，不过</h4><pre><code>  　　@admin.register(Students)
+</code></pre>　　取代<pre><code>  　　admin.site.register(Students,StudentsAdmin)
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="5-视图的基本使用"><a href="#5-视图的基本使用" class="headerlink" title="5.视图的基本使用"></a>5.视图的基本使用</h3><p>　　django中，视图对web请求回应  </p>
+<ul>
+<li><h4 id="a-在views中定义视图"><a href="#a-在views中定义视图" class="headerlink" title="a)在views中定义视图"></a>a)在views中定义视图</h4><p>　　写好返回什么页面：  </p>
+<pre><code>  　　from django.http import HttpResponse  
+  　　def index(request):  
+  　　    return HttpResponse(&quot;sunck is here&quot;)  
+</code></pre></li>
+</ul>
+<ul>
+<li><h4 id="b-为视图配置url-project的urls-py"><a href="#b-为视图配置url-project的urls-py" class="headerlink" title="b)为视图配置url(project的urls.py)"></a>b)为视图配置url(project的urls.py)</h4><p>　　类似于一个总的对应梳理  </p>
+<pre><code>  　　from django.urls import path,include
+  　　urlpatterns = [
+  　　    path(&apos;admin/&apos;, admin.site.urls),
+  　　    path(&apos;&apos;,include(&apos;myApp.urls&apos;)),
+  　　]
+</code></pre></li>
+<li><h4 id="c-引导myApp下创建新的urls-py匹配视图"><a href="#c-引导myApp下创建新的urls-py匹配视图" class="headerlink" title="c)引导myApp下创建新的urls.py匹配视图"></a>c)引导myApp下创建新的urls.py匹配视图</h4><p>　　用来匹配url路径和显示的views页面</p>
+<pre><code>  　　from django.urls import path
+  　　from . import views
+  　　urlpatterns = [
+  　　    path(&apos;&apos;,views.index),
+  　　]
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="后续修改"><a href="#后续修改" class="headerlink" title="后续修改"></a>后续修改</h3><ul>
+<li><h4 id="d-在views中定义视图"><a href="#d-在views中定义视图" class="headerlink" title="d)在views中定义视图"></a>d)在views中定义视图</h4><p>　　写好返回什么页面，有参数的加入</p>
+<pre><code>  　　from django.http import HttpResponse
+  　　def index(request):
+  　　    return HttpResponse(&quot;sunck is here&quot;)
+  　　def detail(request,num):
+  　　    return HttpResponse([&quot;sunck is here:&quot;,num])
+</code></pre></li>
+</ul>
+<ul>
+<li><h4 id="e-为视图配置url-project的urls-py"><a href="#e-为视图配置url-project的urls-py" class="headerlink" title="e)为视图配置url(project的urls.py)"></a>e)为视图配置url(project的urls.py)</h4><p>　　类似于一个总的对应梳理，没有变化</p>
+<pre><code>  　　from django.urls import path,include
+  　　urlpatterns = [
+  　　    path(&apos;admin/&apos;, admin.site.urls),
+  　　    path(&apos;&apos;,include(&apos;myApp.urls&apos;)),
+  　　]
+</code></pre></li>
+<li><h4 id="f-引导myApp下创建新的urls-py匹配视图"><a href="#f-引导myApp下创建新的urls-py匹配视图" class="headerlink" title="f)引导myApp下创建新的urls.py匹配视图"></a>f)引导myApp下创建新的urls.py匹配视图</h4><p>　　用来匹配url路径和显示的views页面<br>　　尖括号用来匹配数字，可以作为参数传入views中的函数，注意正则表达式使用<br>path匹配不了的用re_path</p>
+<pre><code>  　　from django.urls import path
+  　　from . import views
+  　　urlpatterns = [
+  　　    path(&apos;&apos;,views.index),
+  　　    path(&apos;&lt;int:num&gt;/&apos;,views.detail),
+  　　]
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="6-模板的基本使用"><a href="#6-模板的基本使用" class="headerlink" title="6.模板的基本使用"></a>6.模板的基本使用</h3><p>　　模板是HTML页面，根据视图中的数据进行填充</p>
+<ul>
+<li><h4 id="a-创建模板"><a href="#a-创建模板" class="headerlink" title="a)创建模板"></a>a)创建模板</h4>　　project下创建directory，与myApp共存，里面创建myApp文件</li>
+<li><h4 id="b-配置模板路径"><a href="#b-配置模板路径" class="headerlink" title="b)配置模板路径"></a>b)配置模板路径</h4><p>　　修改settings文件的templates</p>
+<pre><code>  　　&apos;DIRS&apos;: [os.path.join(BASE_DIR,&apos;templates&apos;)],
+</code></pre><p>　　上面的</p>
+<pre><code>  　　BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+  　　base_dir代表&apos;D:\django\project_3&apos;，也就是manage在的路径
+</code></pre></li>
+<li><h4 id="c-创建html文件（想在grades页面显示列表）"><a href="#c-创建html文件（想在grades页面显示列表）" class="headerlink" title="c)创建html文件（想在grades页面显示列表）"></a>c)创建html文件（想在grades页面显示列表）</h4><p>　　在模板myapp中创建html页面<br>　　模板语法：  </p>
+</li>
+</ul>
+<pre><code>    　　&lt;!DOCTYPE html&gt;
+    　　&lt;html lang=&quot;en&quot;&gt;
+    　　&lt;head&gt;
+    　　    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    　　    &lt;title&gt;班级信息&lt;/title&gt;
+    　　&lt;/head&gt;
+    　　&lt;body&gt;
+    　　    &lt;h1&gt;班级信息列表&lt;/h1&gt;
+    　　    &lt;ul&gt;
+
+    　　    &lt;/ul&gt;
+    　　&lt;/body&gt;
+    　　&lt;/html&gt;
+</code></pre><p>　　href的内容点击后会传送到url的后缀里面</p>
+<ul>
+<li><h4 id="d-匹配url-修改myApp-urls-py"><a href="#d-匹配url-修改myApp-urls-py" class="headerlink" title="d)匹配url,修改myApp\urls.py"></a>d)匹配url,修改myApp\urls.py</h4><pre><code>  　　urlpatterns = [
+  　　    path(&apos;&apos;,views.index),
+  　　    path(&apos;&lt;int:num&gt;/&apos;,views.detail),
+  　　    path(&apos;grades/&apos;,views.grades),
+  　　]
+</code></pre></li>
+<li><h4 id="e-需要对视图进行更改"><a href="#e-需要对视图进行更改" class="headerlink" title="e)需要对视图进行更改"></a>e)需要对视图进行更改</h4><pre><code>  　　from .models import Grades
+  　　def grades(request):
+  　　    # 去模板取数据
+  　　    gradesList=Grades.objects.all()
+  　　    # 将数据传递给模板，模板渲染页面，渲染好的页面返回浏览器
+  　　    #myApp前面不写，因为已经配合好了路径settings
+  　　    #返回的是字典
+  　　    return
+</code></pre></li>
+</ul>
+<h3 id="总流程："><a href="#总流程：" class="headerlink" title="总流程："></a>总流程：</h3><ul>
+<li><h4 id="①-在html中写模板"><a href="#①-在html中写模板" class="headerlink" title="①.在html中写模板"></a>①.在html中写模板</h4></li>
+<li><h4 id="②-定义视图"><a href="#②-定义视图" class="headerlink" title="②.定义视图"></a>②.定义视图</h4></li>
+<li><h4 id="③-配置url"><a href="#③-配置url" class="headerlink" title="③.配置url"></a>③.配置url</h4></li>
+<li><h4 id="④-匹配视图"><a href="#④-匹配视图" class="headerlink" title="④.匹配视图"></a>④.匹配视图</h4></li>
+<li><h4 id="⑤-视图中定义模型取数据，传给模板渲染，返回浏览器"><a href="#⑤-视图中定义模型取数据，传给模板渲染，返回浏览器" class="headerlink" title="⑤.视图中定义模型取数据，传给模板渲染，返回浏览器"></a>⑤.视图中定义模型取数据，传给模板渲染，返回浏览器</h4></li>
+</ul>
+<hr>
+<h3 id="7-修改使得grades点击进入students界面"><a href="#7-修改使得grades点击进入students界面" class="headerlink" title="7.修改使得grades点击进入students界面"></a>7.修改使得grades点击进入students界面</h3><ul>
+<li><h4 id="a-修改students-html："><a href="#a-修改students-html：" class="headerlink" title="a)修改students.html："></a>a)修改students.html：</h4><pre><code>  　　&lt;!DOCTYPE html&gt;
+  　　&lt;html lang=&quot;en&quot;&gt;
+  　　&lt;head&gt;
+  　　    &lt;meta charset=&quot;UTF-8&quot;&gt;
+  　　    &lt;title&gt;学生信息&lt;/title&gt;
+  　　&lt;/head&gt;
+  　　&lt;body&gt;
+  　　    &lt;h1&gt;学生信息列表&lt;/h1&gt;
+  　　    &lt;ul&gt;
+
+  　　    &lt;/ul&gt;
+  　　&lt;/body&gt;
+  　　&lt;/html&gt;
+</code></pre></li>
+<li><h4 id="b-匹配url（myApp的urls-py）"><a href="#b-匹配url（myApp的urls-py）" class="headerlink" title="b)匹配url（myApp的urls.py）"></a>b)匹配url（myApp的urls.py）</h4><pre><code>  　　urlpatterns = [
+  　　    path(&apos;&apos;,views.index),
+  　　    path(&apos;&lt;int:num&gt;/&apos;,views.detail),
+  　　    path(&apos;grades/&apos;,views.grades),
+  　　    path(&apos;students/&apos;,views.students),
+  　　    path(&apos;grades/&lt;int:num&gt;/&apos;,views.gradesStudents),
+  　　]
+</code></pre></li>
+<li><h4 id="c-匹配视图"><a href="#c-匹配视图" class="headerlink" title="c)匹配视图"></a>c)匹配视图</h4><pre><code>  　　def gradesStudents(request,num):
+  　　    grades=Grades.objects.get(pk=num)
+  　　    studentsList=grades.students_set.all()
+  　　    return
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="过程中的报错"><a href="#过程中的报错" class="headerlink" title="过程中的报错"></a>过程中的报错</h3><ul>
+<li>①.python manage.py makemigrations总是出错。  </li>
+<li>②.主要原因在于使用的mysql密码没有对应，忘记原先密码。谷歌搜索更改密码后，重新验证，port为13140。</li>
+<li>③.新创建的数据库无法生成迁移文件，原先存在的mysql可以正常迁移，删除表后报错，现改到数据库information_scheme。</li>
+<li>④.以上不算，mysql出了问题，系统数据表被不小心删除，重装后解决问题</li>
+<li>⑤.重新安装后，mysql在D:\mysql\mysql-5.7.25-winx64\bin，cmd管理员身份；django使用projct_3</li>
+<li>⑥.数据库的部分操作<pre><code>  　　net start mysql
+  　　mysql -u root -p
+  　　use sunck
+  　　show tables;
+  　　desc myapp_grades;  
+</code></pre></li>
+<li>⑥.重新迁移最好把migtations中的0001_initial.py文件删除，并把数据库删除</li>
+</ul>
+<hr>
+<h1 id="NOTES："><a href="#NOTES：" class="headerlink" title="NOTES："></a><strong>NOTES：</strong></h1><p>　　markdown语法中，首尾三个`表示代码块</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjst0ac4i00036wuimnf7phv0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjt7elret000gbouife6ubtcm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,7 +446,7 @@
       <ul>
         
           <li>
-            <a href="/2019/03/03/Django/">Django</a>
+            <a href="/2019/03/03/Django/">Django基本流程</a>
           </li>
         
           <li>
