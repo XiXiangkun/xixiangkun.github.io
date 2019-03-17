@@ -7,17 +7,17 @@
   
   <title>JAVA_Reflection+Annotation | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
+  <meta name="description" content="java注解和反射机制的一些知识（二）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA_Reflection+Annotation">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
+<meta property="og:description" content="java注解和反射机制的一些知识（二）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-26T13:54:30.844Z">
+<meta property="og:updated_time" content="2019-03-17T13:34:25.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
+<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -90,7 +90,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
+        <p>java注解和反射机制的一些知识（二）<br><a id="more"></a></p>
+<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
 <ul>
 <li>Class.newInstance()用来反射无参的构造器  </li>
 <li>Constructor.newInstance()可以反射任何构造器  </li>
@@ -104,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjt7erme40000v8uigql231o4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjtcyrnsm0001iwuilfe7xbu8" class="article-share-link">Share</a>
       
       
     </footer>
