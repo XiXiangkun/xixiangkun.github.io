@@ -1,13 +1,100 @@
 <!DOCTYPE html>
-<html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
   
 
   
-  <title>Django基本流程 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于django基本流程的笔记（一）">
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="关于django基本流程的笔记（一）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django基本流程">
 <meta property="og:url" content="http://yoursite.com/2019/03/03/Django/index.html">
@@ -18,77 +105,251 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django基本流程">
 <meta name="twitter:description" content="关于django基本流程的笔记（一）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/03/Django/">
+
+
+
+
+
+  <title>Django基本流程 | Hexo</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/��ҳ">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Django" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/03/Django/" class="article-date">
-  <time datetime="2019-03-03T12:38:38.000Z" itemprop="datePublished">2019-03-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/python/">python</a>
+        <p class="site-subtitle"></p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Django基本流程
-    </h1>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/Django/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django基本流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-03T20:38:38+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h4 id="关于django基本流程的笔记（一）"><a href="#关于django基本流程的笔记（一）" class="headerlink" title="关于django基本流程的笔记（一）"></a>关于django基本流程的笔记（一）</h4><a id="more"></a>
 <h2 id="About-MVC"><a href="#About-MVC" class="headerlink" title="About MVC"></a>About MVC</h2><h3 id="model模型、view视图、controller控制器"><a href="#model模型、view视图、controller控制器" class="headerlink" title="model模型、view视图、controller控制器"></a>model模型、view视图、controller控制器</h3><ul>
@@ -394,129 +655,337 @@ class Grades(models.Model):
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjxkbgr55000kqguix7yvhgtp" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/26/Java_Reflection+Annotation/" rel="next" title="JAVA_Reflection+Annotation">
+                <i class="fa fa-chevron-left"></i> JAVA_Reflection+Annotation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/03/MicroService/" rel="prev" title="Notes">
+                Notes <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2019/03/03/MicroService/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
         
-          Notes
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="John Doe">
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于django基本流程的笔记（一）"><span class="nav-number">1.</span> <span class="nav-text">关于django基本流程的笔记（一）</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#About-MVC"><span class="nav-number"></span> <span class="nav-text">About MVC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model模型、view视图、controller控制器"><span class="nav-number"></span> <span class="nav-text">model模型、view视图、controller控制器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-MTV"><span class="nav-number"></span> <span class="nav-text">About MTV</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model模型、template模板、view视图"><span class="nav-number"></span> <span class="nav-text">model模型、template模板、view视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Django基本流程"><span class="nav-number"></span> <span class="nav-text">Django基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-目录层级"><span class="nav-number"></span> <span class="nav-text">1.目录层级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建项目："><span class="nav-number"></span> <span class="nav-text">2.创建项目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Pycharm软件操作："><span class="nav-number"></span> <span class="nav-text">3.Pycharm软件操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-init输入两条语句"><span class="nav-number">1.</span> <span class="nav-text">a)init输入两条语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-settings配置databases（自己用的mysql5，root-root）"><span class="nav-number">2.</span> <span class="nav-text">b)settings配置databases（自己用的mysql5，root-root）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-数据库操作（cmd）："><span class="nav-number">3.</span> <span class="nav-text">c)数据库操作（cmd）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-创建应用："><span class="nav-number">4.</span> <span class="nav-text">d)创建应用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-激活应用（settings中的INSTALLED-APPS）："><span class="nav-number">5.</span> <span class="nav-text">e)激活应用（settings中的INSTALLED_APPS）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-定义模型（myAPP中的models）"><span class="nav-number">6.</span> <span class="nav-text">f)定义模型（myAPP中的models）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#①models添加："><span class="nav-number">7.</span> <span class="nav-text">①models添加：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②students类中关联外键，关联grade："><span class="nav-number">8.</span> <span class="nav-text">②students类中关联外键，关联grade：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#g-数据库中生成数据表"><span class="nav-number">9.</span> <span class="nav-text">g)数据库中生成数据表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#①测试数据"><span class="nav-number">10.</span> <span class="nav-text">①测试数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②然后在shell中输入："><span class="nav-number">11.</span> <span class="nav-text">②然后在shell中输入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入包"><span class="nav-number">12.</span> <span class="nav-text">引入包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有数据"><span class="nav-number">13.</span> <span class="nav-text">查询所有数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③添加数据（本质是创建模型类的对象实例）"><span class="nav-number">14.</span> <span class="nav-text">③添加数据（本质是创建模型类的对象实例）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#④查看数据库"><span class="nav-number">15.</span> <span class="nav-text">④查看数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑤修改数据"><span class="nav-number">16.</span> <span class="nav-text">⑤修改数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑥删除数据"><span class="nav-number">17.</span> <span class="nav-text">⑥删除数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#h-关联对象（创建学生）"><span class="nav-number">18.</span> <span class="nav-text">h)关联对象（创建学生）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i-启动服务器"><span class="nav-number">19.</span> <span class="nav-text">i)启动服务器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-admin站点管理"><span class="nav-number"></span> <span class="nav-text">4.admin站点管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-创建管理员用户"><span class="nav-number">1.</span> <span class="nav-text">a)创建管理员用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-汉化"><span class="nav-number">2.</span> <span class="nav-text">b)汉化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-管理数据表（修改admin文件）"><span class="nav-number">3.</span> <span class="nav-text">c)管理数据表（修改admin文件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-自定义管理页面（在admin中）"><span class="nav-number">4.</span> <span class="nav-text">d)自定义管理页面（在admin中）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-关联对象"><span class="nav-number">5.</span> <span class="nav-text">e)关联对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-布尔值显示问题"><span class="nav-number">6.</span> <span class="nav-text">f)布尔值显示问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#h-执行动作的位置问题"><span class="nav-number">7.</span> <span class="nav-text">h)执行动作的位置问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i-使用装饰器完成注册，类还是有，不过"><span class="nav-number">8.</span> <span class="nav-text">i)使用装饰器完成注册，类还是有，不过</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-视图的基本使用"><span class="nav-number"></span> <span class="nav-text">5.视图的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-在views中定义视图"><span class="nav-number">1.</span> <span class="nav-text">a)在views中定义视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-为视图配置url-project的urls-py"><span class="nav-number">2.</span> <span class="nav-text">b)为视图配置url(project的urls.py)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-引导myApp下创建新的urls-py匹配视图"><span class="nav-number">3.</span> <span class="nav-text">c)引导myApp下创建新的urls.py匹配视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后续修改"><span class="nav-number"></span> <span class="nav-text">后续修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#d-在views中定义视图"><span class="nav-number">1.</span> <span class="nav-text">d)在views中定义视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-为视图配置url-project的urls-py"><span class="nav-number">2.</span> <span class="nav-text">e)为视图配置url(project的urls.py)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-引导myApp下创建新的urls-py匹配视图"><span class="nav-number">3.</span> <span class="nav-text">f)引导myApp下创建新的urls.py匹配视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-模板的基本使用"><span class="nav-number"></span> <span class="nav-text">6.模板的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-创建模板"><span class="nav-number">1.</span> <span class="nav-text">a)创建模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-配置模板路径"><span class="nav-number">2.</span> <span class="nav-text">b)配置模板路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-创建html文件（想在grades页面显示列表）"><span class="nav-number">3.</span> <span class="nav-text">c)创建html文件（想在grades页面显示列表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-匹配url-修改myApp-urls-py"><span class="nav-number">4.</span> <span class="nav-text">d)匹配url,修改myApp\urls.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-需要对视图进行更改"><span class="nav-number">5.</span> <span class="nav-text">e)需要对视图进行更改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总流程："><span class="nav-number"></span> <span class="nav-text">总流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-在html中写模板"><span class="nav-number">1.</span> <span class="nav-text">①.在html中写模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-定义视图"><span class="nav-number">2.</span> <span class="nav-text">②.定义视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-配置url"><span class="nav-number">3.</span> <span class="nav-text">③.配置url</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#④-匹配视图"><span class="nav-number">4.</span> <span class="nav-text">④.匹配视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑤-视图中定义模型取数据，传给模板渲染，返回浏览器"><span class="nav-number">5.</span> <span class="nav-text">⑤.视图中定义模型取数据，传给模板渲染，返回浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-修改使得grades点击进入students界面"><span class="nav-number"></span> <span class="nav-text">7.修改使得grades点击进入students界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-修改students-html："><span class="nav-number">1.</span> <span class="nav-text">a)修改students.html：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-匹配url（myApp的urls-py）"><span class="nav-number">2.</span> <span class="nav-text">b)匹配url（myApp的urls.py）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-匹配视图"><span class="nav-number">3.</span> <span class="nav-text">c)匹配视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中的报错"><span class="nav-number"></span> <span class="nav-text">过程中的报错</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOTES："><span class="nav-number"></span> <span class="nav-text">NOTES：</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2019/01/26/Java_Reflection+Annotation/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JAVA_Reflection+Annotation</div>
-    </a>
-  
-</nav>
+    </main>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
   
-</article>
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
 
-</section>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/KY/">KY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li></ul>
-    </div>
-  </div>
 
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/01/生产实习/">生产实习概要</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/27/spring部分-1/">Spring_1</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/03/MicroService/">Notes</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/03/Django/">Django基本流程</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/26/Java_Reflection+Annotation/">JAVA_Reflection+Annotation</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/��ҳ" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
