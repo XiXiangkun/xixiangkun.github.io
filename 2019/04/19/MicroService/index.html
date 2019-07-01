@@ -5,19 +5,19 @@
   
 
   
-  <title>JAVA_Reflection+Annotation | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java注解和反射机制的一些知识（二）">
+  <meta name="description" content="Notes：面向对象三大特性：封装、继承、多态封装：将对象的属性和行为抽象出来包装到类中；继承：将具有相同属性和行为的对象抽象出来包装成一个父类；多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；   面向接口接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的例如为抽象类设计行为模型；public interfce AnimalService{  public voi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA_Reflection+Annotation">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/MicroService/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java注解和反射机制的一些知识（二）">
+<meta property="og:description" content="Notes：面向对象三大特性：封装、继承、多态封装：将对象的属性和行为抽象出来包装到类中；继承：将具有相同属性和行为的对象抽象出来包装成一个父类；多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；   面向接口接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的例如为抽象类设计行为模型；public interfce AnimalService{  public voi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-17T13:34:25.352Z">
+<meta property="og:updated_time" content="2019-04-19T11:26:09.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Notes：面向对象三大特性：封装、继承、多态封装：将对象的属性和行为抽象出来包装到类中；继承：将具有相同属性和行为的对象抽象出来包装成一个父类；多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；   面向接口接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的例如为抽象类设计行为模型；public interfce AnimalService{  public voi">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,48 +64,26 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Java_Reflection+Annotation" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-MicroService" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/26/Java_Reflection+Annotation/" class="article-date">
-  <time datetime="2019-01-26T12:35:00.000Z" itemprop="datePublished">2019-01-26</time>
+    <a href="/2019/04/19/MicroService/" class="article-date">
+  <time datetime="2019-04-19T05:45:34.373Z" itemprop="datePublished">2019-04-19</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      JAVA_Reflection+Annotation
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java注解和反射机制的一些知识（二）<br><a id="more"></a></p>
-<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
-<ul>
-<li>Class.newInstance()用来反射无参的构造器  </li>
-<li>Constructor.newInstance()可以反射任何构造器  </li>
-</ul>
-<h4 id="2-invoke-方法：调用包装在当前Method对象中的方法"><a href="#2-invoke-方法：调用包装在当前Method对象中的方法" class="headerlink" title="2. invoke()方法：调用包装在当前Method对象中的方法"></a>2. invoke()方法：调用包装在当前Method对象中的方法</h4><p>　　参数（obj：实例化后的对象，args：用于方法调用的参数）<br>　　有参数的情况：<br>　　Method met = c.getMethod(“sayHello”,String.Class,int.Class);<br>　　String rv = null;<br>　　rv = (String)met.invoke(c.newInstance,”xxk”,21);　　</p>
-<h3 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h3><h4 id="1-override：可以用来检查是否正确重写"><a href="#1-override：可以用来检查是否正确重写" class="headerlink" title="1. @override：可以用来检查是否正确重写"></a>1. @override：可以用来检查是否正确重写</h4><h4 id="2-interface：定义一个Annotation"><a href="#2-interface：定义一个Annotation" class="headerlink" title="2. @interface：定义一个Annotation"></a>2. @interface：定义一个Annotation</h4><p>　　public @interface MyDefaultAnnotationValiue{<br>　　　　public String key() default “XXK”;<br>　　}  </p>
-<ul>
-<li>变量后面要加()，可以设置默认值</li>
-</ul>
-<h4 id="3-Target：指定Annotation使用范围"><a href="#3-Target：指定Annotation使用范围" class="headerlink" title="3. @Target：指定Annotation使用范围"></a>3. @Target：指定Annotation使用范围</h4><h4 id="4-Documented：生成java-doc时编写文档信息"><a href="#4-Documented：生成java-doc时编写文档信息" class="headerlink" title="4. @Documented：生成java.doc时编写文档信息"></a>4. @Documented：生成java.doc时编写文档信息</h4><h4 id="5-通过反射获得Annotation（反射与Annotation结合才有意义）"><a href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）" class="headerlink" title="5. 通过反射获得Annotation（反射与Annotation结合才有意义）"></a>5. 通过反射获得Annotation（反射与Annotation结合才有意义）</h4>
+        <h2 id="Notes："><a href="#Notes：" class="headerlink" title="Notes："></a>Notes：</h2><h4 id="面向对象三大特性："><a href="#面向对象三大特性：" class="headerlink" title="面向对象三大特性："></a>面向对象三大特性：</h4><p>封装、继承、多态<br>封装：将对象的属性和行为抽象出来包装到类中；<br>继承：将具有相同属性和行为的对象抽象出来包装成一个父类；<br>多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；  </p>
+<h4 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h4><p>接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的<br>例如为抽象类设计行为模型；<br>public interfce AnimalService{<br>  public void call();<br>}</p>
+<h4 id="JAVA软件开发"><a href="#JAVA软件开发" class="headerlink" title="JAVA软件开发"></a>JAVA软件开发</h4><p>MyEclipse集成了Eclipse的插件；<br>IDE集成开发环境；</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjxkaubzm00049guizede33n9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/19/MicroService/" data-id="cjxkaubz900019guia585h9cf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,19 +92,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/27/数学安排/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/01/生产实习/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          数学一
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2019/01/24/JAVA_Lambda/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/27/spring部分-1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java_Lambda</div>
+      <div class="article-nav-title">Spring_1</div>
     </a>
   
 </nav>

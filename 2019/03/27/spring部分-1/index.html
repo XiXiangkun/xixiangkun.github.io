@@ -5,19 +5,21 @@
   
 
   
-  <title>JAVA_Reflection+Annotation | Hexo</title>
+  <title>Spring_1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java注解和反射机制的一些知识（二）">
+  <meta name="description" content="java的spring相关知识（一）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA_Reflection+Annotation">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
+<meta property="og:title" content="Spring_1">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/spring部分-1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java注解和反射机制的一些知识（二）">
+<meta property="og:description" content="java的spring相关知识（一）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-17T13:34:25.352Z">
+<meta property="og:image" content="https://7n.w3cschool.cn/attachments/image/wk/wkspring/arch1.png">
+<meta property="og:updated_time" content="2019-03-27T16:00:52.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
+<meta name="twitter:title" content="Spring_1">
+<meta name="twitter:description" content="java的spring相关知识（一）">
+<meta name="twitter:image" content="https://7n.w3cschool.cn/attachments/image/wk/wkspring/arch1.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Java_Reflection+Annotation" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-spring部分-1" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/26/Java_Reflection+Annotation/" class="article-date">
-  <time datetime="2019-01-26T12:35:00.000Z" itemprop="datePublished">2019-01-26</time>
+    <a href="/2019/03/27/spring部分-1/" class="article-date">
+  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JAVA_Reflection+Annotation
+      Spring_1
     </h1>
   
 
@@ -90,22 +92,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java注解和反射机制的一些知识（二）<br><a id="more"></a></p>
-<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
-<ul>
-<li>Class.newInstance()用来反射无参的构造器  </li>
-<li>Constructor.newInstance()可以反射任何构造器  </li>
-</ul>
-<h4 id="2-invoke-方法：调用包装在当前Method对象中的方法"><a href="#2-invoke-方法：调用包装在当前Method对象中的方法" class="headerlink" title="2. invoke()方法：调用包装在当前Method对象中的方法"></a>2. invoke()方法：调用包装在当前Method对象中的方法</h4><p>　　参数（obj：实例化后的对象，args：用于方法调用的参数）<br>　　有参数的情况：<br>　　Method met = c.getMethod(“sayHello”,String.Class,int.Class);<br>　　String rv = null;<br>　　rv = (String)met.invoke(c.newInstance,”xxk”,21);　　</p>
-<h3 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h3><h4 id="1-override：可以用来检查是否正确重写"><a href="#1-override：可以用来检查是否正确重写" class="headerlink" title="1. @override：可以用来检查是否正确重写"></a>1. @override：可以用来检查是否正确重写</h4><h4 id="2-interface：定义一个Annotation"><a href="#2-interface：定义一个Annotation" class="headerlink" title="2. @interface：定义一个Annotation"></a>2. @interface：定义一个Annotation</h4><p>　　public @interface MyDefaultAnnotationValiue{<br>　　　　public String key() default “XXK”;<br>　　}  </p>
-<ul>
-<li>变量后面要加()，可以设置默认值</li>
-</ul>
-<h4 id="3-Target：指定Annotation使用范围"><a href="#3-Target：指定Annotation使用范围" class="headerlink" title="3. @Target：指定Annotation使用范围"></a>3. @Target：指定Annotation使用范围</h4><h4 id="4-Documented：生成java-doc时编写文档信息"><a href="#4-Documented：生成java-doc时编写文档信息" class="headerlink" title="4. @Documented：生成java.doc时编写文档信息"></a>4. @Documented：生成java.doc时编写文档信息</h4><h4 id="5-通过反射获得Annotation（反射与Annotation结合才有意义）"><a href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）" class="headerlink" title="5. 通过反射获得Annotation（反射与Annotation结合才有意义）"></a>5. 通过反射获得Annotation（反射与Annotation结合才有意义）</h4>
+        <p>java的spring相关知识（一）<br><a id="more"></a></p>
+<h3 id="控制反转（IoC）、依赖注入（DI）、面向方面的程序设计（AOP）"><a href="#控制反转（IoC）、依赖注入（DI）、面向方面的程序设计（AOP）" class="headerlink" title="控制反转（IoC）、依赖注入（DI）、面向方面的程序设计（AOP）"></a>控制反转（IoC）、依赖注入（DI）、面向方面的程序设计（AOP）</h3><p>Spring 最认同的技术是控制反转的依赖注入（DI）模式。<br><img src="https://7n.w3cschool.cn/attachments/image/wk/wkspring/arch1.png" alt="pic_1"></p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><h4 id="在d-sprint-try中"><a href="#在d-sprint-try中" class="headerlink" title="在d:/sprint_try中"></a>在d:/sprint_try中</h4><p>1.pom.xml中加入依赖<br>    <dependencies><br>        <dependency><br>            <groupid>org.springframework</groupid><br>            <artifactid>spring-context</artifactid><br>            <version>4.3.7.RELEASE</version><br>        </dependency><br>    </dependencies><br>2.创建包<br>在src/main/java下创建包try_1<br>包中创建MessageService、MessagePrinter的class</p>
+<p>在printer中调用service，最简单的是使用成员变量<br>快捷键Alt+Insert唤醒创建setter的方法<br>快捷键sout调出System.out.println()<br>快捷键psvm调出public static void main(String[] args){}<br>快捷键Ctrl+O调出无参构造方法</p>
+<p>/<strong>可以快速添加注解<br>/</strong>这里是消除sublime的格式不一致</p>
+<p>3.添加注解<br>spring容器第一个特性，帮助自动创建对象<br>application_try_2对比1<br>@Component注解：泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>service、printer中添加<br>import org.springframework.stereotype.Component;<br>@Component<br>public class MessageService {</p>
+<p>所以application中的MessageService、MessagePrinter都由spring来管理了，不用自己创建<br>application中添加注解@ComponentScan，自动扫描component，添加到容器<br>添加ApplicationContext context=new AnnotationConfigApplicationContext(Application_try_2.class);<br>ApplicationContext是spring的容器</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjxkaubzm00049guizede33n9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/27/spring部分-1/" data-id="cjxkauc07000c9gui9yfhuxmh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,19 +112,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/27/数学安排/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/04/19/MicroService/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          数学一
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2019/01/24/JAVA_Lambda/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/03/Django/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java_Lambda</div>
+      <div class="article-nav-title">Django基本流程</div>
     </a>
   
 </nav>

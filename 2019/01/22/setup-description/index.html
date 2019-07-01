@@ -5,19 +5,19 @@
   
 
   
-  <title>JAVA_Reflection+Annotation | Hexo</title>
+  <title>description | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java注解和反射机制的一些知识（二）">
+  <meta name="description" content="初始安装和配置等教程操作信息">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA_Reflection+Annotation">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
+<meta property="og:title" content="description">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/setup-description/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java注解和反射机制的一些知识（二）">
+<meta property="og:description" content="初始安装和配置等教程操作信息">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-17T13:34:25.352Z">
+<meta property="og:updated_time" content="2019-03-17T13:33:18.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
+<meta name="twitter:title" content="description">
+<meta name="twitter:description" content="初始安装和配置等教程操作信息">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,14 +64,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Java_Reflection+Annotation" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-setup-description" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/26/Java_Reflection+Annotation/" class="article-date">
-  <time datetime="2019-01-26T12:35:00.000Z" itemprop="datePublished">2019-01-26</time>
+    <a href="/2019/01/22/setup-description/" class="article-date">
+  <time datetime="2019-01-22T13:18:38.000Z" itemprop="datePublished">2019-01-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/github/">github</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JAVA_Reflection+Annotation
+      description
     </h1>
   
 
@@ -90,22 +90,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java注解和反射机制的一些知识（二）<br><a id="more"></a></p>
-<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
+        <p>初始安装和配置等教程操作信息<br><a id="more"></a></p>
+<h2 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h2><h3 id="网上的教程，说什么最详细，都是骗人的"><a href="#网上的教程，说什么最详细，都是骗人的" class="headerlink" title="网上的教程，说什么最详细，都是骗人的"></a>网上的教程，说什么最详细，都是骗人的</h3><p><em>### 内容：</em></p>
 <ul>
-<li>Class.newInstance()用来反射无参的构造器  </li>
-<li>Constructor.newInstance()可以反射任何构造器  </li>
+<li>安装Git，下一步到底</li>
+<li>安装Nodejs，下一步到底</li>
+<li>使用命令行cmd安装hexo，网上有语法（注意全局配置，添加环境变量等的问题，有npm的一个刷新命令）。</li>
+<li>一些安装操作后，使用hexo -v查看版本</li>
+<li>关联Github和自己hexo搭建的博客，注意查看网上教程就可以</li>
+<li>在根目录下，右键git bash进行部署（远程部署命令：hexo c清除缓存；hexo g + hexo d）</li>
 </ul>
-<h4 id="2-invoke-方法：调用包装在当前Method对象中的方法"><a href="#2-invoke-方法：调用包装在当前Method对象中的方法" class="headerlink" title="2. invoke()方法：调用包装在当前Method对象中的方法"></a>2. invoke()方法：调用包装在当前Method对象中的方法</h4><p>　　参数（obj：实例化后的对象，args：用于方法调用的参数）<br>　　有参数的情况：<br>　　Method met = c.getMethod(“sayHello”,String.Class,int.Class);<br>　　String rv = null;<br>　　rv = (String)met.invoke(c.newInstance,”xxk”,21);　　</p>
-<h3 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h3><h4 id="1-override：可以用来检查是否正确重写"><a href="#1-override：可以用来检查是否正确重写" class="headerlink" title="1. @override：可以用来检查是否正确重写"></a>1. @override：可以用来检查是否正确重写</h4><h4 id="2-interface：定义一个Annotation"><a href="#2-interface：定义一个Annotation" class="headerlink" title="2. @interface：定义一个Annotation"></a>2. @interface：定义一个Annotation</h4><p>　　public @interface MyDefaultAnnotationValiue{<br>　　　　public String key() default “XXK”;<br>　　}  </p>
-<ul>
-<li>变量后面要加()，可以设置默认值</li>
-</ul>
-<h4 id="3-Target：指定Annotation使用范围"><a href="#3-Target：指定Annotation使用范围" class="headerlink" title="3. @Target：指定Annotation使用范围"></a>3. @Target：指定Annotation使用范围</h4><h4 id="4-Documented：生成java-doc时编写文档信息"><a href="#4-Documented：生成java-doc时编写文档信息" class="headerlink" title="4. @Documented：生成java.doc时编写文档信息"></a>4. @Documented：生成java.doc时编写文档信息</h4><h4 id="5-通过反射获得Annotation（反射与Annotation结合才有意义）"><a href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）" class="headerlink" title="5. 通过反射获得Annotation（反射与Annotation结合才有意义）"></a>5. 通过反射获得Annotation（反射与Annotation结合才有意义）</h4>
+<p><em>### 注意：</em>  </p>
+<ol>
+<li>使用hexo的过程中，_config.yml中的：后面，一定要加空格，否则不会报错，但是不会部署成功  </li>
+<li>去github创建仓库，与自己的用户名一致，用来远程部署仓库，_config.yml中修改<br>　　deploy:<br>　　　　type: git<br>　　　　repo: <a href="https://github.com/XiXiangkun/XiXiangkun.github.io.git" target="_blank" rel="noopener">https://github.com/XiXiangkun/XiXiangkun.github.io.git</a><br>　  　　　branch: master  </li>
+<li>hexo server用来去localhost:4000查看自己当前的结果  </li>
+<li>远程部署命令：hexo -c清除缓存；hexo -g + hexo -d  </li>
+<li>可能需要登录github的窗口提示  </li>
+<li>ssh密钥的配置，网上有  </li>
+<li>登录xixiangkun.github.io就可以查看博客  </li>
+<li>安装nodejs只是为了用npm安装hexo</li>
+<li>hexo发音 hack so</li>
+<li>cd命令切换 cd /d D:\software</li>
+<li>删除github上的仓库，点开后进去setting</li>
+</ol>
+<hr>
+<p>  1.nodejs一段时间后可能需要重新安装，通过npm install和npm install hexo-deployer-git –save完成安装<br>  2.md文件中的花括号注释在git部署的过程中会出错，所以django的文件中花括号内容被全部删除</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjxkaubzm00049guizede33n9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/setup-description/" data-id="cjxkaubzo00059guiq4dppt7i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,19 +129,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/27/数学安排/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/24/JAVA_Lambda/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          数学一
+          Java_Lambda
         
       </div>
     </a>
   
   
-    <a href="/2019/01/24/JAVA_Lambda/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java_Lambda</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>

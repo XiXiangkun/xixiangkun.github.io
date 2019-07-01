@@ -97,7 +97,180 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/1970/01/01/KY_2019/" data-id="cjtcyrnsz0003iwuicaytc39b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/1970/01/01/KY_2019/" data-id="cjxkaubzk00039gui60d9pw04" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-生产实习" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/01/生产实习/" class="article-date">
+  <time datetime="2019-07-01T11:25:25.530Z" itemprop="datePublished">2019-07-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="生产实习笔记"><a href="#生产实习笔记" class="headerlink" title=" 生产实习笔记 "></a><strong> 生产实习笔记 </strong></h1><p>资料：<code>https://beta-dlab.datafountain.cn/student/library/section?uuid=646cef43ab9146bea394927e6b368533</code></p>
+<hr>
+<ul>
+<li><p>2019.6.29</p>
+<ul>
+<li>1.介绍<ul>
+<li>机器学习是人工智能分支；深度学习是机器学习的分支。</li>
+<li>机器学习分为三大类：有监督学习、无监督学习、强化学习</li>
+<li>有监督学习有样本特征X和响应变量Y。<br>　　　<code>Y=f(x)</code>  </li>
+<li>有监督学习进一步分为：分类、回归</li>
+<li>无监督学习只有特征变量X，没有Y。分为关联和聚类。</li>
+<li>强化学习，常见为Q-learning和时间差学习。</li>
+<li>用python框架Scikit-learn</li>
+</ul>
+</li>
+<li><p>2.流程</p>
+<ul>
+<li>2.1问题定义：<ul>
+<li>分类</li>
+<li>回归（对实例以真实的数值进行标记。回归模型的作用是为待标记的实例进行可量化的预测标记。）</li>
+<li>聚类（不标记实例，挖掘相似性）</li>
+</ul>
+</li>
+<li>2.2数据准备：<ul>
+<li>数值型变量</li>
+<li>分类型变量</li>
+<li>混合型变量</li>
+<li>数据准确性检查：<ul>
+<li>分类型变量的统计分布，可以使用pandas中的value_counts()函数</li>
+<li>数值型变量的统计分析，可以使用pandas中的describe()函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2.3模型训练：</p>
+<ul>
+<li>2.3.1训练集、验证集和测试集的常见划分方法：数据集包括“训练集/训练数据”，“测试集/测试数据”, “验证集/验证数据”。验证集，作用是在训练集训练出多个模型后，为了能找出效果最佳的模型。<ul>
+<li>在实际项目执行中，基于样本数据划分过程通常为：先划分出测试集，再对剩下的数据划分训练集和验证集。</li>
+<li>划分验证集的操作常用的方法有两种：“hold-out”和交互检验。如果数据集具有时间序列属性，则不适合使用交互检验，可以用hold-out方法。<ul>
+<li>“hold-out”是指将剩余的数据集按照一定比例划分出训练集和验证集，比如70%作为训练集，30%作为验证集。</li>
+<li>交互检验是将剩余数据划分为K等份，用K-1份作为训练集，剩余1份作为验证集，依次轮换训练集和验证集K次，直到找到预测误差最小的模型认为是所求模型，也被称为K折交叉验证（k-fold cross-validation）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.3.2训练集样本平衡性检查及处理<ul>
+<li>随机欠采样（随机欠采样的思想是通过随机地消除占多数的类的样本来平衡类分布）</li>
+<li>随机过采样（随机过采样的思想则是通过随机复制少数类来增加其的样本数量）</li>
+</ul>
+</li>
+<li>2.3.3训练并寻找最优模型<ul>
+<li>机器学习算法选择</li>
+<li>机器学习算法超参数调优</li>
+<li>机器学习算法参数优化</li>
+</ul>
+</li>
+<li>2.3.4损失函数、代价函数与目标函数介绍<ul>
+<li>损失函数：<code>L(y′,y)=−ylog(y′)−(1−y)log(1−y′)</code>其中L(y’,y)代表损失函数，其中y’代表模型预测结果，y为真实值。</li>
+<li>代价函数：代价函数的设计思路是基于前例中的损失函数，对m个样本的损失函数值求和后除以样本数m，是一种求平均损失值的思想。</li>
+<li>目标函数：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2.4模型评估：</p>
+</li>
+<li>2.5模型部署：</li>
+<li>2.6模型监控与更新：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/01/生产实习/" data-id="cjxkauc09000d9guio2dw9a3o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MicroService" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/19/MicroService/" class="article-date">
+  <time datetime="2019-04-19T05:45:34.373Z" itemprop="datePublished">2019-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Notes："><a href="#Notes：" class="headerlink" title="Notes："></a>Notes：</h2><h4 id="面向对象三大特性："><a href="#面向对象三大特性：" class="headerlink" title="面向对象三大特性："></a>面向对象三大特性：</h4><p>封装、继承、多态<br>封装：将对象的属性和行为抽象出来包装到类中；<br>继承：将具有相同属性和行为的对象抽象出来包装成一个父类；<br>多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；  </p>
+<h4 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h4><p>接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的<br>例如为抽象类设计行为模型；<br>public interfce AnimalService{<br>  public void call();<br>}</p>
+<h4 id="JAVA软件开发"><a href="#JAVA软件开发" class="headerlink" title="JAVA软件开发"></a>JAVA软件开发</h4><p>MyEclipse集成了Eclipse的插件；<br>IDE集成开发环境；</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/19/MicroService/" data-id="cjxkaubz900019guia585h9cf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-spring部分-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/27/spring部分-1/" class="article-date">
+  <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/spring部分-1/">Spring_1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java的spring相关知识（一）<br>
+        
+          </p><p class="article-more-link">
+            <a href="/2019/03/27/spring部分-1/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/27/spring部分-1/" data-id="cjxkauc07000c9gui9yfhuxmh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjtcyrntw000iiwuiq0k6z6c1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjxkauc15000i9gui7reld62r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -152,54 +325,9 @@
 
 
   
-    <article id="post-spring" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-数学安排" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/15/spring/" class="article-date">
-  <time datetime="2019-02-14T16:00:00.000Z" itemprop="datePublished">2019-02-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/15/spring/">Spring</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java的spring相关知识（三）<br>
-        
-          </p><p class="article-more-link">
-            <a href="/2019/02/15/spring/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/spring/" data-id="cjtcyrnt80007iwuizr28dc0o" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数学" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/27/数学/" class="article-date">
+    <a href="/2019/01/27/数学安排/" class="article-date">
   <time datetime="2019-01-27T13:18:38.000Z" itemprop="datePublished">2019-01-27</time>
 </a>
     
@@ -215,7 +343,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/27/数学/">数学一</a>
+      <a class="article-title" href="/2019/01/27/数学安排/">数学一</a>
     </h1>
   
 
@@ -226,13 +354,13 @@
         <p>Math考研部分<br>
         
           </p><p class="article-more-link">
-            <a href="/2019/01/27/数学/#more">Read More</a>
+            <a href="/2019/01/27/数学安排/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/27/数学/" data-id="cjtcyrnta0008iwui5gvvu7kc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/27/数学安排/" data-id="cjxkauc0b000e9gui7kewp885" class="article-share-link">Share</a>
       
       
     </footer>
@@ -277,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjtcyrnsm0001iwuilfe7xbu8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjxkaubzm00049guizede33n9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -322,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/24/JAVA_Lambda/" data-id="cjtcyrnra0000iwuixuvpxfqb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/24/JAVA_Lambda/" data-id="cjxkaubxp00009guimp6y50ln" class="article-share-link">Share</a>
       
       
     </footer>
@@ -332,9 +460,9 @@
 
 
   
-    <article id="post-description" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-setup-description" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/22/description/" class="article-date">
+    <a href="/2019/01/22/setup-description/" class="article-date">
   <time datetime="2019-01-22T13:18:38.000Z" itemprop="datePublished">2019-01-22</time>
 </a>
     
@@ -350,7 +478,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/description/">description</a>
+      <a class="article-title" href="/2019/01/22/setup-description/">description</a>
     </h1>
   
 
@@ -361,13 +489,13 @@
         <p>初始安装和配置等教程操作信息<br>
         
           </p><p class="article-more-link">
-            <a href="/2019/01/22/description/#more">Read More</a>
+            <a href="/2019/01/22/setup-description/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/description/" data-id="cjtcyrnt20004iwuiotij0kax" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/setup-description/" data-id="cjxkaubzo00059guiq4dppt7i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjtcyrnt40005iwuibhfwva5w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjxkauc0e000f9guix8t7t65q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -447,7 +575,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -460,23 +588,23 @@
       <ul>
         
           <li>
+            <a href="/2019/07/01/生产实习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/19/MicroService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/27/spring部分-1/">Spring_1</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/03/Django/">Django基本流程</a>
           </li>
         
           <li>
-            <a href="/2019/02/15/spring/">Spring</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/27/数学/">数学一</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/26/Java_Reflection+Annotation/">JAVA_Reflection+Annotation</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/24/JAVA_Lambda/">Java_Lambda</a>
+            <a href="/2019/01/27/数学安排/">数学一</a>
           </li>
         
       </ul>

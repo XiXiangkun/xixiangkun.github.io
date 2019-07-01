@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="关于django基本流程的笔记（一）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-17T13:32:50.237Z">
+<meta property="og:updated_time" content="2019-05-12T14:55:46.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django基本流程">
 <meta name="twitter:description" content="关于django基本流程的笔记（一）">
@@ -110,8 +110,8 @@
 </ul>
 <hr>
 <h3 id="3-Pycharm软件操作："><a href="#3-Pycharm软件操作：" class="headerlink" title="3.Pycharm软件操作："></a>3.Pycharm软件操作：</h3><ul>
-<li><h4 id="a-init输入两条语句"><a href="#a-init输入两条语句" class="headerlink" title="a)init输入两条语句"></a>a)init输入两条语句</h4>　　安装mysql  <pre><code>import mysql  
-mysql.install_as_MySQLdb()  
+<li><h4 id="a-init输入两条语句"><a href="#a-init输入两条语句" class="headerlink" title="a)init输入两条语句"></a>a)init输入两条语句</h4>　　安装mysql  <pre><code>import pymysql  
+pymysql.install_as_MySQLdb()  
 </code></pre></li>
 <li><h4 id="b-settings配置databases（自己用的mysql5，root-root）"><a href="#b-settings配置databases（自己用的mysql5，root-root）" class="headerlink" title="b)settings配置databases（自己用的mysql5，root-root）"></a>b)settings配置databases（自己用的mysql5，root-root）</h4>　　default内容：  <pre><code>&apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
 &apos;NAME&apos;: &quot;sunck&quot;,
@@ -124,7 +124,7 @@ mysql.install_as_MySQLdb()
 mysql -u root -p;   
 create database django_try_1;  
 </code></pre></li>
-<li><h4 id="d-创建应用："><a href="#d-创建应用：" class="headerlink" title="d)创建应用："></a>d)创建应用：</h4><pre><code>pyhton manage.py startapp myAPP(这是名字)  
+<li><h4 id="d-创建应用："><a href="#d-创建应用：" class="headerlink" title="d)创建应用："></a>d)创建应用：</h4><pre><code>python manage.py startapp myAPP(这是名字)  
 </code></pre>　　其中admin是站点配置；model写模型；view视图  </li>
 <li><h4 id="e-激活应用（settings中的INSTALLED-APPS）："><a href="#e-激活应用（settings中的INSTALLED-APPS）：" class="headerlink" title="e)激活应用（settings中的INSTALLED_APPS）："></a>e)激活应用（settings中的INSTALLED_APPS）：</h4>　　添加’myAPP’，INSTALLED_APPS:<pre><code>&apos;django.contrib.admin&apos;,
 &apos;django.contrib.auth&apos;,
@@ -154,7 +154,8 @@ class Grades(models.Model):
 </code></pre><h4 id="③添加数据（本质是创建模型类的对象实例）"><a href="#③添加数据（本质是创建模型类的对象实例）" class="headerlink" title="③添加数据（本质是创建模型类的对象实例）"></a>③添加数据（本质是创建模型类的对象实例）</h4><pre><code>  　　grade1=Grades()
   　　grade1.gname=&quot;python00&quot;
   　　grade1.gdate=datetime(year=2019,month=3,day=8)
-</code></pre><h4 id="④查看数据库"><a href="#④查看数据库" class="headerlink" title="④查看数据库"></a>④查看数据库</h4><pre><code>  　　select * from myapp_grades
+</code></pre><h4 id="④查看数据库"><a href="#④查看数据库" class="headerlink" title="④查看数据库"></a>④查看数据库</h4><p>在数据库中操作：</p>
+<pre><code>  　　select * from myapp_grades
 </code></pre><p>　　没有数据，想把数据存进去，需要保存。回去project_3的cmd  </p>
 <pre><code>  　　grade1.save()
 </code></pre><p>　　查看数据会有显示</p>
@@ -386,12 +387,15 @@ class Grades(models.Model):
 <li>⑥.重新迁移最好把migtations中的0001_initial.py文件删除，并把数据库删除</li>
 </ul>
 <hr>
-<h1 id="NOTES："><a href="#NOTES：" class="headerlink" title="NOTES："></a><strong>NOTES：</strong></h1><p>　　markdown语法中，首尾三个`表示代码块</p>
+<h1 id="NOTES："><a href="#NOTES：" class="headerlink" title="NOTES："></a><strong>NOTES：</strong></h1><ul>
+<li>markdown语法中，首尾三个`表示代码块</li>
+<li>settings中的时区设置为UTC避免部分错误，设置False</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjtcyrntw000iiwuiq0k6z6c1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/03/Django/" data-id="cjxkauc15000i9gui7reld62r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -400,10 +404,19 @@ class Grades(models.Model):
     
 <nav id="article-nav">
   
+    <a href="/2019/03/27/spring部分-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring_1
+        
+      </div>
+    </a>
   
-    <a href="/2019/02/15/spring/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/01/27/数学安排/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Spring</div>
+      <div class="article-nav-title">数学一</div>
     </a>
   
 </nav>
@@ -434,7 +447,7 @@ class Grades(models.Model):
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -447,23 +460,23 @@ class Grades(models.Model):
       <ul>
         
           <li>
+            <a href="/2019/07/01/生产实习/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/19/MicroService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/27/spring部分-1/">Spring_1</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/03/Django/">Django基本流程</a>
           </li>
         
           <li>
-            <a href="/2019/02/15/spring/">Spring</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/27/数学/">数学一</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/26/Java_Reflection+Annotation/">JAVA_Reflection+Annotation</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/24/JAVA_Lambda/">Java_Lambda</a>
+            <a href="/2019/01/27/数学安排/">数学一</a>
           </li>
         
       </ul>

@@ -5,19 +5,19 @@
   
 
   
-  <title>JAVA_Reflection+Annotation | Hexo</title>
+  <title>数学一 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java注解和反射机制的一些知识（二）">
+  <meta name="description" content="Math考研部分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA_Reflection+Annotation">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
+<meta property="og:title" content="数学一">
+<meta property="og:url" content="http://yoursite.com/2019/01/27/数学安排/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java注解和反射机制的一些知识（二）">
+<meta property="og:description" content="Math考研部分">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-17T13:34:25.352Z">
+<meta property="og:updated_time" content="2019-03-17T13:35:01.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
+<meta name="twitter:title" content="数学一">
+<meta name="twitter:description" content="Math考研部分">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,14 +64,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Java_Reflection+Annotation" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-数学安排" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/26/Java_Reflection+Annotation/" class="article-date">
-  <time datetime="2019-01-26T12:35:00.000Z" itemprop="datePublished">2019-01-26</time>
+    <a href="/2019/01/27/数学安排/" class="article-date">
+  <time datetime="2019-01-27T13:18:38.000Z" itemprop="datePublished">2019-01-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/KY/">KY</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JAVA_Reflection+Annotation
+      数学一
     </h1>
   
 
@@ -90,22 +90,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java注解和反射机制的一些知识（二）<br><a id="more"></a></p>
-<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
-<ul>
-<li>Class.newInstance()用来反射无参的构造器  </li>
-<li>Constructor.newInstance()可以反射任何构造器  </li>
-</ul>
-<h4 id="2-invoke-方法：调用包装在当前Method对象中的方法"><a href="#2-invoke-方法：调用包装在当前Method对象中的方法" class="headerlink" title="2. invoke()方法：调用包装在当前Method对象中的方法"></a>2. invoke()方法：调用包装在当前Method对象中的方法</h4><p>　　参数（obj：实例化后的对象，args：用于方法调用的参数）<br>　　有参数的情况：<br>　　Method met = c.getMethod(“sayHello”,String.Class,int.Class);<br>　　String rv = null;<br>　　rv = (String)met.invoke(c.newInstance,”xxk”,21);　　</p>
-<h3 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h3><h4 id="1-override：可以用来检查是否正确重写"><a href="#1-override：可以用来检查是否正确重写" class="headerlink" title="1. @override：可以用来检查是否正确重写"></a>1. @override：可以用来检查是否正确重写</h4><h4 id="2-interface：定义一个Annotation"><a href="#2-interface：定义一个Annotation" class="headerlink" title="2. @interface：定义一个Annotation"></a>2. @interface：定义一个Annotation</h4><p>　　public @interface MyDefaultAnnotationValiue{<br>　　　　public String key() default “XXK”;<br>　　}  </p>
-<ul>
-<li>变量后面要加()，可以设置默认值</li>
-</ul>
-<h4 id="3-Target：指定Annotation使用范围"><a href="#3-Target：指定Annotation使用范围" class="headerlink" title="3. @Target：指定Annotation使用范围"></a>3. @Target：指定Annotation使用范围</h4><h4 id="4-Documented：生成java-doc时编写文档信息"><a href="#4-Documented：生成java-doc时编写文档信息" class="headerlink" title="4. @Documented：生成java.doc时编写文档信息"></a>4. @Documented：生成java.doc时编写文档信息</h4><h4 id="5-通过反射获得Annotation（反射与Annotation结合才有意义）"><a href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）" class="headerlink" title="5. 通过反射获得Annotation（反射与Annotation结合才有意义）"></a>5. 通过反射获得Annotation（反射与Annotation结合才有意义）</h4>
+        <p>Math考研部分<br><a id="more"></a></p>
+<h2 id="汤家凤"><a href="#汤家凤" class="headerlink" title="汤家凤"></a>汤家凤</h2><h3 id="题型分布"><a href="#题型分布" class="headerlink" title="题型分布"></a>题型分布</h3><p>选择题（8×4）：高数4、线代2、概率2<br>填空题（6×4）：高数4、线代1、概率1<br>解答题（9）：高数5、线代2、概率2</p>
+<h3 id="高等数学教材"><a href="#高等数学教材" class="headerlink" title="高等数学教材"></a>高等数学教材</h3><ol>
+<li>范围<br>①极限与连续<br>②一元微分解（导数与微积分、一元微分学的应用）<br>③一元积分学（不定积分、定积分）<br>④多元微分学<br>⑤二重积分<br>⑥微分方程</li>
+<li>学习方法（框架）<br>①定义-框架<br>②基本题型-框架</li>
+</ol>
+<h3 id="2-6月份（基础阶段）"><a href="#2-6月份（基础阶段）" class="headerlink" title="2-6月份（基础阶段）"></a>2-6月份（基础阶段）</h3><h3 id="7-9月份（强化计算、综合分析、实际应用、逻辑推理能力）"><a href="#7-9月份（强化计算、综合分析、实际应用、逻辑推理能力）" class="headerlink" title="7-9月份（强化计算、综合分析、实际应用、逻辑推理能力）"></a>7-9月份（强化计算、综合分析、实际应用、逻辑推理能力）</h3><h3 id="10-（冲刺）：真题（控制时间）从前开始做，2-3天一套"><a href="#10-（冲刺）：真题（控制时间）从前开始做，2-3天一套" class="headerlink" title="10~（冲刺）：真题（控制时间）从前开始做，2-3天一套"></a>10~（冲刺）：真题（控制时间）从前开始做，2-3天一套</h3><h3 id="11-模拟题"><a href="#11-模拟题" class="headerlink" title="11~模拟题"></a>11~模拟题</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/" data-id="cjxkaubzm00049guizede33n9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/27/数学安排/" data-id="cjxkauc0b000e9gui7kewp885" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,19 +109,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/27/数学安排/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/03/Django/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          数学一
+          Django基本流程
         
       </div>
     </a>
   
   
-    <a href="/2019/01/24/JAVA_Lambda/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/26/Java_Reflection+Annotation/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java_Lambda</div>
+      <div class="article-nav-title">JAVA_Reflection+Annotation</div>
     </a>
   
 </nav>
