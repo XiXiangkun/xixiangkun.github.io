@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="java注解和反射机制的一些知识（二）">
+<meta name="description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA_Reflection+Annotation">
+<meta property="og:title" content="JAVA_Reflection+Annotation注解和反射机制的一些知识">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/Java_Reflection+Annotation/index.html">
 <meta property="og:site_name" content="Xiangkun Xi&#39;s Personal Hexo Blog">
-<meta property="og:description" content="java注解和反射机制的一些知识（二）">
+<meta property="og:description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-01T11:36:20.574Z">
+<meta property="og:updated_time" content="2019-07-02T12:52:46.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA_Reflection+Annotation">
-<meta name="twitter:description" content="java注解和反射机制的一些知识（二）">
+<meta name="twitter:title" content="JAVA_Reflection+Annotation注解和反射机制的一些知识">
+<meta name="twitter:description" content="Reflection1. 反射，用来通过对象获取类　　实例：　　import java.lang.reflect.Method　　Class&amp;lt;?&amp;gt; c = null; //声明对象　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化　　Method toM = c.getMethod(“toString”); //取得toString">
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>JAVA_Reflection+Annotation | Xiangkun Xi's Personal Hexo Blog</title>
+  <title>JAVA_Reflection+Annotation注解和反射机制的一些知识 | Xiangkun Xi's Personal Hexo Blog</title>
   
 
 
@@ -289,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JAVA_Reflection+Annotation</h1>
+          <h1 class="post-title" itemprop="name headline">JAVA_Reflection+Annotation注解和反射机制的一些知识</h1>
         
 
         <div class="post-meta">
@@ -361,8 +361,7 @@
       
 
       
-        <h4 id="java注解和反射机制的一些知识（二）"><a href="#java注解和反射机制的一些知识（二）" class="headerlink" title="java注解和反射机制的一些知识（二）"></a>java注解和反射机制的一些知识（二）</h4><a id="more"></a>
-<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
+        <h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><h4 id="1-反射，用来通过对象获取类"><a href="#1-反射，用来通过对象获取类" class="headerlink" title="1. 反射，用来通过对象获取类"></a>1. 反射，用来通过对象获取类</h4><p>　　实例：<br>　　import java.lang.reflect.Method<br>　　Class&lt;?&gt; c = null; //声明对象<br>　　c = Class.forName(“org.lxh.demo.SimpleOne”); //实例化<br>　　Method toM = c.getMethod(“toString”); //取得toString方法<br>　　toM.invoke(c.newInstance()); //invoke()进行调用  </p>
 <ul>
 <li>Class.newInstance()用来反射无参的构造器  </li>
 <li>Constructor.newInstance()可以反射任何构造器  </li>
@@ -396,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/24/JAVA_Lambda/" rel="next" title="Java_Lambda">
-                <i class="fa fa-chevron-left"></i> Java_Lambda
+              <a href="/2019/01/24/JAVA_Lambda/" rel="next" title="Java_Lambda一些知识">
+                <i class="fa fa-chevron-left"></i> Java_Lambda一些知识
               </a>
             
           </div>
@@ -531,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#java注解和反射机制的一些知识（二）"><span class="nav-number">1.</span> <span class="nav-text">java注解和反射机制的一些知识（二）</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflection"><span class="nav-number"></span> <span class="nav-text">Reflection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-反射，用来通过对象获取类"><span class="nav-number">1.</span> <span class="nav-text">1. 反射，用来通过对象获取类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-invoke-方法：调用包装在当前Method对象中的方法"><span class="nav-number">2.</span> <span class="nav-text">2. invoke()方法：调用包装在当前Method对象中的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotation"><span class="nav-number"></span> <span class="nav-text">Annotation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-override：可以用来检查是否正确重写"><span class="nav-number">1.</span> <span class="nav-text">1. @override：可以用来检查是否正确重写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-interface：定义一个Annotation"><span class="nav-number">2.</span> <span class="nav-text">2. @interface：定义一个Annotation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Target：指定Annotation使用范围"><span class="nav-number">3.</span> <span class="nav-text">3. @Target：指定Annotation使用范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Documented：生成java-doc时编写文档信息"><span class="nav-number">4.</span> <span class="nav-text">4. @Documented：生成java.doc时编写文档信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）"><span class="nav-number">5.</span> <span class="nav-text">5. 通过反射获得Annotation（反射与Annotation结合才有意义）</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflection"><span class="nav-number">1.</span> <span class="nav-text">Reflection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-反射，用来通过对象获取类"><span class="nav-number">1.1.</span> <span class="nav-text">1. 反射，用来通过对象获取类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-invoke-方法：调用包装在当前Method对象中的方法"><span class="nav-number">1.2.</span> <span class="nav-text">2. invoke()方法：调用包装在当前Method对象中的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotation"><span class="nav-number">2.</span> <span class="nav-text">Annotation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-override：可以用来检查是否正确重写"><span class="nav-number">2.1.</span> <span class="nav-text">1. @override：可以用来检查是否正确重写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-interface：定义一个Annotation"><span class="nav-number">2.2.</span> <span class="nav-text">2. @interface：定义一个Annotation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Target：指定Annotation使用范围"><span class="nav-number">2.3.</span> <span class="nav-text">3. @Target：指定Annotation使用范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Documented：生成java-doc时编写文档信息"><span class="nav-number">2.4.</span> <span class="nav-text">4. @Documented：生成java.doc时编写文档信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-通过反射获得Annotation（反射与Annotation结合才有意义）"><span class="nav-number">2.5.</span> <span class="nav-text">5. 通过反射获得Annotation（反射与Annotation结合才有意义）</span></a></li></ol></li></ol></div>
             
 
           </div>
