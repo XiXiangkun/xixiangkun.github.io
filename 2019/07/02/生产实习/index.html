@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/avatar.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="生产实习中学习机器学习、深度学习的一些笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产实习概要">
+<meta property="og:url" content="http://yoursite.com/2019/07/02/生产实习/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="生产实习中学习机器学习、深度学习的一些笔记">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/1B384C0EEFBE4BC6818A77D21A47A867/1092">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/8059412400D0472983EEB2D420BABB67/1021">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/A0827D35B1F3438499C52D2C0BFDA410/1045">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/62C3A95742184C0B98F95F515DCBB32B/1048">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/17B5AE9B7F5C4FFC9DAC3A1A0C71DFB0/1095">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/02769A6802784E7B8148688FC5B2F20B/1276">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/187ECAD3D3564702A59984A2F5DE23DD/1278">
+<meta property="og:updated_time" content="2019-07-02T09:44:30.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生产实习概要">
+<meta name="twitter:description" content="生产实习中学习机器学习、深度学习的一些笔记">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/1B384C0EEFBE4BC6818A77D21A47A867/1092">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/02/生产实习/">
+
+
+
+
+
+  <title>生产实习概要 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/生产实习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiangkun Xi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生产实习概要</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-02T21:18:38+08:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="生产实习中学习机器学习、深度学习的一些笔记"><a href="#生产实习中学习机器学习、深度学习的一些笔记" class="headerlink" title="生产实习中学习机器学习、深度学习的一些笔记"></a>生产实习中学习机器学习、深度学习的一些笔记</h4><a id="more"></a>
+<h1 id="生产实习概要"><a href="#生产实习概要" class="headerlink" title="生产实习概要"></a>生产实习概要</h1><ul>
+<li>资料：<code>https://beta-dlab.datafountain.cn/student/library/section?uuid=646cef43ab9146bea394927e6b368533</code>  </li>
+<li>项目文件的<code>preview.html</code>可以查看资源</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="机器学习图示："><a href="#机器学习图示：" class="headerlink" title="机器学习图示："></a>机器学习图示：<img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/1B384C0EEFBE4BC6818A77D21A47A867/1092" width="500" hegiht="150"></h3></li>
+<li><h3 id="机器学习（Python–Scikit-learn）："><a href="#机器学习（Python–Scikit-learn）：" class="headerlink" title="机器学习（Python–Scikit-learn）："></a>机器学习（Python–Scikit-learn）：</h3><ol>
+<li><h4 id="机器学习流程："><a href="#机器学习流程：" class="headerlink" title="机器学习流程："></a>机器学习流程：</h4><ul>
+<li>问题定义（分类、回归、聚类）</li>
+<li>数据准备</li>
+<li>模型训练</li>
+<li>模型评估</li>
+<li>模型部署</li>
+<li>模型监控与更新</li>
+</ul>
+</li>
+<li><h4 id="探索性数据分析EDA："><a href="#探索性数据分析EDA：" class="headerlink" title="探索性数据分析EDA："></a>探索性数据分析EDA：</h4><ul>
+<li>数据集整体描述、单变量分析+直方图表示、分类型变量、多变量分析+相关性矩阵+热力图绘制</li>
+<li>特征抽取：<ul>
+<li>文本型：<ul>
+<li>TF-IDF（词频-逆向文件频率）</li>
+<li>Word2vec（词向量）</li>
+</ul>
+</li>
+<li>时间日期：</li>
+</ul>
+</li>
+<li>特征转换：<ul>
+<li>标准化、归一化、对数变换、特征离散化、独热码等预处理</li>
+</ul>
+</li>
+<li>特征选择：<ul>
+<li>Filter：赋权评分</li>
+<li>Wrapper：GA遗传算法</li>
+<li>Embeded：随机森林</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="算法介绍："><a href="#算法介绍：" class="headerlink" title="算法介绍："></a>算法介绍：</h4><ul>
+<li>逻辑回归应用在神经网络：<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/8059412400D0472983EEB2D420BABB67/1021" width="400" hegiht="150" align="center"></li>
+<li>决策树：每个节点代表一个属性，根据属性划分；运用熵和信息增益的知识</li>
+<li>集成学习Ensemble Learning：<ul>
+<li>Bagging：随机有放回抽样（随机森林）<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/A0827D35B1F3438499C52D2C0BFDA410/1045" width="500" hegiht="150" align="center"></li>
+<li>Boosting：组合时有权重（Gradient Boosting、GBM）<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/62C3A95742184C0B98F95F515DCBB32B/1048" width="500" hegiht="150" align="center"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="超参数寻优（用于评估）"><a href="#超参数寻优（用于评估）" class="headerlink" title="超参数寻优（用于评估）"></a>超参数寻优（用于评估）</h4><ul>
+<li>方法：<ul>
+<li>网格搜索：经验确定范围，范围内穷举</li>
+<li>随机搜索：</li>
+</ul>
+</li>
+<li>交互检验：<ul>
+<li>K折交互检验<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/17B5AE9B7F5C4FFC9DAC3A1A0C71DFB0/1095" width="500" hegiht="150" align="center"></li>
+<li>时间序列数据的交互检验（保证验证机在训练集后面）</li>
+</ul>
+</li>
+<li>Scikit-learn超参数寻优方法：<ul>
+<li>GridSearchCV()：基于交互检验和网格搜索</li>
+<li>RandomizedSearchCV()：基于交互检验和随机搜索</li>
+</ul>
+</li>
+<li>GBM超参数寻优：<ul>
+<li>影响梯度推进类超参数：<ul>
+<li><code>learnning_rate</code>学习速率</li>
+<li><code>n_estimators</code>推进的梯度数量</li>
+</ul>
+</li>
+<li>影响树结构类超参数：<ul>
+<li><code>max_depth</code>控制单个决策树的最大深度</li>
+<li><code>max_features</code>允许单个决策树在每个节点上使用特征的最大数量</li>
+<li><code>min_samples_split</code>单个决策树内部节点再划分所需最小样本数</li>
+<li><code>min_samples_leaf</code>叶子节点最小的样本数量</li>
+</ul>
+</li>
+<li>随机性相关的超参数：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="总结学习结构"><a href="#总结学习结构" class="headerlink" title="总结学习结构"></a>总结学习结构</h4><ul>
+<li>基础：Python</li>
+<li>进阶：Numpy、Scipy、Pandas</li>
+<li>机器学习：Sklearn、TensorFlow</li>
+</ul>
+</li>
+<li><h4 id="推荐竞赛网站："><a href="#推荐竞赛网站：" class="headerlink" title="推荐竞赛网站："></a>推荐竞赛网站：</h4><ul>
+<li>Kaggle、DataFountain（DCIC）、天池</li>
+</ul>
+</li>
+<li>end…</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="深度学习："><a href="#深度学习：" class="headerlink" title="深度学习："></a>深度学习：</h3><ol>
+<li><h4 id="TensorFlow流程："><a href="#TensorFlow流程：" class="headerlink" title="TensorFlow流程："></a>TensorFlow流程：</h4><ul>
+<li>构建计算图</li>
+<li>执行计算图<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/02769A6802784E7B8148688FC5B2F20B/1276" width="400" hegiht="150" align="center"></li>
+<li>NOTE：<ul>
+<li>需要开启会话Session，结束时关闭会话</li>
+<li>默认会话设置</li>
+<li>创建的所有节点都会自动添加到默认图</li>
+<li>图的每次执行间，所有节点值都会被丢弃，但是变量的值不会</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="准备数据："><a href="#准备数据：" class="headerlink" title="准备数据："></a>准备数据：</h4><ul>
+<li>导入数据</li>
+<li>数据可视化：直方图…</li>
+<li>相关性分析：热力图…</li>
+</ul>
+</li>
+<li><h4 id="TensorFlow线性回归："><a href="#TensorFlow线性回归：" class="headerlink" title="TensorFlow线性回归："></a>TensorFlow线性回归：</h4><ul>
+<li>准备工作</li>
+<li>数据准备</li>
+<li>正规方程：（Normal Equation）求解机器学习<code>theta = tf.matmul(tf.matmul(tf.matrix_inverse(tf.matmul(XT, X)), XT), y)</code>计算成本函数MSE</li>
+<li>梯度下降：<ul>
+<li>特征缩放：标准化、归一化</li>
+<li>手工计算梯度：</li>
+<li>使用自动微分：</li>
+<li>优化器：GradientDescentOptimizer梯度下降优化器、momentum optimizer动量优化器</li>
+</ul>
+</li>
+<li>为训练算法提供数据（深度学习算法往往不能在一次训练中加载完成，而是每次加载batch个训练数据）：<ul>
+<li>Placeholder创建一个占位符节点</li>
+<li>Mini-batch梯度下降</li>
+</ul>
+</li>
+<li>保存和恢复模型：定期将检查点（checkpoint）保存起来</li>
+<li>命名作用域：处理诸如神经网络等复杂模型时，图很容易就变得杂乱而庞大。为了避免这种情况，可以创建命名作用域来将相关的节点分组。</li>
+</ul>
+</li>
+<li><h4 id="TensorBoard可视化："><a href="#TensorBoard可视化：" class="headerlink" title="TensorBoard可视化："></a>TensorBoard可视化：</h4><ul>
+<li>Tensorboard可以记录与展示以下数据形式：标量 Scalars、图片 Images、音频 Audio、计算图 Graph、数据分布 Distribution、直方图 Histograms、嵌入向量 Embeddings</li>
+<li>Tensorboard的可视化过程<ul>
+<li>建立一个graph,想从graph中获取某些数据的信息</li>
+<li>确定要在graph中的哪些节点放置summary operations以记录信息</li>
+<li>使用 tf.summary.scalar 记录标量</li>
+<li>使用 tf.summary.histogram 记录数据的直方图</li>
+<li>使用 tf.summary.distribution 记录数据的分布图</li>
+<li>使用 tf.summary.image 记录图像数据</li>
+<li>operations并不会去真的执行计算，除非run,或者它被其他的需要run的operation所依赖。</li>
+<li>特地去运行所有的summary节点。一份程序下来可能有超多这样的summary 节点，要手动一个一个去启动极其繁琐，可以使用tf.summary.merge_all去将所有summary节点合并成一个节点，只要这个节点，产生所有之前设置的summary data。</li>
+<li>使用tf.summary.FileWriter将运行后输出的数据都保存到本地磁盘</li>
+<li>运行整个程序，并在命令行输入运行tensorboard的指令，之后打开web端查看可视化的结果<br><img src="https://note.youdao.com/yws/public/resource/ecd343f8a42de9e26c3391b2e8652ef7/xmlnote/187ECAD3D3564702A59984A2F5DE23DD/1278" width="400" hegiht="150" align="center"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><h3 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h3><ol>
+<li>Anaconda Prompt输入<code>jupyter notebook</code>，启动jupyter</li>
+<li>end…</li>
+</ol>
+</li>
+<li><h3 id="TensorFlow坑："><a href="#TensorFlow坑：" class="headerlink" title="TensorFlow坑："></a>TensorFlow坑：</h3><ol>
+<li>Anaconda安装后base可以用tensorflow，新建环境变量tensorflow无法打开jupyter，在base环境下安装tensorflow</li>
+<li>调整<code>Tensorboard</code>版本为<code>1.11.0</code>，否则无法运行<code>pip install tensorboard==1.11.0</code></li>
+<li>运行后打开url地址<code>http://localhost:8080</code>，不适用提示的url地址</li>
+<li>使用Pycharm打开项目，更改依赖自己的python环境，使用代码生成文件后，保存在相应路径，使用<code>Anaconda Prompt</code>输入语句<code>tensorboard --logdir=D:\software\tensorEx\temp\hello_logs</code>实现TensorBoard可视化</li>
+<li>end…</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/spring部分-1/" rel="next" title="Spring_1">
+                <i class="fa fa-chevron-left"></i> Spring_1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/avatar.png" alt="Xiangkun Xi">
+          <p class="site-author-name" itemprop="name">Xiangkun Xi</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产实习中学习机器学习、深度学习的一些笔记"><span class="nav-number">1.</span> <span class="nav-text">生产实习中学习机器学习、深度学习的一些笔记</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#生产实习概要"><span class="nav-number"></span> <span class="nav-text">生产实习概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习图示："><span class="nav-number"></span> <span class="nav-text">机器学习图示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习（Python–Scikit-learn）："><span class="nav-number"></span> <span class="nav-text">机器学习（Python–Scikit-learn）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习流程："><span class="nav-number">1.</span> <span class="nav-text">机器学习流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探索性数据分析EDA："><span class="nav-number">2.</span> <span class="nav-text">探索性数据分析EDA：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法介绍："><span class="nav-number">3.</span> <span class="nav-text">算法介绍：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超参数寻优（用于评估）"><span class="nav-number">4.</span> <span class="nav-text">超参数寻优（用于评估）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结学习结构"><span class="nav-number">5.</span> <span class="nav-text">总结学习结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐竞赛网站："><span class="nav-number">6.</span> <span class="nav-text">推荐竞赛网站：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习："><span class="nav-number"></span> <span class="nav-text">深度学习：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow流程："><span class="nav-number">1.</span> <span class="nav-text">TensorFlow流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备数据："><span class="nav-number">2.</span> <span class="nav-text">准备数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow线性回归："><span class="nav-number">3.</span> <span class="nav-text">TensorFlow线性回归：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorBoard可视化："><span class="nav-number">4.</span> <span class="nav-text">TensorBoard可视化：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附："><span class="nav-number"></span> <span class="nav-text">附：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow坑："><span class="nav-number"></span> <span class="nav-text">TensorFlow坑：</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiangkun Xi</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
