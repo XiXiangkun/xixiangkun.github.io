@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/machineLearning%20(6).png?raw=true">
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/tensorboardResult1.png?raw=true">
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/tensorboardResult2.png?raw=true">
-<meta property="og:updated_time" content="2019-07-03T03:14:25.317Z">
+<meta property="og:updated_time" content="2019-07-03T03:21:52.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生产实习概要">
 <meta name="twitter:description" content="生产实习中学习机器学习、深度学习的一些笔记">
@@ -530,37 +530,37 @@
 </li>
 <li>附：<ul>
 <li>Anaconda Prompt输入<code>jupyter notebook</code>，启动jupyter</li>
-<li>房价数据集的深度学习训练代码：<br><code>`</code>python<h1 id="这句话保证后面的代码可以同时支持python-2和python-3"><a href="#这句话保证后面的代码可以同时支持python-2和python-3" class="headerlink" title="这句话保证后面的代码可以同时支持python 2和python 3"></a>这句话保证后面的代码可以同时支持python 2和python 3</h1>from <strong>future</strong> import division, print_function, unicode_literals<br>import numpy as np<br>import os<br>import tensorflow as tf<br>import numpy as np<br>from sklearn.datasets import fetch_california_housing<br>from sklearn.preprocessing import StandardScaler<br>from datetime import  datetime</li>
+<li>房价数据集的深度学习训练代码：<br><code>`</code><br>##这句话保证后面的代码可以同时支持python 2和python 3<br>from <strong>future</strong> import division, print_function, unicode_literals<br>import numpy as np<br>import os<br>import tensorflow as tf<br>import numpy as np<br>from sklearn.datasets import fetch_california_housing<br>from sklearn.preprocessing import StandardScaler<br>from datetime import  datetime</li>
 </ul>
 </li>
 </ol>
 </li>
 </ul>
-<h1 id="定义重启图函数，设置随机数种子"><a href="#定义重启图函数，设置随机数种子" class="headerlink" title="定义重启图函数，设置随机数种子"></a>定义重启图函数，设置随机数种子</h1><p>def reset_graph(seed=42):</p>
+<p>##定义重启图函数，设置随机数种子<br>def reset_graph(seed=42):</p>
 <pre><code># 重置默认图
 tf.reset_default_graph()
 tf.set_random_seed(seed)
 np.random.seed(seed)
 </code></pre><p>reset_graph()</p>
-<h1 id="下载数据集文件到指定位置"><a href="#下载数据集文件到指定位置" class="headerlink" title="下载数据集文件到指定位置"></a>下载数据集文件到指定位置</h1><p>housing = fetch_california_housing(‘data/‘)</p>
-<h1 id="m是个数，n是维度"><a href="#m是个数，n是维度" class="headerlink" title="m是个数，n是维度"></a>m是个数，n是维度</h1><p>m, n = housing.data.shape</p>
-<h1 id="最左边添置一列全1矩阵"><a href="#最左边添置一列全1矩阵" class="headerlink" title="最左边添置一列全1矩阵"></a>最左边添置一列全1矩阵</h1><p>housing_data_plus_bias = np.c_[np.ones((m, 1)), housing.data]</p>
+<p>##下载数据集文件到指定位置<br>housing = fetch_california_housing(‘data/‘)</p>
+<p>##m是个数，n是维度<br>m, n = housing.data.shape</p>
+<p>##最左边添置一列全1矩阵<br>housing_data_plus_bias = np.c_[np.ones((m, 1)), housing.data]</p>
 <p>scaler = StandardScaler()</p>
-<h1 id="预处理，方便寻找最佳梯度方向"><a href="#预处理，方便寻找最佳梯度方向" class="headerlink" title="预处理，方便寻找最佳梯度方向"></a>预处理，方便寻找最佳梯度方向</h1><p>scaled_housing_data = scaler.fit_transform(housing.data)<br>scaled_housing_data_plus_bias = np.c_[np.ones((m, 1)), scaled_housing_data]</p>
+<p>##预处理，方便寻找最佳梯度方向<br>scaled_housing_data = scaler.fit_transform(housing.data)<br>scaled_housing_data_plus_bias = np.c_[np.ones((m, 1)), scaled_housing_data]</p>
 <p>n_epochs = 10<br>learning_rate = 0.01<br>batch_size = 100<br>n_batches = int(np.ceil(m/batch_size))</p>
 <p>X = tf.placeholder(tf.float32, shape=(None, n+1),name=”X”)<br>y = tf.placeholder(tf.float32, shape=(None, 1),name=”Y”)<br>theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0, seed=42), name=”theta”)<br>y_pred = tf.matmul(X, theta, name=”predictions”)<br>error = y_pred - y<br>mse = tf.reduce_mean(tf.square(error), name=”mse”)</p>
-<h1 id="定义优化器"><a href="#定义优化器" class="headerlink" title="定义优化器"></a>定义优化器</h1><p>optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)<br>training_op = optimizer.minimize(mse)<br>init = tf.global_variables_initializer()</p>
-<h1 id="批量取函数"><a href="#批量取函数" class="headerlink" title="批量取函数"></a>批量取函数</h1><p>def fetch_batch(epoch, batch_index, batch_size):<br>    np.random.seed(epoch * n_batches + batch_index)</p>
-<pre><code># 在[0, m)上随机数，batch_size个
+<p>##定义优化器<br>optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)<br>training_op = optimizer.minimize(mse)<br>init = tf.global_variables_initializer()</p>
+<p>##批量取函数<br>def fetch_batch(epoch, batch_index, batch_size):<br>    np.random.seed(epoch * n_batches + batch_index)</p>
+<pre><code>##在[0, m)上随机数，batch_size个
 indices = np.random.randint(m, size=batch_size)
 x_batch = scaled_housing_data_plus_bias[indices]
 y_batch = housing.target.reshape(-1,1)[indices]
 return x_batch, y_batch
-</code></pre><h1 id="设置保存路径"><a href="#设置保存路径" class="headerlink" title="设置保存路径"></a>设置保存路径</h1><p>now = datetime.utcnow().strftime(“%Y%m%d%H%M%S”)<br>root_logdir = “temp/logdir/“<br>logdir = “{}/run-{}”.format(root_logdir, now)</p>
-<h1 id="用来显示标量信息"><a href="#用来显示标量信息" class="headerlink" title="用来显示标量信息"></a>用来显示标量信息</h1><p>mse_summary = tf.summary.scalar(“MSE”, mse)</p>
-<h1 id="指定文件保存图"><a href="#指定文件保存图" class="headerlink" title="指定文件保存图"></a>指定文件保存图</h1><p>file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())</p>
+</code></pre><p>##设置保存路径<br>now = datetime.utcnow().strftime(“%Y%m%d%H%M%S”)<br>root_logdir = “temp/logdir/“<br>logdir = “{}/run-{}”.format(root_logdir, now)</p>
+<p>##用来显示标量信息<br>mse_summary = tf.summary.scalar(“MSE”, mse)</p>
+<p>##指定文件保存图<br>file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())</p>
 <p>with tf.Session() as sess:<br>    sess.run(init)<br>    for epoch in range(n_epochs):<br>        for batch_index in range(n_batches):<br>            X_batch, y_batch = fetch_batch(epoch, batch_index, batch_size)</p>
-<pre><code>        # Tensorboard可视化，横纵坐标
+<pre><code>        ##Tensorboard可视化，横纵坐标
         if batch_index % 10 == 0:
             summary_str = mse_summary.eval(feed_dict={X: X_batch, y: y_batch})
             step = epoch * n_batches + batch_index
@@ -741,7 +741,7 @@ best_theta = theta.eval()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产实习中学习机器学习、深度学习的一些笔记"><span class="nav-number">1.</span> <span class="nav-text">生产实习中学习机器学习、深度学习的一些笔记</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#生产实习概要"><span class="nav-number"></span> <span class="nav-text">生产实习概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习图示："><span class="nav-number"></span> <span class="nav-text">机器学习图示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习（Python–Scikit-learn）："><span class="nav-number"></span> <span class="nav-text">机器学习（Python–Scikit-learn）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习流程："><span class="nav-number">1.</span> <span class="nav-text">机器学习流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探索性数据分析EDA："><span class="nav-number">2.</span> <span class="nav-text">探索性数据分析EDA：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法介绍："><span class="nav-number">3.</span> <span class="nav-text">算法介绍：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超参数寻优（用于评估）"><span class="nav-number">4.</span> <span class="nav-text">超参数寻优（用于评估）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结学习结构"><span class="nav-number">5.</span> <span class="nav-text">总结学习结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐竞赛网站："><span class="nav-number">6.</span> <span class="nav-text">推荐竞赛网站：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习："><span class="nav-number"></span> <span class="nav-text">深度学习：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow流程："><span class="nav-number">1.</span> <span class="nav-text">TensorFlow流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备数据："><span class="nav-number">2.</span> <span class="nav-text">准备数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow线性回归："><span class="nav-number">3.</span> <span class="nav-text">TensorFlow线性回归：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorBoard可视化："><span class="nav-number">4.</span> <span class="nav-text">TensorBoard可视化：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这句话保证后面的代码可以同时支持python-2和python-3"><span class="nav-number"></span> <span class="nav-text">这句话保证后面的代码可以同时支持python 2和python 3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义重启图函数，设置随机数种子"><span class="nav-number"></span> <span class="nav-text">定义重启图函数，设置随机数种子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载数据集文件到指定位置"><span class="nav-number"></span> <span class="nav-text">下载数据集文件到指定位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#m是个数，n是维度"><span class="nav-number"></span> <span class="nav-text">m是个数，n是维度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最左边添置一列全1矩阵"><span class="nav-number"></span> <span class="nav-text">最左边添置一列全1矩阵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理，方便寻找最佳梯度方向"><span class="nav-number"></span> <span class="nav-text">预处理，方便寻找最佳梯度方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义优化器"><span class="nav-number"></span> <span class="nav-text">定义优化器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#批量取函数"><span class="nav-number"></span> <span class="nav-text">批量取函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置保存路径"><span class="nav-number"></span> <span class="nav-text">设置保存路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用来显示标量信息"><span class="nav-number"></span> <span class="nav-text">用来显示标量信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指定文件保存图"><span class="nav-number"></span> <span class="nav-text">指定文件保存图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow坑："><span class="nav-number"></span> <span class="nav-text">TensorFlow坑：</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产实习中学习机器学习、深度学习的一些笔记"><span class="nav-number">1.</span> <span class="nav-text">生产实习中学习机器学习、深度学习的一些笔记</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#生产实习概要"><span class="nav-number"></span> <span class="nav-text">生产实习概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习图示："><span class="nav-number"></span> <span class="nav-text">机器学习图示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习（Python–Scikit-learn）："><span class="nav-number"></span> <span class="nav-text">机器学习（Python–Scikit-learn）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习流程："><span class="nav-number">1.</span> <span class="nav-text">机器学习流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探索性数据分析EDA："><span class="nav-number">2.</span> <span class="nav-text">探索性数据分析EDA：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法介绍："><span class="nav-number">3.</span> <span class="nav-text">算法介绍：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超参数寻优（用于评估）"><span class="nav-number">4.</span> <span class="nav-text">超参数寻优（用于评估）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结学习结构"><span class="nav-number">5.</span> <span class="nav-text">总结学习结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐竞赛网站："><span class="nav-number">6.</span> <span class="nav-text">推荐竞赛网站：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习："><span class="nav-number"></span> <span class="nav-text">深度学习：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow流程："><span class="nav-number">1.</span> <span class="nav-text">TensorFlow流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备数据："><span class="nav-number">2.</span> <span class="nav-text">准备数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow线性回归："><span class="nav-number">3.</span> <span class="nav-text">TensorFlow线性回归：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorBoard可视化："><span class="nav-number">4.</span> <span class="nav-text">TensorBoard可视化：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow坑："><span class="nav-number"></span> <span class="nav-text">TensorFlow坑：</span></a></li></ol></li></div>
             
 
           </div>
