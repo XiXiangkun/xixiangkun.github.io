@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/tensorboardResult1.png?raw=true">
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/tensorboardResult2.png?raw=true">
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/convolutionOutput.png?raw=true">
-<meta property="og:updated_time" content="2019-07-05T03:13:35.828Z">
+<meta property="og:updated_time" content="2019-07-05T06:29:23.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生产实习概要">
 <meta name="twitter:description" content="生产实习中学习机器学习、深度学习的一些笔记">
@@ -570,6 +570,11 @@
 <li>解决：使用卷积函数<code>CONV</code>调整w（<code>3*3</code>的w将每一维<code>5*5</code>的x卷积成<code>3*3</code>，三维拼合）,卷积完成激活<code>RELU</code>，比0大的留下，小的删去。</li>
 <li>卷积输出：使用pad保证大小不变，N个卷积和保证输出10： 例如，<code>32*32*3</code>经过10个<code>5*5</code>卷积层，stride 1， pad 2：得到<code>(32+2*2-5)/1+1=32</code>，所以输出<code>32*32*10</code><br><img src="https://github.com/XiXiangkun/images/blob/master/convolutionOutput.png?raw=true" width="400" hegiht="150" align="center"></li>
 <li>池化层<code>POOL</code>：让图变小，池化步长没有1，步长为2则从<code>2*2</code>中找到最大的。</li>
+<li>参考网址：<ul>
+<li><code>http://cs231n.github.io/convolutional-networks/</code></li>
+<li><code>https://www.cnblogs.com/bernieloveslife/p/10197063.html</code></li>
+</ul>
+</li>
 </ol>
 </li>
 </ol>
@@ -595,6 +600,7 @@
 <li><code>tf.nn.relu</code>线性整流函数（Rectified Linear Unit, ReLU），又称修正线性单元。其定义如下图，在横坐标的右侧，ReLU函数为线性函数。在横坐标的右侧，ReLU函数为值为0。</li>
 <li><code>with tf.control_dependencies(new_weights): return tf.identity(loss)</code>保证op操作生效。</li>
 <li><code>numpy.argmax(a, axis=None, out=None)</code>返回沿轴axis最大值的索引。</li>
+<li><code>tf.nn.conv2d</code>卷积函数</li>
 </ol>
 </li>
 </ul>
@@ -631,6 +637,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/12/deeplab的mobilenetv2+xception知识/" rel="prev" title="deeplab（mobilenetv2+xception）">
+                deeplab（mobilenetv2+xception） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -705,7 +715,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -94,17 +94,22 @@
 
 
 
-<meta name="description" content="一些笔记">
+<meta name="description" content="deeplabv3（mobilenetv2+xception）model的一些笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Notes">
-<meta property="og:url" content="http://yoursite.com/2019/03/03/MicroService/index.html">
+<meta property="og:title" content="deeplab（mobilenetv2+xception）">
+<meta property="og:url" content="http://yoursite.com/2019/07/12/deeplab的mobilenetv2+xception知识/index.html">
 <meta property="og:site_name" content="Xiangkun Xi&#39;s Personal Hexo Blog">
-<meta property="og:description" content="一些笔记">
+<meta property="og:description" content="deeplabv3（mobilenetv2+xception）model的一些笔记">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-01T11:44:23.054Z">
+<meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/mobilenetv2_aug.png?raw=true">
+<meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/mobilenetv2_val.png?raw=true">
+<meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/xception_aug.png?raw=true">
+<meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/xception_val.png?raw=true">
+<meta property="og:updated_time" content="2019-07-12T12:01:20.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Notes">
-<meta name="twitter:description" content="一些笔记">
+<meta name="twitter:title" content="deeplab（mobilenetv2+xception）">
+<meta name="twitter:description" content="deeplabv3（mobilenetv2+xception）model的一些笔记">
+<meta name="twitter:image" content="https://github.com/XiXiangkun/images/blob/master/mobilenetv2_aug.png?raw=true">
 
 
 
@@ -133,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/03/MicroService/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/12/deeplab的mobilenetv2+xception知识/">
 
 
 
 
 
-  <title>Notes | Xiangkun Xi's Personal Hexo Blog</title>
+  <title>deeplab（mobilenetv2+xception） | Xiangkun Xi's Personal Hexo Blog</title>
   
 
 
@@ -272,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/MicroService/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/deeplab的mobilenetv2+xception知识/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiangkun Xi">
@@ -289,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Notes</h1>
+          <h1 class="post-title" itemprop="name headline">deeplab（mobilenetv2+xception）</h1>
         
 
         <div class="post-meta">
@@ -301,8 +306,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-03T20:38:38+08:00">
-                2019-03-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T20:08:38+08:00">
+                2019-07-12
               </time>
             
 
@@ -324,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/other/" itemprop="url" rel="index">
-                    <span itemprop="name">other</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -361,10 +366,55 @@
       
 
       
-        <h4 id="一些笔记"><a href="#一些笔记" class="headerlink" title="一些笔记"></a>一些笔记</h4><a id="more"></a>
-<h2 id="Notes："><a href="#Notes：" class="headerlink" title="Notes："></a>Notes：</h2><h4 id="面向对象三大特性："><a href="#面向对象三大特性：" class="headerlink" title="面向对象三大特性："></a>面向对象三大特性：</h4><p>封装、继承、多态<br>封装：将对象的属性和行为抽象出来包装到类中；<br>继承：将具有相同属性和行为的对象抽象出来包装成一个父类；<br>多态：多种形态，相同的属性和行为不同的表现方式，比如动物叫声；  </p>
-<h4 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h4><p>接口是为了处理对象之间的协作关系，将定义与实现分离，实现系统解耦目的<br>例如为抽象类设计行为模型；<br>public interfce AnimalService{<br>  public void call();<br>}</p>
-<h4 id="JAVA软件开发"><a href="#JAVA软件开发" class="headerlink" title="JAVA软件开发"></a>JAVA软件开发</h4><p>MyEclipse集成了Eclipse的插件；<br>IDE集成开发环境；</p>
+        <h4 id="deeplabv3（mobilenetv2-xception）model的一些笔记"><a href="#deeplabv3（mobilenetv2-xception）model的一些笔记" class="headerlink" title="deeplabv3（mobilenetv2+xception）model的一些笔记"></a>deeplabv3（mobilenetv2+xception）model的一些笔记</h4><a id="more"></a>
+<h1 id="deeplabv3（mobilenetv2-xception）model："><a href="#deeplabv3（mobilenetv2-xception）model：" class="headerlink" title="deeplabv3（mobilenetv2+xception）model："></a>deeplabv3（mobilenetv2+xception）model：</h1><ul>
+<li><h4 id="参考github：https-github-com-XiXiangkun-Portrait-Segmentation-Transparency"><a href="#参考github：https-github-com-XiXiangkun-Portrait-Segmentation-Transparency" class="headerlink" title="参考github：https://github.com/XiXiangkun/Portrait-Segmentation-Transparency"></a>参考github：<code>https://github.com/XiXiangkun/Portrait-Segmentation-Transparency</code></h4></li>
+<li><h4 id="model的运行时间对比"><a href="#model的运行时间对比" class="headerlink" title="model的运行时间对比:"></a>model的运行时间对比:</h4><ul>
+<li><p>mobilenetv2:<br>|类型|aug|val|<br>| :—: | :—-: | :—–: |<br>|load时间|0:00:02.202638|0:00:05.498740|<br>|运行时间|0:00:05.233193|0:00:08.560493|</p>
+</li>
+<li><p>xception:<br>|类型|aug|val|<br>| :—: | :—-: | :—–: |<br>|load时间|0:00:09.372786|0:00:09.372795|<br>|运行时间|0:00:26.899916|0:00:26.540638|</p>
+</li>
+</ul>
+</li>
+<li><h4 id="model的其他方面对比："><a href="#model的其他方面对比：" class="headerlink" title="model的其他方面对比："></a>model的其他方面对比：</h4><ul>
+<li>初次运行：  <ul>
+<li>load时间： 0:00:34.842048</li>
+<li>运行时间： 0:00:41.793574</li>
+</ul>
+</li>
+<li>Xception和MobileNet都是采用depthwise separable convolution<ul>
+<li>但是二者的目的是不同的，Xception使用depthwise separable convolution的同时增加了网络的参数量来比对效果，主要考察这种结构的有效性</li>
+<li>MobileNet则是用depthwise separable convolution来进行压缩和提速的，参数量明显减少，目的也不在性能提升上面而是速度上面。</li>
+</ul>
+</li>
+<li>准确率方面，从上往下的顺序mIOU依次增大，分割效果更好。官网对比介绍：<code>https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md</code></li>
+<li>使用的4个model都是的在PASCAL VOC 2012数据集上训练出的结果，官方还有基于Cityscapes和ADE20K数据集训练出来的model和基于ImageNet的预训练模型，但是训练结果并不好。</li>
+</ul>
+</li>
+<li><h4 id="PASCAL-VOC介绍"><a href="#PASCAL-VOC介绍" class="headerlink" title="PASCAL VOC介绍:"></a>PASCAL VOC介绍:</h4><ul>
+<li>MS COCO预训练：</li>
+<li>PASCAL VOC挑战赛 （The PASCAL Visual Object Classes ）是一个世界级的计算机视觉挑战赛, PASCAL全称：Pattern Analysis, Statical Modeling and Computational Learning，是一个由欧盟资助的网络组织。数据集大小如下：</li>
+</ul>
+</li>
+<li><h4 id="模型保存知识："><a href="#模型保存知识：" class="headerlink" title="模型保存知识："></a>模型保存知识：</h4><ul>
+<li>ckpt：模型保存后，在model目录将会有三个文件。在Tensorflow版本0.11之前，这三个文件为：<code>meta、ckpt、checkpopint</code>，它们保存的内容如下：<code>model.ckpt.meta</code>保存计算图的结构，即神经网络的结构;<code>checkpoint</code>保存一个目录下所有的模型文件列表;<code>ckpt</code>保存程序中每一个变量的取值。在Tensorflow版本0.11之后，有四个文件分别为：<code>meta、.data、.index、checkpoint</code>。其中.data文件为模型中的训练变量。checkpoint文件是结构与权重分离的四个文件，便于训练。</li>
+<li>pb:pb文件则是<code>graph_def</code>的序列化文件，类似于<code>caffemodel</code>，便于发布和离线预测。</li>
+<li>官方提供<code>freeze_grpah.py</code>脚本来将ckpt文件转为pb文件。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="测试运行结果："><a href="#测试运行结果：" class="headerlink" title="测试运行结果："></a>测试运行结果：</h4><ul>
+<li>四次对比：<ul>
+<li>mobilenetv2_aug:<br><img src="https://github.com/XiXiangkun/images/blob/master/mobilenetv2_aug.png?raw=true" width="400" hegiht="150" align="center"></li>
+<li>mobilenetv2_val:<br><img src="https://github.com/XiXiangkun/images/blob/master/mobilenetv2_val.png?raw=true" width="400" hegiht="150" align="center"></li>
+<li>xception_aug:<br><img src="https://github.com/XiXiangkun/images/blob/master/xception_aug.png?raw=true" width="400" hegiht="150" align="center"></li>
+<li>xception_val:<br><img src="https://github.com/XiXiangkun/images/blob/master/xception_val.png?raw=true" width="400" hegiht="150" align="center"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -389,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/03/Django/" rel="next" title="Django基本流程">
-                <i class="fa fa-chevron-left"></i> Django基本流程
+              <a href="/2019/07/03/生产实习/" rel="next" title="生产实习概要">
+                <i class="fa fa-chevron-left"></i> 生产实习概要
               </a>
             
           </div>
@@ -398,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/27/spring部分-1/" rel="prev" title="Spring_1">
-                Spring_1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些笔记"><span class="nav-number">1.</span> <span class="nav-text">一些笔记</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes："><span class="nav-number"></span> <span class="nav-text">Notes：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象三大特性："><span class="nav-number">1.</span> <span class="nav-text">面向对象三大特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向接口"><span class="nav-number">2.</span> <span class="nav-text">面向接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JAVA软件开发"><span class="nav-number">3.</span> <span class="nav-text">JAVA软件开发</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#deeplabv3（mobilenetv2-xception）model的一些笔记"><span class="nav-number">1.</span> <span class="nav-text">deeplabv3（mobilenetv2+xception）model的一些笔记</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#deeplabv3（mobilenetv2-xception）model："><span class="nav-number"></span> <span class="nav-text">deeplabv3（mobilenetv2+xception）model：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考github：https-github-com-XiXiangkun-Portrait-Segmentation-Transparency"><span class="nav-number">1.</span> <span class="nav-text">参考github：https://github.com/XiXiangkun/Portrait-Segmentation-Transparency</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model的运行时间对比"><span class="nav-number">2.</span> <span class="nav-text">model的运行时间对比:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model的其他方面对比："><span class="nav-number">3.</span> <span class="nav-text">model的其他方面对比：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PASCAL-VOC介绍"><span class="nav-number">4.</span> <span class="nav-text">PASCAL VOC介绍:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型保存知识："><span class="nav-number">5.</span> <span class="nav-text">模型保存知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试运行结果："><span class="nav-number">6.</span> <span class="nav-text">测试运行结果：</span></a></li></ol></li></div>
             
 
           </div>
