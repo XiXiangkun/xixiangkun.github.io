@@ -94,17 +94,20 @@
 
 
 
-<meta name="description" content="Flutter笔记">
+<meta name="description" content="Flutter基础笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FlutterNote">
-<meta property="og:url" content="http://yoursite.com/2019/12/26/FlutterNote/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/12/29/FlutterNote/index.html">
 <meta property="og:site_name" content="Xiangkun Xi&#39;s Personal Hexo Blog">
-<meta property="og:description" content="Flutter笔记">
+<meta property="og:description" content="Flutter基础笔记">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-26T09:36:46.418Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975877-e8edd27d15f21f24?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975877-3303418ce39bef4d?imageMogr2/auto-orient/strip|imageView2/2/w/510/format/webp">
+<meta property="og:updated_time" content="2019-12-29T07:33:13.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FlutterNote">
-<meta name="twitter:description" content="Flutter笔记">
+<meta name="twitter:description" content="Flutter基础笔记">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1975877-e8edd27d15f21f24?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
 
 
 
@@ -133,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/26/FlutterNote/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/29/FlutterNote/">
 
 
 
@@ -272,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/FlutterNote/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/FlutterNote/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiangkun Xi">
@@ -301,8 +304,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-26T17:38:38+08:00">
-                2019-12-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-29T15:38:38+08:00">
+                2019-12-29
               </time>
             
 
@@ -361,13 +364,71 @@
       
 
       
-        <h4 id="Flutter笔记"><a href="#Flutter笔记" class="headerlink" title="Flutter笔记"></a>Flutter笔记</h4><a id="more"></a>
+        <h4 id="Flutter基础笔记"><a href="#Flutter基础笔记" class="headerlink" title="Flutter基础笔记"></a>Flutter基础笔记</h4><a id="more"></a>
 <ul>
-<li>从板件计算小APP开始的经验整理</li>
+<li>从板件计算小APP开始的经验整理，最根本的知识理解，打牢基础</li>
 </ul>
 <hr>
-<h2 id="day1"><a href="#day1" class="headerlink" title="day1"></a>day1</h2><ul>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ul>
 <li>Flutter算是支持平台最多的框架（windows、android、ios）</li>
+<li>Flutter的核心是组件，最基础是widget，其余组件继承<code>StatefulWeidget</code>和<code>StatelessWidget</code></li>
+<li>入口程序<code>void main() =&gt; runApp(Widget app);</code>是Dart语言特有的速写形式</li>
+<li><code>material.dart</code>是设计风格的基础包，类似网页中按钮、选项的组件库</li>
+<li><code>@override Widget build(BuildContext context)</code>重写方法构建Widget，返回值也是widget</li>
+<li>设置点击事件，padding会响应，margin不会响应</li>
+<li>长列表组件通过列表项构造器itemBuilder实现</li>
+<li>获取表单实例：<ul>
+<li><strong>设置全局类型key，通过其属性获取表单属性</strong><ul>
+<li><code>GlobalKey&lt;FormState&gt; loginKey = new GlobalKey&lt;FormState&gt;();</code></li>
+</ul>
+</li>
+<li><strong>读取当前Form状态使用</strong><ul>
+<li><code>var loginForm = loginKey.currentState;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>home属性设置应用主页</li>
+<li><strong>使用List.generate生成数据<code>List.generate(20 , (i) =&gt; new Product(&#39;商品$i&#39;,&#39;这是商品$i&#39;),</code></strong></li>
+<li><strong>导航器Navigator组件管理路由，堆栈原理，并传送和返回数据。这里可以借鉴板件计算项目和参考书上的不同使用方法。</strong></li>
+<li>添加手势、设置字体，启动页、组件装饰、Hero实现动画、Flutter插件使用蓝牙、测试开发等操作可以具体参考亢少军老师的《Flutter技术入门与实战》一书</li>
+<li></li>
+</ul>
+<hr>
+<h2 id="无状态组件和有状态组件"><a href="#无状态组件和有状态组件" class="headerlink" title="无状态组件和有状态组件"></a>无状态组件和有状态组件</h2><ul>
+<li>无状态组件的属性是不变的，有状态的在生命周期中发生变化</li>
+<li><strong>举例说明：<code>StatefulWidget</code>要继承，还要重写<code>State</code>类，重写的State也要继承State</strong><ul>
+<li><strong><code>MyApp</code>不需要状态处理，继承<code>StatelessWidget</code>组件，里面需要的<code>MyHomePage</code>继承<code>StatefulWidget</code>；</strong></li>
+<li><strong><code>MyHomePage</code>中重写<code>createState</code>方法为<code>_MyHomePage</code>；</strong></li>
+<li><strong><code>_MyHomePage</code>继承了<code>State&lt;MyHomePage&gt;</code>，并添加状态方法（按键），重写Widget构建；</strong></li>
+</ul>
+</li>
+<li>包资源的使用</li>
+</ul>
+<hr>
+<h2 id="Dart语言"><a href="#Dart语言" class="headerlink" title="Dart语言"></a>Dart语言</h2><ul>
+<li>声明变量使用var关键字，默认为null</li>
+<li>常量<code>final</code>之恩那个被赋值一次，<code>const</code>是常量</li>
+<li>Dart可以用三个’’’或者”””来包含多行字符串</li>
+<li>Dart不把1视为true，只有true为true</li>
+<li>函数的可选参数用[]括起来</li>
+<li>返回整值的除法~/</li>
+<li><code>b ??= value</code>仅在b为null时赋值</li>
+<li>..是级联（暂作保留）</li>
+<li>函数中的get和set方法可以设置类似关联的关系</li>
+<li>泛型最常见使用，使只包含字符串<h2 id="异步支持"><a href="#异步支持" class="headerlink" title="异步支持"></a>异步支持</h2></li>
+<li>Future实例、async函数和await表达式实现异步操作</li>
+<li>处理网络请求或者文件读取，不能一直等一个线程导致阻塞。使用多线程（Java、C++）或者单线程+事件循环（JavaScript、Dart）</li>
+<li>阻塞调用和非阻塞调用：阻塞调用是结果返回之前，当前线程一直被挂起；非阻塞则是过段时间回来检查是否有结果</li>
+<li>创建Future实例，通过.then()的方式来监听Future内部执行完成时得到的结果</li>
+<li><strong>Future可以不阻塞线程，让线程继续执行，在某个操作改变自己的状态后，回调then或者errrorCatch回调</strong></li>
+<li><strong>Future将任务添加到事件队列的队尾</strong></li>
+<li><p><strong>通过await获取异步函数Future的结果，返回的结果包装在Future中。await必须在async函数中，await声明的函数都会进入阻塞状态，等到完成计算返回相应的值</strong></p>
+<h2 id="异步的一个例子"><a href="#异步的一个例子" class="headerlink" title="异步的一个例子"></a>异步的一个例子</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">foo() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'foo E'</span>);</span><br><span class="line">  <span class="built_in">String</span> value = <span class="keyword">await</span> bar();</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'foo X <span class="subst">$value<span class="string">');</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">&#125;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string"></span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">bar() async &#123;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  print("bar E");</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  return "hello";</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">&#125;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string"></span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">main() &#123;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  print('</span></span>main E'</span>);</span><br><span class="line">  foo();</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"main X"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述代码被切割成下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/1975877-e8edd27d15f21f24?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" width="300" hegiht="500" align="center"></p>
+</li>
+<li>返回结果：<br><img src="https://upload-images.jianshu.io/upload_images/1975877-3303418ce39bef4d?imageMogr2/auto-orient/strip|imageView2/2/w/510/format/webp" width="300" hegiht="500" align="center"><h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2></li>
 <li></li>
 </ul>
 
@@ -538,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter笔记"><span class="nav-number">1.</span> <span class="nav-text">Flutter笔记</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#day1"><span class="nav-number"></span> <span class="nav-text">day1</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter基础笔记"><span class="nav-number">1.</span> <span class="nav-text">Flutter基础笔记</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number"></span> <span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无状态组件和有状态组件"><span class="nav-number"></span> <span class="nav-text">无状态组件和有状态组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart语言"><span class="nav-number"></span> <span class="nav-text">Dart语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步支持"><span class="nav-number"></span> <span class="nav-text">异步支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步的一个例子"><span class="nav-number"></span> <span class="nav-text">异步的一个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number"></span> <span class="nav-text">Other</span></a></li></div>
             
 
           </div>
