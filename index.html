@@ -362,105 +362,14 @@
 
       
         
-          
-            <h4 id="JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。"><a href="#JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。" class="headerlink" title="JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。"></a>JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。</h4><hr>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ul>
-<li>JavaScript 代码必须位于 script 标签之间。 script 可以放置在head或者body中，脚本可以放置在外部文件中。</li>
-<li><p>getElementById()查找特定id的元素，修改它的元素内容(可以是文字null到有、更换图片、更改样式等)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span>JavaScript 能够改变 HTML 内容。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">'document.getElementById("demo").innerHTML = "Hello JavaScript!"'</span>&gt;</span>点击我！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JavaScript显示方案：</p>
-<ul>
-<li>innerHTMl：是在 HTML 中显示数据的常用方法。</li>
-<li>document.write()写入 HTML 输出。HTML 文档完全加载后使用 document.write()将删除所有已有的 HTML ，例如使用按钮。<strong>仅用于测试</strong></li>
-<li>window.alert()：能够使用警告框来显示数据</li>
-<li>console.log()：在浏览器中使用 console.log() 方法来显示数据。</li>
-</ul>
-</li>
-<li>区分null和undefined</li>
-<li>JS函数中，toCelsius 引用的是函数对象，而 toCelsius() 引用的是函数结果。</li>
-<li>HTML事件：onchange、onclick、onmouseover、onnouseout、onkeydown、onload</li>
-<li>JS字符串方法<ul>
-<li>length( )：长度</li>
-<li>indexOf( )：返回首次出现的索引</li>
-<li>lastIndexOf( )：</li>
-<li>search( )：可用于正则表达式搜索</li>
-<li>slice( )：提取2~4的内容</li>
-<li>substring( )：同上，但不接受负的索引</li>
-<li>substr( )：指定裁切的长度</li>
-<li>replace( )：只替换第一个</li>
-<li>toUpperCase( )：转为大写</li>
-<li>toLowerCase( )：</li>
-<li>concat( )：连接</li>
-<li>trim( )：切割两端空白符</li>
-<li>charAt( )：返回指定位置的字符</li>
-<li>charCodeAt( )：</li>
-<li>split( )：转数组</li>
-</ul>
-</li>
-<li><p>一个遍历数组的示例（<strong>也可以使用foreach()函数、map()函数、filter()函数、reduce()函数、every()函数、some()函数、indexOf()函数、find()函数等进行迭代</strong>）：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>遍历数组的最佳方法是使用标准的 for 循环：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">var fruits, text, fLen, i;</span></span><br><span class="line"><span class="undefined">fruits = ["Banana", "Orange", "Apple", "Mango"];</span></span><br><span class="line"><span class="undefined">fLen = fruits.length;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="xml">text = "<span class="tag">&lt;<span class="name">ul</span>&gt;</span>";</span></span><br><span class="line"><span class="undefined">for (i = 0; i &lt; fLen; i++) &#123;</span></span><br><span class="line"><span class="xml">  text += "<span class="tag">&lt;<span class="name">li</span>&gt;</span>" + fruits[i] + "<span class="tag">&lt;/<span class="name">li</span>&gt;</span>";</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="xml">text += "<span class="tag">&lt;/<span class="name">ul</span>&gt;</span>";</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">document.getElementById("demo").innerHTML = text;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组的splice( )、slice( )、sort( )等方法。<code>points.sort(function(a, b){return b - a});</code>为降序排序。</p>
-</li>
-<li>随机数生成（介于 [min, max] 之间）：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRndInteger</span>(<span class="params">min, max</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (max - min) ) + min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="一些特别的知识点："><a href="#一些特别的知识点：" class="headerlink" title="一些特别的知识点："></a>一些特别的知识点：</h2><ul>
-<li>hoisting：将所有声明提升到当前作用域顶部的默认行为</li>
-<li><code>&quot;use strict&quot;;</code> 定义 JavaScript 代码以“严格模式”执行，不允许自动提升声明</li>
-<li>在 HTML 事件处理程序中，this 指的是接收此事件的 HTML 元素</li>
-<li>在块{ }中使用let代替var声明变量，可以解决在块中修改var而改变全局变量的问题</li>
-</ul>
-<h2 id="JSON："><a href="#JSON：" class="headerlink" title="JSON："></a>JSON：</h2><ul>
-<li>JavaScript Object Notation，是存储和传输数据的格式。</li>
-<li>JSON和JavaScript很容易相对转换，例如拿到JSON后，如下处理:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">'&#123; "employees" : ['</span> +</span><br><span class="line"><span class="string">'&#123; "firstName":"Bill" , "lastName":"Gates" &#125;,'</span> +</span><br><span class="line"><span class="string">'&#123; "firstName":"Steve" , "lastName":"Jobs" &#125;,'</span> +</span><br><span class="line"><span class="string">'&#123; "firstName":"Alan" , "lastName":"Turing" &#125; ]&#125;'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(text);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="JavaScript表单："><a href="#JavaScript表单：" class="headerlink" title="JavaScript表单："></a>JavaScript表单：</h2><ul>
-<li>基本使用很容易上手</li>
-<li>有一些验证API可以直接使用</li>
-</ul>
-<h2 id="JavaScript函数"><a href="#JavaScript函数" class="headerlink" title="JavaScript函数"></a>JavaScript函数</h2><ul>
-<li>call可以调用所有者对象（不同对象）作为参数</li>
-<li>apply把自己的函数应用于别的对象</li>
-<li>JavaScript闭包：JavaScript中的函数会形成<strong>闭包</strong>。闭包是由函数以及创建该函数的词法环境组合而成，这个环境包含了这个闭包创建时所能访问的所有局部变量。所以里面的局部变量仍然可用。</li>
-</ul>
-<h2 id="HTML-DOM（文档对象模型）"><a href="#HTML-DOM（文档对象模型）" class="headerlink" title="HTML DOM（文档对象模型）"></a>HTML DOM（文档对象模型）</h2><ul>
-<li>通过方法和属性来改变HTML内容，最简单的就像上面的 <code>getElementById</code> 是方法，而 <code>innerHTML</code> 是属性。</li>
-<li>setInterval( )函数按照指定的周期（以毫秒计）来调用函数或计算表达式</li>
-<li>通过addEventListener( )函数绑定两个要执行的函数</li>
-</ul>
-<h2 id="HTML-BOM（浏览器对象模型）"><a href="#HTML-BOM（浏览器对象模型）" class="headerlink" title="HTML BOM（浏览器对象模型）"></a>HTML BOM（浏览器对象模型）</h2><ul>
-<li>就是对浏览器的一系列操作函数</li>
-<li>浏览器端口，http默认80，https默认443</li>
-<li>弹窗、time定时功能、Cookies的应用</li>
-</ul>
-<h2 id="Cookies："><a href="#Cookies：" class="headerlink" title="Cookies："></a>Cookies：</h2><ul>
-<li><strong>很重要，结合以后自己的理解会更好</strong></li>
-</ul>
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li>不刷新页面更新网页，页面加载后从服务器请求和接收数据，后台向服务器发送数据。</li>
-<li>不是编程语言，只是组合了XMLHttpRequest对象、JavaScript和HTML DOM。<ul>
-<li>发生某个事件，创建XMLHttpRequeat发送HttpRequest</li>
-<li>服务器处理HttpRequest，创建响应返回</li>
-<li>JS处理响应，更新页面</li>
-</ul>
-</li>
-<li><p>下面的示例分析AJAX：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>XMLHttpRequest 对象<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span>让 AJAX 改变这段文本。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadDoc()"</span>&gt;</span>更改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">loadDoc</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> xhttp = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">  xhttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="keyword">this</span>.readyState == <span class="number">4</span> &amp;&amp; <span class="keyword">this</span>.status == <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML = <span class="keyword">this</span>.responseText;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="javascript">  xhttp.open(<span class="string">"GET"</span>, <span class="string">"/example/js/ajax_info.txt"</span>, <span class="literal">true</span>);</span></span><br><span class="line"><span class="javascript">  xhttp.send(); <span class="comment">//这里向服务器发送了请求</span></span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>readyState 属性存留 XMLHttpRequest 的状态。</p>
-</li>
-<li>onreadystatechange 属性定义当 readyState 发生变化时执行的函数。</li>
-<li>send( )函数发送了请求</li>
-<li>AJAX通过这些操作对XML提取，通过<code>document.getElementById(&quot;demo&quot;).innerHTML =
-text;</code>完成显示。</li>
-<li><strong><font color="red">这里有个PHP、ASP的例子没有看懂，回头看</font></strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 姓名数组</span></span><br><span class="line"> $a[] = <span class="string">"Ava"</span>;</span><br><span class="line"> $a[] = <span class="string">"Brielle"</span>;</span><br><span class="line"> $a[] = <span class="string">"Caroline"</span>;</span><br><span class="line"> $a[] = <span class="string">"Diana"</span>;</span><br><span class="line"> $a[] = <span class="string">"Elise"</span>;</span><br><span class="line"> $a[] = <span class="string">"Fiona"</span>;</span><br><span class="line"> $a[] = <span class="string">"Grace"</span>;</span><br><span class="line"> $a[] = <span class="string">"Hannah"</span>;</span><br><span class="line"> $a[] = <span class="string">"Ileana"</span>;</span><br><span class="line"> $a[] = <span class="string">"Jane"</span>;</span><br><span class="line"> $a[] = <span class="string">"Kathryn"</span>;</span><br><span class="line"> $a[] = <span class="string">"Laura"</span>;</span><br><span class="line"> $a[] = <span class="string">"Millie"</span>;</span><br><span class="line"> $a[] = <span class="string">"Nancy"</span>;</span><br><span class="line"> $a[] = <span class="string">"Opal"</span>;</span><br><span class="line"> $a[] = <span class="string">"Petty"</span>;</span><br><span class="line"> $a[] = <span class="string">"Queenie"</span>;</span><br><span class="line"> $a[] = <span class="string">"Rose"</span>;</span><br><span class="line"> $a[] = <span class="string">"Shirley"</span>;</span><br><span class="line"> $a[] = <span class="string">"Tiffany"</span>;</span><br><span class="line"> $a[] = <span class="string">"Ursula"</span>;</span><br><span class="line"> $a[] = <span class="string">"Victoria"</span>;</span><br><span class="line"> $a[] = <span class="string">"Wendy"</span>;</span><br><span class="line"> $a[] = <span class="string">"Xenia"</span>;</span><br><span class="line"> $a[] = <span class="string">"Yvette"</span>;</span><br><span class="line"> $a[] = <span class="string">"Zoe"</span>;</span><br><span class="line"> $a[] = <span class="string">"Angell"</span>;</span><br><span class="line"> $a[] = <span class="string">"Adele"</span>;</span><br><span class="line"> $a[] = <span class="string">"Beatty"</span>;</span><br><span class="line"> $a[] = <span class="string">"Carlton"</span>;</span><br><span class="line"> $a[] = <span class="string">"Elisabeth"</span>;</span><br><span class="line"> $a[] = <span class="string">"Violet"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 URL 获取 q 参数</span></span><br><span class="line">$q = $_REQUEST[<span class="string">"q"</span>];</span><br><span class="line"></span><br><span class="line">$hint = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看数组中所有 hint，$q 是否与 "" 相同</span></span><br><span class="line"><span class="keyword">if</span> ($q !== <span class="string">""</span>) &#123;</span><br><span class="line">    $q = strtolower($q);</span><br><span class="line">    $len=strlen($q);</span><br><span class="line">    <span class="keyword">foreach</span>($a <span class="keyword">as</span> $name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (stristr($q, substr($name, <span class="number">0</span>, $len))) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($hint === <span class="string">""</span>) &#123;</span><br><span class="line">                $hint = $name;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $hint .= <span class="string">", $name"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 "no suggestion"，如果未找到 hint 或输出正确的值</span></span><br><span class="line">  <span class="keyword">echo</span> $hint === <span class="string">""</span> ? <span class="string">"no suggestion"</span> : $hint;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON:"></a>JSON:</h2>
-          
+          <h4 id="JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。"><a href="#JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。" class="headerlink" title="JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。"></a>JavaScript补充笔记，HTML描述网页、CSS定义样式、JavaScript是脚本语言。</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/30/JavaScriptNotes/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
