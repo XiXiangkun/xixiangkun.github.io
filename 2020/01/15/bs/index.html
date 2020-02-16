@@ -96,15 +96,15 @@
 
 <meta name="description" content="《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《多频外差相移三维测量关键技术》论文笔记">
+<meta property="og:title" content="《多频外差相移三维测量关键技术》等论文笔记">
 <meta property="og:url" content="http://yoursite.com/2020/01/15/bs/index.html">
 <meta property="og:site_name" content="Xiangkun Xi&#39;s Personal Hexo Blog">
 <meta property="og:description" content="《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/XiXiangkun/images/blob/master/%E4%B8%AD%E5%BF%83%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1.png?raw=true">
-<meta property="og:updated_time" content="2020-02-06T08:53:56.166Z">
+<meta property="og:updated_time" content="2020-02-16T10:00:18.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《多频外差相移三维测量关键技术》论文笔记">
+<meta name="twitter:title" content="《多频外差相移三维测量关键技术》等论文笔记">
 <meta name="twitter:description" content="《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记">
 <meta name="twitter:image" content="https://github.com/XiXiangkun/images/blob/master/%E4%B8%AD%E5%BF%83%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1.png?raw=true">
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>《多频外差相移三维测量关键技术》论文笔记 | Xiangkun Xi's Personal Hexo Blog</title>
+  <title>《多频外差相移三维测量关键技术》等论文笔记 | Xiangkun Xi's Personal Hexo Blog</title>
   
 
 
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《多频外差相移三维测量关键技术》论文笔记</h1>
+          <h1 class="post-title" itemprop="name headline">《多频外差相移三维测量关键技术》等论文笔记</h1>
         
 
         <div class="post-meta">
@@ -418,13 +418,92 @@
 <li>试验场法标定，光束法自标定</li>
 <li>方点P在像片上的成像为相应像点（也称同名像点）；物方点P、投影中心S1和S2三点共面，该平面叫做物方点P的核面（也称极平面）；核面与像平面的交线叫做核线（也称极线）。</li>
 <li><table><tr><td bgcolor="yellow">后方交会法</td></tr></table></li>
-<li>网形设计使物体全方位被测</li>
+<li>网形设计使物体全方位被测<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h2></li>
 </ol>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h2><ul>
+<ul>
 <li><font color="red">摄影测量技术通过二维图像反映三维环境。单张相片借助6个外方位元素（x、y、z、三个旋转角）确定方位。</font></li>
 <li>在投影中心S处建立另一个坐标系。因为过投影中心，所以物方点的z坐标为-f。（参考论文图2-2）<br><img src="https://github.com/XiXiangkun/images/blob/master/%E4%B8%AD%E5%BF%83%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1.png?raw=true" width="500" hegiht="500" align="center"></li>
 </ul>
-<p>-</p>
+<hr>
+<h2 id="《基于结构光的高精度立体深度图》Notes"><a href="#《基于结构光的高精度立体深度图》Notes" class="headerlink" title="《基于结构光的高精度立体深度图》Notes"></a>《基于结构光的高精度立体深度图》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>结构光技术，生成复杂场景的图像对，每个像素都有对应关系。</li>
+<li>视图：相机拍摄的图像（x，y），照明：投影到场景上的结构化光图案（u，v）</li>
+<li>透视投影就是视点看到的，视平面上的二维图坐标转换</li>
+<li>格雷码标记元素，用是否更亮标记，不用完整估计反射率</li>
+<li>鲁棒平均值：健壮性</li>
+<li>伪像是由超声波本身的物理特性等多种因素造成的非人体本身的真实图像</li>
+<li>相位模糊性：周期性多值现象就叫做相位模糊</li>
+<li>最小二乘法拟合估计值</li>
+<li>视差：距离像面越近的点，它在左右相机中的视差越大</li>
+<li>3D场景点</li>
+<li>内插法填充孔：一般是指数学上的直线内插，利用等比关系，用一组已知的未知函数的自变量的值和与它对应的函数值来求未知函数其它值的近似计算方法</li>
+</ol>
+<hr>
+<h2 id="《具有径向基函数的3D对象的重建和表示》Notes"><a href="#《具有径向基函数的3D对象的重建和表示》Notes" class="headerlink" title="《具有径向基函数的3D对象的重建和表示》Notes"></a>《具有径向基函数的3D对象的重建和表示》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>多谐波径向基函数（RBF）快速拟合、评估</li>
+<li>多谐波样条的能量最小化表征产生平滑插值</li>
+<li>不小心开启了文档保护，无法修改文档</li>
+<li>如果曲面M由满足方程f（x，y，z）= 0所有点（x，y，z）组成，则我们说f隐式定义M</li>
+<li><font color="red">径向基函数公式是怎么得到</font>。第8页，基本函数φ可选取。</li>
+<li>总结就是，通过点云数据对3D对象的重建</li>
+</ol>
+<hr>
+<h2 id="《行进立方体：高分辨率3D表面构造算法》Notes"><a href="#《行进立方体：高分辨率3D表面构造算法》Notes" class="headerlink" title="《行进立方体：高分辨率3D表面构造算法》Notes"></a>《行进立方体：高分辨率3D表面构造算法》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>行进立方体算法（MC算法）</li>
+<li>将三维物体视作二维切片的数据集</li>
+<li>两个切片之间视作一层，一层切割成体素，在体素中看点的密集程度</li>
+<li>对8个顶点的区分有256种情况，由于对称性，最终可以视作15或者14种情况</li>
+<li>使用8位索引查询，得到等值面所在的边号（体素一共12条边）</li>
+<li>边上进行线性插值，得到坐标</li>
+<li>等值面上的点的梯度就是等值面的法向量</li>
+<li>拿到三角形顶点和顶点法线</li>
+<li><font color="red">效率增强是使用的提前保存数值？点和表面关系？</font>
+
+</li>
+</ol>
+<hr>
+<h2 id="《泊松表面重建》Notes"><a href="#《泊松表面重建》Notes" class="headerlink" title="《泊松表面重建》Notes"></a>《泊松表面重建》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>表面重建的基本过程：使用隐式函数框架。计算<font color="blue">3D指标函数，外部点为0，内部点为1</font>，提取适当的等值面重建。</li>
+<li>定向点样本视作模型指标梯度样本</li>
+<li><font color="red">使用散度算子转为泊松问题</font></li>
+<li>泊松曲面重建很少会出现虚假曲面</li>
+<li>全局拟合法通常将隐函数定义为RBF，但是其全局支持不会衰减，解决方案矩阵密集</li>
+<li>局部拟合法将隐函数定义为到最近点切平面的有符号距离，累积到体积网格中</li>
+<li>讨论指标函数的梯度与表面法线场的积分之间的关系，通过在给定定向点样本上求和来近似此表面积分。 根据梯度场将指标函数重构为泊松问题</li>
+<li><font color="red">指标函数与平滑滤波器进行卷积???</font>
+
+</li>
+</ol>
+<hr>
+<h2 id="《利用距离图像构建复杂模型的体积方法》Notes"><a href="#《利用距离图像构建复杂模型的体积方法》Notes" class="headerlink" title="《利用距离图像构建复杂模型的体积方法》Notes"></a>《利用距离图像构建复杂模型的体积方法》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>体积法整合多种属性的距离图像，将范围图像转换为顶点具有权重的三角形网格</li>
+<li>距离图像是一种记录空间深度的特殊图像</li>
+<li>使用三角形连接最近的点，创建分段线性范围曲面</li>
+<li>使用权重合并两个测距面（重复测距，或者噪声导致的略有不同）</li>
+</ol>
+<h2 id="《范围图像的拉链多边形网格》Notes"><a href="#《范围图像的拉链多边形网格》Notes" class="headerlink" title="《范围图像的拉链多边形网格》Notes"></a>《范围图像的拉链多边形网格》Notes</h2><ul>
+<li>下面是列出的一些陌生的知识点和提炼</li>
+</ul>
+<ol>
+<li>使用的是结构光</li>
+<li>缝合边缘，共用顶点再重建完整表面</li>
+<li>迭代最近点算法ICP：此方法允许用户将一个范围图像与屏幕上的另一个范围图像粗略对齐，然后调用一种算法，该算法将一个范围图像的位置捕捉到另一个位置的精确对齐。<br>4.</li>
+</ol>
 
       
     </div>
@@ -593,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记"><span class="nav-number">1.</span> <span class="nav-text">《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#《多频外差相移三维测量关键技术》Notes"><span class="nav-number"></span> <span class="nav-text">《多频外差相移三维测量关键技术》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《数字近景工业摄影测量关键技术研究与应用》Notes"><span class="nav-number"></span> <span class="nav-text">《数字近景工业摄影测量关键技术研究与应用》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number"></span> <span class="nav-text">总结：</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记"><span class="nav-number">1.</span> <span class="nav-text">《多频外差相移三维测量关键技术》、《数字近景工业摄影测量关键技术研究与应用》论文笔记，实习笔记</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#《多频外差相移三维测量关键技术》Notes"><span class="nav-number"></span> <span class="nav-text">《多频外差相移三维测量关键技术》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《数字近景工业摄影测量关键技术研究与应用》Notes"><span class="nav-number"></span> <span class="nav-text">《数字近景工业摄影测量关键技术研究与应用》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number"></span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《基于结构光的高精度立体深度图》Notes"><span class="nav-number"></span> <span class="nav-text">《基于结构光的高精度立体深度图》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《具有径向基函数的3D对象的重建和表示》Notes"><span class="nav-number"></span> <span class="nav-text">《具有径向基函数的3D对象的重建和表示》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《行进立方体：高分辨率3D表面构造算法》Notes"><span class="nav-number"></span> <span class="nav-text">《行进立方体：高分辨率3D表面构造算法》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《泊松表面重建》Notes"><span class="nav-number"></span> <span class="nav-text">《泊松表面重建》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《利用距离图像构建复杂模型的体积方法》Notes"><span class="nav-number"></span> <span class="nav-text">《利用距离图像构建复杂模型的体积方法》Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《范围图像的拉链多边形网格》Notes"><span class="nav-number"></span> <span class="nav-text">《范围图像的拉链多边形网格》Notes</span></a></li></div>
             
 
           </div>
