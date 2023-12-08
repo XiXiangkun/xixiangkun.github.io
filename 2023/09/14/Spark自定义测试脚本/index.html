@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/Yahoo.jpeg">
 <meta property="article:published_time" content="2023-09-14T10:12:45.000Z">
-<meta property="article:modified_time" content="2023-12-08T08:30:55.061Z">
+<meta property="article:modified_time" content="2023-12-08T08:59:04.883Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -320,8 +320,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-08 16:30:55</span>
-            <span class="mobile">2023-12-08 16:30:55</span>
+            <span class="desktop">2023-12-08 16:59:04</span>
+            <span class="mobile">2023-12-08 16:59:04</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -398,7 +398,9 @@
 </ul>
 </li>
 </ul>
-<h4 id="1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑"><a href="#1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑" class="headerlink" title="1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑"></a>1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑</h4><h5 id="1-2-1-读取配置文件、设置Topic集、创建DStream"><a href="#1-2-1-读取配置文件、设置Topic集、创建DStream" class="headerlink" title="1.2.1 读取配置文件、设置Topic集、创建DStream"></a>1.2.1 读取配置文件、设置Topic集、创建DStream</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A(Producer)--Advertisments--&gt;B(Kafka)</span><br><span class="line">B--DStream--&gt;C(Spark)</span><br></pre></td></tr></table></figure></div>
+<h4 id="1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑"><a href="#1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑" class="headerlink" title="1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑"></a>1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑</h4><h5 id="1-2-1-读取配置文件、设置Topic集、创建DStream"><a href="#1-2-1-读取配置文件、设置Topic集、创建DStream" class="headerlink" title="1.2.1 读取配置文件、设置Topic集、创建DStream"></a>1.2.1 读取配置文件、设置Topic集、创建DStream</h5><pre class="mermaid">graph TD
+A(Producer)--Advertisments-->B(Kafka)
+B--DStream-->C(Spark)</pre>
 
 <ul>
 <li>该测试项中，Spark使用DStream进行数据处理；DStream为Spark的批处理模型</li>
@@ -417,7 +419,17 @@
 <h5 id="1-3-3-Redis查询"><a href="#1-3-3-Redis查询" class="headerlink" title="1.3.3 Redis查询"></a>1.3.3 Redis查询</h5><ul>
 <li>查询Redis，返回<code>[campaign_id, ad_id, event_time]</code></li>
 </ul>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A(函数入口)--&gt;A1(创建pool\n和缓存)</span><br><span class="line">A1--&gt;B&#123;查询缓存\n有无ad_id&#125;</span><br><span class="line">B--有--&gt;C(返回数组)</span><br><span class="line">B--无--&gt;D(连接池中\n获取连接)</span><br><span class="line">D--&gt;E&#123;查询Redis&#125;</span><br><span class="line">E--有--&gt;F(写入缓存\n返回数组)</span><br><span class="line">E--无--&gt;G(返回错误数组)</span><br><span class="line">C--&gt;Z(关闭连接池)</span><br><span class="line">F--&gt;Z</span><br><span class="line">G--&gt;Z</span><br></pre></td></tr></table></figure></div>
+<pre class="mermaid">graph LR
+A(函数入口)-->A1(创建pool\n和缓存)
+A1-->B{查询缓存\n有无ad_id}
+B--有-->C(返回数组)
+B--无-->D(连接池中\n获取连接)
+D-->E{查询Redis}
+E--有-->F(写入缓存\n返回数组)
+E--无-->G(返回错误数组)
+C-->Z(关闭连接池)
+F-->Z
+G-->Z</pre>
 
 <h5 id="1-3-4-数据转换、数据聚合"><a href="#1-3-4-数据转换、数据聚合" class="headerlink" title="1.3.4 数据转换、数据聚合"></a>1.3.4 数据转换、数据聚合</h5><ul>
 <li><p>时间戳舍入，转为<code>((campaign_id, window_time), ad_id)</code></p>
@@ -431,7 +443,19 @@
 <li>按RDD批处理，这里UUID可以理解为哈希表名&#x2F;列表名</li>
 <li>seen_count是窗口时间内广告的查看次数；time_updated是seen更新后的最后一次时间</li>
 </ul>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A(函数入口)--&gt;B(创建pool)</span><br><span class="line">B--&gt;C(保存campaign\nstamp&amp;count)</span><br><span class="line">C--&gt;D&#123;查询campaign表\nstamp字段\n的windowsUUID&#125;</span><br><span class="line">D--无--&gt;F(创建campaign表\nstamp字段\n绑定windowsUUID)</span><br><span class="line">F--&gt;G&#123;查询campaign表\nwindows字段\n的listUUID&#125;</span><br><span class="line">G--无--&gt;I(创建campaign表\nwindows字段\n绑定listUUID)</span><br><span class="line">I--&gt;J(list写入stamp)</span><br><span class="line">G--有--&gt;J</span><br><span class="line">J--&gt;K(window哈希表\ncount字段加和)</span><br><span class="line">D--有--&gt;K</span><br><span class="line">K--&gt;L(window哈希表\nupdated字段刷新)</span><br><span class="line">L--&gt;M(关闭连接池)</span><br></pre></td></tr></table></figure></div>
+<pre class="mermaid">graph LR
+A(函数入口)-->B(创建pool)
+B-->C(保存campaign\nstamp&count)
+C-->D{查询campaign表\nstamp字段\n的windowsUUID}
+D--无-->F(创建campaign表\nstamp字段\n绑定windowsUUID)
+F-->G{查询campaign表\nwindows字段\n的listUUID}
+G--无-->I(创建campaign表\nwindows字段\n绑定listUUID)
+I-->J(list写入stamp)
+G--有-->J
+J-->K(window哈希表\ncount字段加和)
+D--有-->K
+K-->L(window哈希表\nupdated字段刷新)
+L-->M(关闭连接池)</pre>
 
 <img  
                      lazyload
@@ -495,7 +519,7 @@
         <li><strong>Created at:</strong> 2023-09-14 18:12:45</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-12-08 16:30:55
+                <strong>Updated at:</strong> 2023-12-08 16:59:04
             </li>
         
         <li>
