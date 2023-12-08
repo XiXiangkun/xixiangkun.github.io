@@ -13,23 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/05/10/服务器uce（uncorrect-error）处理/"/>
+    <link rel="canonical" href="http://example.com/2023/09/14/spark自定义测试脚本/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="服务器UCE（Uncorrect Error）处理静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配">
+        <meta name="description" content="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks） 使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等 所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能  1. Yahoo的工具逻辑1.1 Redis、Kafka数据注入 有相关服务的启动 数据注入Red">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器UCE（Uncorrect Error）处理">
-<meta property="og:url" content="http://example.com/2023/05/10/%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86/index.html">
+<meta property="og:title" content="Spark自定义测试脚本">
+<meta property="og:url" content="http://example.com/2023/09/14/Spark%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Theme Redefine">
-<meta property="og:description" content="服务器UCE（Uncorrect Error）处理静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配">
+<meta property="og:description" content="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks） 使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等 所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能  1. Yahoo的工具逻辑1.1 Redis、Kafka数据注入 有相关服务的启动 数据注入Red">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-10T10:12:45.000Z">
-<meta property="article:modified_time" content="2023-08-18T09:16:06.481Z">
+<meta property="og:image" content="http://example.com/2023/09/public/images/Yahoo.jpeg">
+<meta property="article:published_time" content="2023-09-14T10:12:45.000Z">
+<meta property="article:modified_time" content="2023-12-08T08:08:39.722Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="UCE">
+<meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/09/public/images/Yahoo.jpeg">
     
     
     <!--- Icon Part-->
@@ -41,7 +43,7 @@
     
     <title>
         
-            服务器UCE（Uncorrect Error）处理 -
+            Spark自定义测试脚本 -
         
         XXK&#39;s BLOG
     </title>
@@ -289,7 +291,7 @@
 
         <div class="article-title">
             
-                <h1 class="article-title-regular">服务器UCE（Uncorrect Error）处理</h1>
+                <h1 class="article-title-regular">Spark自定义测试脚本</h1>
             
             </div>
             
@@ -311,15 +313,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-05-10 18:12:45</span>
-        <span class="mobile">2023-05-10 18:12:45</span>
+        <span class="desktop">2023-09-14 18:12:45</span>
+        <span class="mobile">2023-09-14 18:12:45</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-18 17:16:06</span>
-            <span class="mobile">2023-08-18 17:16:06</span>
+            <span class="desktop">2023-12-08 16:08:39</span>
+            <span class="mobile">2023-12-08 16:08:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -333,7 +335,7 @@
                     
                         
                         <li>
-                            <a href="/categories/Server/">Server</a>&nbsp;
+                            <a href="/categories/BigData/">BigData</a>&nbsp;
                         </li>
                     
                     
@@ -347,7 +349,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/UCE/">UCE</a>&nbsp;
+                        <a href="/tags/Spark/">Spark</a>&nbsp;
                     </li>
                 
             </ul>
@@ -370,30 +372,117 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="服务器UCE（Uncorrect-Error）处理"><a href="#服务器UCE（Uncorrect-Error）处理" class="headerlink" title="服务器UCE（Uncorrect Error）处理"></a>服务器UCE（Uncorrect Error）处理</h2><p>静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配合巡检任务，定期读取磁盘上的宏块做校验。</p>
-<p>举例来说，在单机部署数据库的情况下，打开表对应的数据文件，对数据文件中表字段数据进行修改后，保存数据内容。启动数据库，数据库可以正常启动，数据库无法校验数据内容已被修改。但是表内数据已被人为修改，静默异常已经发生（问题如果出现在金融场景，影响会十分恶劣）。通过check工具检查数据文件，也不能发现错误。因为check工具不能检查用户实际数据的正确性，如果数据文件被手动人为修改，且修改到的是用户数据部分，是检查不出来的。当然，如果是索引数据被修改，数据库确实会进入异常状态。</p>
-<p>数据库场景下出现该类内存（如data poision）相关的问题时，原则上数据是不可以写入磁盘的。对于服务器而言，内存数据出现问题，后续的数据恢复处理一般是没有操作办法的。</p>
-<p>针对此类UCE问题，大方向可以有两种处理方式：异步中断、同步中断，简单介绍一下。</p>
-<p>异常（同步中断）：除0、缺页等CPU执行特定指令过程时产生的异常。</p>
-<p>中断（异步中断）：硬件设备生成的电信号，一般用中断请求（IRQ）来区分。</p>
-<p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
-<p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
-<p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
-<h4 id="X86的MCA机制"><a href="#X86的MCA机制" class="headerlink" title="X86的MCA机制"></a><strong>X86的MCA机制</strong></h4><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
-<p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
+            <h2 id="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）"><a href="#Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）" class="headerlink" title="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）"></a>Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）</h2><ul>
+<li>使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等</li>
+<li>所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能</li>
+</ul>
+<h3 id="1-Yahoo的工具逻辑"><a href="#1-Yahoo的工具逻辑" class="headerlink" title="1. Yahoo的工具逻辑"></a>1. Yahoo的工具逻辑</h3><h4 id="1-1-Redis、Kafka数据注入"><a href="#1-1-Redis、Kafka数据注入" class="headerlink" title="1.1 Redis、Kafka数据注入"></a>1.1 Redis、Kafka数据注入</h4><ul>
+<li>有相关服务的启动</li>
+<li>数据注入Redis，预先注入Redis的数据，<code>lein run -n --configPath ../conf/benchmarkConf.yaml</code><ul>
+<li>键：ad_id，值：campaign_id</li>
+</ul>
+</li>
+<li>创建Topic，默认ad-events，1副本，1分区</li>
+<li>Spark启动消费</li>
+<li>写入Kafka数据，使用Leiningen自动化Clojure项目管理，<code>lein run -r -t 1000 --configPath ../conf/local.yaml</code><ul>
+<li>广告事件是随机的，广告对应的活动需要到Redis中获取</li>
+<li>data&#x2F;src&#x2F;setup&#x2F;core.clj的源码中，campaigns默认为100，参数-t设置每秒事件数为1000，ads为1000</li>
+<li>写入Kafka的数据，<strong>坑：Yahoo的代码中写死了topic为ad-events</strong><ul>
+<li>use_id</li>
+<li>page_id</li>
+<li>ad_id：从ads中随机选择广告ID</li>
+<li>…</li>
+<li>event_type：[“view”, “click”, “purchase”]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑"><a href="#1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑" class="headerlink" title="1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑"></a>1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑</h4><h5 id="1-2-1-读取配置文件、设置Topic集、创建DStream"><a href="#1-2-1-读取配置文件、设置Topic集、创建DStream" class="headerlink" title="1.2.1 读取配置文件、设置Topic集、创建DStream"></a>1.2.1 读取配置文件、设置Topic集、创建DStream</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A(Producer)--Advertisments--&gt;B(Kafka)</span><br><span class="line">B--DStream--&gt;C(Spark)</span><br></pre></td></tr></table></figure></div>
 
-<p>阅读源码，int 18号异常（MCE，Machine Check Exception）的异常处理函数为do_machine_check，执行在NMI上下文中。按照程序流程，mce_gather_info()函数会读取MCE发送时的现场信息，比如所在CPU、时间、MSR寄存器数值等内容保存到mce结构体中。mce_no_way_out会遍历所有的banks，检查cpu是否需要Panic，它通过mce_serverity()函数判断错误等级，找到错误发生的位置，在内核空间会直接导致Panic，在用户空间则走进一步的逻辑判断。</p>
-<p>kill_it为受mcgstatus 寄存器中的MCG_STATUS_RIPV影响的变量。</p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta"># https:<span class="comment">//github.com/AmpereComputing/ampere-lts-kernel/blob/linux-5.4.y/arch/x86/kernel/cpu/mce/core.c源码</span></span></span><br><span class="line"> mce_gather_info(&amp;m, regs);</span><br><span class="line">m.tsc = rdtsc();</span><br><span class="line"></span><br><span class="line">final = this_cpu_ptr(&amp;mces_seen);</span><br><span class="line">*final = m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(valid_banks, <span class="number">0</span>, <span class="keyword">sizeof</span>(valid_banks));</span><br><span class="line">no_way_out = mce_no_way_out(&amp;m, &amp;msg, valid_banks, regs);</span><br><span class="line"></span><br><span class="line">barrier();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * When no restart IP might need to kill or panic.</span></span><br><span class="line"><span class="comment"> * Assume the worst for now, but if we find the</span></span><br><span class="line"><span class="comment"> * severity is MCE_AR_SEVERITY we have other options.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (!(m.mcgstatus &amp; MCG_STATUS_RIPV))</span><br><span class="line">	kill_it = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Check if this MCE is signaled to only this logical processor,</span></span><br><span class="line"><span class="comment"> * on Intel only.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (m.cpuvendor == X86_VENDOR_INTEL)</span><br><span class="line">	lmce = m.mcgstatus &amp; MCG_STATUS_LMCES;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Local machine check may already know that we have to panic.</span></span><br><span class="line"><span class="comment"> * Broadcast machine check begins rendezvous in mce_start()</span></span><br><span class="line"><span class="comment"> * Go through all banks in exclusion of the other CPUs. This way we</span></span><br><span class="line"><span class="comment"> * don&#x27;t report duplicated events on shared banks because the first one</span></span><br><span class="line"><span class="comment"> * to see it will clear it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (lmce) &#123;</span><br><span class="line">	<span class="keyword">if</span> (no_way_out)</span><br><span class="line">		mce_panic(<span class="string">&quot;Fatal local machine check&quot;</span>, &amp;m, msg);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	order = mce_start(&amp;no_way_out);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>该测试项中，Spark使用DStream进行数据处理；DStream为Spark的批处理模型</li>
+<li>DStream的对象通过foreachRDD函数对数据批进行处理，RDD为batch.time时间间隔内Kafka收集到的数据</li>
+</ul>
+<h4 id="1-3-数据处理"><a href="#1-3-数据处理" class="headerlink" title="1.3 数据处理"></a>1.3 数据处理</h4><h5 id="1-3-1-提取value、解析为Json"><a href="#1-3-1-提取value、解析为Json" class="headerlink" title="1.3.1 提取value、解析为Json"></a>1.3.1 提取value、解析为Json</h5><ul>
+<li>针对每条消息进行处理</li>
+<li>完整的消息包括Key、Value、Topic、Partition等，只提取Value</li>
+</ul>
+<h5 id="1-3-2-过滤数据、数据投影-切割"><a href="#1-3-2-过滤数据、数据投影-切割" class="headerlink" title="1.3.2 过滤数据、数据投影&#x2F;切割"></a>1.3.2 过滤数据、数据投影&#x2F;切割</h5><ul>
+<li><p>保留时间类型为view的数据</p>
+</li>
+<li><p>只保留ad_id、event_time</p>
+</li>
+</ul>
+<h5 id="1-3-3-Redis查询"><a href="#1-3-3-Redis查询" class="headerlink" title="1.3.3 Redis查询"></a>1.3.3 Redis查询</h5><ul>
+<li>查询Redis，返回<code>[campaign_id, ad_id, event_time]</code></li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A(函数入口)--&gt;A1(创建pool\n和缓存)</span><br><span class="line">A1--&gt;B&#123;查询缓存\n有无ad_id&#125;</span><br><span class="line">B--有--&gt;C(返回数组)</span><br><span class="line">B--无--&gt;D(连接池中\n获取连接)</span><br><span class="line">D--&gt;E&#123;查询Redis&#125;</span><br><span class="line">E--有--&gt;F(写入缓存\n返回数组)</span><br><span class="line">E--无--&gt;G(返回错误数组)</span><br><span class="line">C--&gt;Z(关闭连接池)</span><br><span class="line">F--&gt;Z</span><br><span class="line">G--&gt;Z</span><br></pre></td></tr></table></figure></div>
 
-<p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
-<p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
-<h4 id="KP的RAS故障处理"><a href="#KP的RAS故障处理" class="headerlink" title="KP的RAS故障处理"></a><strong>KP的RAS故障处理</strong></h4><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
-<p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
-<p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
-<p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
-<h4 id="更粗暴的处理方式"><a href="#更粗暴的处理方式" class="headerlink" title="更粗暴的处理方式"></a><strong>更粗暴的处理方式</strong></h4><p>可以采用CPU硬复位的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
+<h5 id="1-3-4-数据转换、数据聚合"><a href="#1-3-4-数据转换、数据聚合" class="headerlink" title="1.3.4 数据转换、数据聚合"></a>1.3.4 数据转换、数据聚合</h5><ul>
+<li><p>时间戳舍入，转为<code>((campaign_id, window_time), ad_id)</code></p>
+</li>
+<li><p>元素值ad_id映射为1，ReduceBy函数进行按键聚合</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; &quot;Ad1&quot;</span><br><span class="line">(&quot;CampaignB&quot;, 20000L) -&gt; &quot;Ad2&quot;</span><br><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; &quot;Ad3&quot;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; 2</span><br><span class="line">(&quot;CampaignB&quot;, 20000L) -&gt; 1</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h5 id="1-3-5-写入Redis"><a href="#1-3-5-写入Redis" class="headerlink" title="1.3.5 写入Redis"></a>1.3.5 写入Redis</h5><ul>
+<li>按RDD批处理，这里UUID可以理解为哈希表名&#x2F;列表名</li>
+<li>seen_count是窗口时间内广告的查看次数；time_updated是seen更新后的最后一次时间</li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A(函数入口)--&gt;B(创建pool)</span><br><span class="line">B--&gt;C(保存campaign\nstamp&amp;count)</span><br><span class="line">C--&gt;D&#123;查询campaign表\nstamp字段\n的windowsUUID&#125;</span><br><span class="line">D--无--&gt;F(创建campaign表\nstamp字段\n绑定windowsUUID)</span><br><span class="line">F--&gt;G&#123;查询campaign表\nwindows字段\n的listUUID&#125;</span><br><span class="line">G--无--&gt;I(创建campaign表\nwindows字段\n绑定listUUID)</span><br><span class="line">I--&gt;J(list写入stamp)</span><br><span class="line">G--有--&gt;J</span><br><span class="line">J--&gt;K(window哈希表\ncount字段加和)</span><br><span class="line">D--有--&gt;K</span><br><span class="line">K--&gt;L(window哈希表\nupdated字段刷新)</span><br><span class="line">L--&gt;M(关闭连接池)</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="../../public/images/Yahoo.jpeg"
+                      alt="Yahoo" style="zoom:30%;" 
+                >
+
+<h3 id="2-重整后的链路"><a href="#2-重整后的链路" class="headerlink" title="2. 重整后的链路"></a>2. 重整后的链路</h3><h4 id="2-1-环境"><a href="#2-1-环境" class="headerlink" title="2.1 环境"></a>2.1 环境</h4><ul>
+<li>58：ZK</li>
+<li>60：Spark</li>
+<li>65：Redis、Lein</li>
+<li>66：Kafka</li>
+</ul>
+<h4 id="2-2-逻辑"><a href="#2-2-逻辑" class="headerlink" title="2.2 逻辑"></a>2.2 逻辑</h4><h5 id="2-2-1-准备"><a href="#2-2-1-准备" class="headerlink" title="2.2.1 准备"></a>2.2.1 准备</h5><ul>
+<li>相关服务的启动步骤<ul>
+<li>ZK正常启动</li>
+<li>Kafka使用3 broker，需要3份配置文件，保证broker id、port、log dir不冲突</li>
+<li>Spark正常启动，测试使用的Kafka IP、Port需要Setup编译后才能生效</li>
+<li>Redis正常启动</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2-2-测试"><a href="#2-2-2-测试" class="headerlink" title="2.2.2 测试"></a>2.2.2 测试</h5><ul>
+<li><p>确认Redis端没有leiningen.core.main相关进程（删除Topic之前需要关闭Redis服务，否则删除动作会没有效果）</p>
+</li>
+<li><p>删除上次测试使用的Topic，因为Yahoo源码中绑定了Topic名为ad-events，所以不方便使用其它Topic进行测试</p>
+<ul>
+<li><code>./bin/kafka-topics.sh --delete --bootstrap-server 10.10.31.58:9092 --topic ad-events</code></li>
+</ul>
+</li>
+<li><p>重启Redis</p>
+</li>
+<li><p>重新创建Topic</p>
+<ul>
+<li><code>./bin/kafka-topics.sh --create --bootstrap-server 10.10.31.58:9092 --replication-factor 3 --partitions 5 --topic ad-events</code></li>
+</ul>
+</li>
+<li><p>数据注入Redis，预先注入Redis的数据，<code>lein run -n --configPath ../conf/benchmarkConf.yaml</code></p>
+</li>
+<li><p>Spark启动消费（此时观察消费状态，是没有数据流的，<code>watch -d -n 1 &quot;./bin/kafka-consumer-groups.sh --bootstrap-server 10.10.31.58:9092 --all-groups --describe&quot;</code>）</p>
+</li>
+<li><p>写入Kafka数据，使用Leiningen自动化Clojure项目管理，<code>lein run -r -t 1000 --configPath ../conf/local.yaml</code>，此时消费状态可以观察到数据流，LOG-END-OFFSET、LAG是变化的</p>
+</li>
+<li><p>这里出现过一个现象，测试完成后，如果不kill掉Redis端的leiningen.core.main相关进程和Redis服务，会看到消费状态一直是变化的，LOG-END-OFFSET、LAG自增到了很恐怖的数值</p>
+</li>
+</ul>
+<h4 id="2-3-结果"><a href="#2-3-结果" class="headerlink" title="2.3 结果"></a>2.3 结果</h4><h5 id="2-3-0-seen和updated"><a href="#2-3-0-seen和updated" class="headerlink" title="2.3.0 seen和updated"></a>2.3.0 seen和updated</h5><ul>
+<li>seen是窗口时间内广告的查看次数</li>
+<li>updated是（窗口最后一次更新时间 - 窗口初始时间），作为延时</li>
+</ul>
 
         </div>
 
@@ -401,16 +490,16 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 服务器UCE（Uncorrect Error）处理</li>
+        <li><strong>Title:</strong> Spark自定义测试脚本</li>
         <li><strong>Author:</strong> XXK</li>
-        <li><strong>Created at:</strong> 2023-05-10 18:12:45</li>
+        <li><strong>Created at:</strong> 2023-09-14 18:12:45</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-08-18 17:16:06
+                <strong>Updated at:</strong> 2023-12-08 16:08:39
             </li>
         
         <li>
-            <strong>Link:</strong> https://xixiangkun.github.io/2023/05/10/服务器UCE（Uncorrect-Error）处理/
+            <strong>Link:</strong> https://xixiangkun.github.io/2023/09/14/Spark自定义测试脚本/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -425,7 +514,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/UCE/">#UCE</a>&nbsp;
+                        <a href="/tags/Spark/">#Spark</a>&nbsp;
                     </li>
                 
             </ul>
@@ -436,21 +525,21 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/08/14/Spark%20+%20Kafka%EF%BC%88DirectKafkaWordCount%E8%AF%95%E8%B7%91%EF%BC%89/"
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/08/18/Spark%20+%20Kafka%E8%BF%9B%E9%98%B6%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%9F%E4%BA%A7%E8%80%85%E3%80%81%E6%B6%88%E8%B4%B9%E8%80%85%E8%AE%A1%E7%AE%97%E5%BB%B6%E6%97%B6%EF%BC%89/"
                         >
-                            <span class="left arrow-icon flex-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Spark + Kafka（DirectKafkaWordCount试跑）</span>
-                                <span class="post-nav-item">Prev posts</span>
+                                <span class="post-nav-title-item">Spark + Kafka进阶（自定义生产者、消费者计算延时）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </span>
                         </a>
                     </div>
-                
                 
             </div>
         
@@ -508,8 +597,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">服务器UCE（Uncorrect Error）处理</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-text">服务器UCE（Uncorrect Error）处理</span></a></li></ol>
+        <div class="page-title">Spark自定义测试脚本</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC%EF%BC%88%E5%9F%BA%E4%BA%8EYahoo%E7%9A%84Streaming-benchmarks%EF%BC%89"><span class="nav-text">Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Yahoo%E7%9A%84%E5%B7%A5%E5%85%B7%E9%80%BB%E8%BE%91"><span class="nav-text">1. Yahoo的工具逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%87%8D%E6%95%B4%E5%90%8E%E7%9A%84%E9%93%BE%E8%B7%AF"><span class="nav-text">2. 重整后的链路</span></a></li></ol></li></ol>
 
     </div>
 </div>
