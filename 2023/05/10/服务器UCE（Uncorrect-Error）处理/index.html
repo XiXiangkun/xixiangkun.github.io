@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="XXK">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/05/10/服务器uce（uncorrect-error）处理/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="服务器UCE（Uncorrect Error）处理静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器UCE（Uncorrect Error）处理">
+<meta property="og:url" content="http://example.com/2023/05/10/%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Theme Redefine">
+<meta property="og:description" content="服务器UCE（Uncorrect Error）处理静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-10T10:12:45.000Z">
+<meta property="article:modified_time" content="2024-03-04T05:30:19.288Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="UCE">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/profile.JPG" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.JPG">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/profile.JPG">
+    <!--- Page Info-->
+    
+    <title>
+        
+            服务器UCE（Uncorrect Error）处理 -
+        
+        XXK&#39;s BLOG
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"苍山微岚，沧海无澜","subtitle":{"text":["桃李春风一杯酒，江湖夜雨十年灯"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.3.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Github":"https://github.com/XiXiangkun","Blog":"https://xixiangkun.github.io"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"沧澜","links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+    
+
+    
+
+    <div class="main-content-container">
+        
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                XXK&#39;s BLOG
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/XiXiangkun">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://xixiangkun.github.io">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://github.com/XiXiangkun">GITHUB</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://xixiangkun.github.io">BLOG</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">服务器UCE（Uncorrect Error）处理</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">XXK</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-10 18:12:45</span>
+        <span class="mobile">2023-05-10 18:12:45</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-03-04 13:30:19</span>
+            <span class="mobile">2024-03-04 13:30:19</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Server/">Server</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UCE/">UCE</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="服务器UCE（Uncorrect-Error）处理"><a href="#服务器UCE（Uncorrect-Error）处理" class="headerlink" title="服务器UCE（Uncorrect Error）处理"></a>服务器UCE（Uncorrect Error）处理</h2><p>静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配合巡检任务，定期读取磁盘上的宏块做校验。</p>
+<p>举例来说，在单机部署数据库的情况下，打开表对应的数据文件，对数据文件中表字段数据进行修改后，保存数据内容。启动数据库，数据库可以正常启动，数据库无法校验数据内容已被修改。但是表内数据已被人为修改，静默异常已经发生（问题如果出现在金融场景，影响会十分恶劣）。通过check工具检查数据文件，也不能发现错误。因为check工具不能检查用户实际数据的正确性，如果数据文件被手动人为修改，且修改到的是用户数据部分，是检查不出来的。当然，如果是索引数据被修改，数据库确实会进入异常状态。</p>
+<p>数据库场景下出现该类内存（如data poision）相关的问题时，原则上数据是不可以写入磁盘的。对于服务器而言，内存数据出现问题，后续的数据恢复处理一般是没有操作办法的。</p>
+<p>针对此类UCE问题，大方向可以有两种处理方式：异步中断、同步中断，简单介绍一下。</p>
+<p>异常（同步中断）：除0、缺页等CPU执行特定指令过程时产生的异常。</p>
+<p>中断（异步中断）：硬件设备生成的电信号，一般用中断请求（IRQ）来区分。</p>
+<p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
+<p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
+<p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
+<h4 id="X86的MCA机制"><a href="#X86的MCA机制" class="headerlink" title="X86的MCA机制"></a><strong>X86的MCA机制</strong></h4><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
+<p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
+
+<p>阅读源码，int 18号异常（MCE，Machine Check Exception）的异常处理函数为do_machine_check，执行在NMI上下文中。按照程序流程，mce_gather_info()函数会读取MCE发送时的现场信息，比如所在CPU、时间、MSR寄存器数值等内容保存到mce结构体中。mce_no_way_out会遍历所有的banks，检查cpu是否需要Panic，它通过mce_serverity()函数判断错误等级，找到错误发生的位置，在内核空间会直接导致Panic，在用户空间则走进一步的逻辑判断。</p>
+<p>kill_it为受mcgstatus 寄存器中的MCG_STATUS_RIPV影响的变量。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta"># https:<span class="comment">//github.com/AmpereComputing/ampere-lts-kernel/blob/linux-5.4.y/arch/x86/kernel/cpu/mce/core.c源码</span></span></span><br><span class="line"> mce_gather_info(&amp;m, regs);</span><br><span class="line">m.tsc = rdtsc();</span><br><span class="line"></span><br><span class="line">final = this_cpu_ptr(&amp;mces_seen);</span><br><span class="line">*final = m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(valid_banks, <span class="number">0</span>, <span class="keyword">sizeof</span>(valid_banks));</span><br><span class="line">no_way_out = mce_no_way_out(&amp;m, &amp;msg, valid_banks, regs);</span><br><span class="line"></span><br><span class="line">barrier();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * When no restart IP might need to kill or panic.</span></span><br><span class="line"><span class="comment"> * Assume the worst for now, but if we find the</span></span><br><span class="line"><span class="comment"> * severity is MCE_AR_SEVERITY we have other options.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (!(m.mcgstatus &amp; MCG_STATUS_RIPV))</span><br><span class="line">	kill_it = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Check if this MCE is signaled to only this logical processor,</span></span><br><span class="line"><span class="comment"> * on Intel only.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (m.cpuvendor == X86_VENDOR_INTEL)</span><br><span class="line">	lmce = m.mcgstatus &amp; MCG_STATUS_LMCES;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Local machine check may already know that we have to panic.</span></span><br><span class="line"><span class="comment"> * Broadcast machine check begins rendezvous in mce_start()</span></span><br><span class="line"><span class="comment"> * Go through all banks in exclusion of the other CPUs. This way we</span></span><br><span class="line"><span class="comment"> * don&#x27;t report duplicated events on shared banks because the first one</span></span><br><span class="line"><span class="comment"> * to see it will clear it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (lmce) &#123;</span><br><span class="line">	<span class="keyword">if</span> (no_way_out)</span><br><span class="line">		mce_panic(<span class="string">&quot;Fatal local machine check&quot;</span>, &amp;m, msg);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	order = mce_start(&amp;no_way_out);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
+<p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
+<h4 id="KP的RAS故障处理"><a href="#KP的RAS故障处理" class="headerlink" title="KP的RAS故障处理"></a><strong>KP的RAS故障处理</strong></h4><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
+<p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
+<p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
+<p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
+<h4 id="更粗暴的处理方式"><a href="#更粗暴的处理方式" class="headerlink" title="更粗暴的处理方式"></a><strong>更粗暴的处理方式</strong></h4><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 服务器UCE（Uncorrect Error）处理</li>
+        <li><strong>Author:</strong> XXK</li>
+        <li><strong>Created at:</strong> 2023-05-10 18:12:45</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2024-03-04 13:30:19
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://xixiangkun.github.io/2023/05/10/服务器UCE（Uncorrect-Error）处理/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/UCE/">#UCE</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/08/14/Spark%20+%20Kafka%EF%BC%88DirectKafkaWordCount%E8%AF%95%E8%B7%91%EF%BC%89/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Spark + Kafka（DirectKafkaWordCount试跑）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://xkwaline-repository-87iybfce2-xixiangkun.vercel.app/',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">服务器UCE（Uncorrect Error）处理</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-text">服务器UCE（Uncorrect Error）处理</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">XXK</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.3.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.on("pageView", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+<script src="/js/layouts/categoryList.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+</body>
+</html>

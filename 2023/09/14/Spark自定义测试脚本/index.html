@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="XXK">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/09/14/spark自定义测试脚本/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks） 使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等 所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能  1. Yahoo的工具逻辑1.1 Redis、Kafka数据注入 有相关服务的启动 数据注入Red">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark自定义测试脚本">
+<meta property="og:url" content="http://example.com/2023/09/14/Spark%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Theme Redefine">
+<meta property="og:description" content="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks） 使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等 所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能  1. Yahoo的工具逻辑1.1 Redis、Kafka数据注入 有相关服务的启动 数据注入Red">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/Yahoo.jpeg">
+<meta property="article:published_time" content="2023-09-14T10:12:45.000Z">
+<meta property="article:modified_time" content="2024-02-04T07:37:04.371Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/Yahoo.jpeg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/profile.JPG" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.JPG">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/profile.JPG">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Spark自定义测试脚本 -
+        
+        XXK&#39;s BLOG
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"苍山微岚，沧海无澜","subtitle":{"text":["桃李春风一杯酒，江湖夜雨十年灯"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.3.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Github":"https://github.com/XiXiangkun","Blog":"https://xixiangkun.github.io"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"沧澜","links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+    
+
+    
+
+    <div class="main-content-container">
+        
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                XXK&#39;s BLOG
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/XiXiangkun">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://xixiangkun.github.io">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://github.com/XiXiangkun">GITHUB</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://xixiangkun.github.io">BLOG</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">Spark自定义测试脚本</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/profile.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">XXK</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-09-14 18:12:45</span>
+        <span class="mobile">2023-09-14 18:12:45</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-02-04 15:37:04</span>
+            <span class="mobile">2024-02-04 15:37:04</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/BigData/">BigData</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Spark/">Spark</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）"><a href="#Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）" class="headerlink" title="Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）"></a>Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）</h2><ul>
+<li>使用Yahoo的测试工具中遇到很多问题，配置文件不生效、增加分区数导致消费者空跑等</li>
+<li>所以基于Yahoo工具的逻辑重整了测试脚本，重点关注Zookeeper、Kafka、Spark、Redis搭建的大数据场景的性能</li>
+</ul>
+<h3 id="1-Yahoo的工具逻辑"><a href="#1-Yahoo的工具逻辑" class="headerlink" title="1. Yahoo的工具逻辑"></a>1. Yahoo的工具逻辑</h3><h4 id="1-1-Redis、Kafka数据注入"><a href="#1-1-Redis、Kafka数据注入" class="headerlink" title="1.1 Redis、Kafka数据注入"></a>1.1 Redis、Kafka数据注入</h4><ul>
+<li>有相关服务的启动</li>
+<li>数据注入Redis，预先注入Redis的数据，<code>lein run -n --configPath ../conf/benchmarkConf.yaml</code><ul>
+<li>键：ad_id，值：campaign_id</li>
+</ul>
+</li>
+<li>创建Topic，默认ad-events，1副本，1分区</li>
+<li>Spark启动消费</li>
+<li>写入Kafka数据，使用Leiningen自动化Clojure项目管理，<code>lein run -r -t 1000 --configPath ../conf/local.yaml</code><ul>
+<li>广告事件是随机的，广告对应的活动需要到Redis中获取</li>
+<li>data&#x2F;src&#x2F;setup&#x2F;core.clj的源码中，campaigns默认为100，参数-t设置每秒事件数为1000，ads为1000</li>
+<li>写入Kafka的数据，<strong>坑：Yahoo的代码中写死了topic为ad-events</strong><ul>
+<li>use_id</li>
+<li>page_id</li>
+<li>ad_id：从ads中随机选择广告ID</li>
+<li>…</li>
+<li>event_type：[“view”, “click”, “purchase”]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑"><a href="#1-2-Yahoo的START-DSTREAM-SPARK-PROCESSING逻辑" class="headerlink" title="1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑"></a>1.2 Yahoo的START_DSTREAM_SPARK_PROCESSING逻辑</h4><h5 id="1-2-1-读取配置文件、设置Topic集、创建DStream"><a href="#1-2-1-读取配置文件、设置Topic集、创建DStream" class="headerlink" title="1.2.1 读取配置文件、设置Topic集、创建DStream"></a>1.2.1 读取配置文件、设置Topic集、创建DStream</h5><pre class="mermaid">graph TD;
+A(Producer)--Advertisments-->B(Kafka)
+B--DStream-->C(Spark)</pre>
+
+<ul>
+<li>该测试项中，Spark使用DStream进行数据处理；DStream为Spark的批处理模型</li>
+<li>DStream的对象通过foreachRDD函数对数据批进行处理，RDD为batch.time时间间隔内Kafka收集到的数据</li>
+</ul>
+<h4 id="1-3-数据处理"><a href="#1-3-数据处理" class="headerlink" title="1.3 数据处理"></a>1.3 数据处理</h4><h5 id="1-3-1-提取value、解析为Json"><a href="#1-3-1-提取value、解析为Json" class="headerlink" title="1.3.1 提取value、解析为Json"></a>1.3.1 提取value、解析为Json</h5><ul>
+<li>针对每条消息进行处理</li>
+<li>完整的消息包括Key、Value、Topic、Partition等，只提取Value</li>
+</ul>
+<h5 id="1-3-2-过滤数据、数据投影-切割"><a href="#1-3-2-过滤数据、数据投影-切割" class="headerlink" title="1.3.2 过滤数据、数据投影&#x2F;切割"></a>1.3.2 过滤数据、数据投影&#x2F;切割</h5><ul>
+<li><p>保留时间类型为view的数据</p>
+</li>
+<li><p>只保留ad_id、event_time</p>
+</li>
+</ul>
+<h5 id="1-3-3-Redis查询"><a href="#1-3-3-Redis查询" class="headerlink" title="1.3.3 Redis查询"></a>1.3.3 Redis查询</h5><ul>
+<li>查询Redis，返回<code>[campaign_id, ad_id, event_time]</code></li>
+</ul>
+<pre class="mermaid">graph LR
+A(函数入口)-->A1(创建pool\n和缓存)
+A1-->B{查询缓存\n有无ad_id}
+B--有-->C(返回数组)
+B--无-->D(连接池中\n获取连接)
+D-->E{查询Redis}
+E--有-->F(写入缓存\n返回数组)
+E--无-->G(返回错误数组)
+C-->Z(关闭连接池)
+F-->Z
+G-->Z</pre>
+
+<h5 id="1-3-4-数据转换、数据聚合"><a href="#1-3-4-数据转换、数据聚合" class="headerlink" title="1.3.4 数据转换、数据聚合"></a>1.3.4 数据转换、数据聚合</h5><ul>
+<li><p>时间戳舍入，转为<code>((campaign_id, window_time), ad_id)</code></p>
+</li>
+<li><p>元素值ad_id映射为1，ReduceBy函数进行按键聚合</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; &quot;Ad1&quot;</span><br><span class="line">(&quot;CampaignB&quot;, 20000L) -&gt; &quot;Ad2&quot;</span><br><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; &quot;Ad3&quot;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&quot;CampaignA&quot;, 10000L) -&gt; 2</span><br><span class="line">(&quot;CampaignB&quot;, 20000L) -&gt; 1</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h5 id="1-3-5-写入Redis"><a href="#1-3-5-写入Redis" class="headerlink" title="1.3.5 写入Redis"></a>1.3.5 写入Redis</h5><ul>
+<li>按RDD批处理，这里UUID可以理解为哈希表名&#x2F;列表名</li>
+<li>seen_count是窗口时间内广告的查看次数；time_updated是seen更新后的最后一次时间</li>
+</ul>
+<pre class="mermaid">graph LR
+A(函数入口)-->B(创建pool)
+B-->C(保存campaign\nstamp&count)
+C-->D{查询campaign表\nstamp字段\n的windowsUUID}
+D--无-->F(创建campaign表\nstamp字段\n绑定windowsUUID)
+F-->G{查询campaign表\nwindows字段\n的listUUID}
+G--无-->I(创建campaign表\nwindows字段\n绑定listUUID)
+I-->J(list写入stamp)
+G--有-->J
+J-->K(window哈希表\ncount字段加和)
+D--有-->K
+K-->L(window哈希表\nupdated字段刷新)
+L-->M(关闭连接池)</pre>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/Yahoo.jpeg"
+                      alt="Yahoo" style="zoom:30%;" 
+                >
+
+<h3 id="2-重整后的链路"><a href="#2-重整后的链路" class="headerlink" title="2. 重整后的链路"></a>2. 重整后的链路</h3><h4 id="2-1-环境"><a href="#2-1-环境" class="headerlink" title="2.1 环境"></a>2.1 环境</h4><ul>
+<li>58节点：ZK</li>
+<li>60节点：Spark</li>
+<li>65节点：Redis、Lein</li>
+<li>66节点：Kafka</li>
+</ul>
+<h4 id="2-2-逻辑"><a href="#2-2-逻辑" class="headerlink" title="2.2 逻辑"></a>2.2 逻辑</h4><h5 id="2-2-1-准备"><a href="#2-2-1-准备" class="headerlink" title="2.2.1 准备"></a>2.2.1 准备</h5><ul>
+<li>相关服务的启动步骤<ul>
+<li>ZK正常启动</li>
+<li>Kafka使用3 broker，需要3份配置文件，保证broker id、port、log dir不冲突</li>
+<li>Spark正常启动，测试使用的Kafka IP、Port需要Setup编译后才能生效</li>
+<li>Redis正常启动</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2-2-测试"><a href="#2-2-2-测试" class="headerlink" title="2.2.2 测试"></a>2.2.2 测试</h5><ul>
+<li><p>确认Redis端没有leiningen.core.main相关进程（删除Topic之前需要关闭Redis服务，否则删除动作会没有效果）</p>
+</li>
+<li><p>删除上次测试使用的Topic，因为Yahoo源码中绑定了Topic名为ad-events，所以不方便使用其它Topic进行测试</p>
+<ul>
+<li><code>./bin/kafka-topics.sh --delete --bootstrap-server 10.10.31.58:9092 --topic ad-events</code></li>
+</ul>
+</li>
+<li><p>重启Redis</p>
+</li>
+<li><p>重新创建Topic</p>
+<ul>
+<li><code>./bin/kafka-topics.sh --create --bootstrap-server 10.10.31.58:9092 --replication-factor 3 --partitions 5 --topic ad-events</code></li>
+</ul>
+</li>
+<li><p>数据注入Redis，预先注入Redis的数据，<code>lein run -n --configPath ../conf/benchmarkConf.yaml</code></p>
+</li>
+<li><p>Spark启动消费（此时观察消费状态，是没有数据流的，<code>watch -d -n 1 &quot;./bin/kafka-consumer-groups.sh --bootstrap-server 10.10.31.58:9092 --all-groups --describe&quot;</code>）</p>
+</li>
+<li><p>写入Kafka数据，使用Leiningen自动化Clojure项目管理，<code>lein run -r -t 1000 --configPath ../conf/local.yaml</code>，此时消费状态可以观察到数据流，LOG-END-OFFSET、LAG是变化的</p>
+</li>
+<li><p>这里出现过一个现象，测试完成后，如果不kill掉Redis端的leiningen.core.main相关进程和Redis服务，会看到消费状态一直是变化的，LOG-END-OFFSET、LAG自增到了很恐怖的数值</p>
+</li>
+</ul>
+<h4 id="2-3-结果"><a href="#2-3-结果" class="headerlink" title="2.3 结果"></a>2.3 结果</h4><h5 id="2-3-0-seen和updated"><a href="#2-3-0-seen和updated" class="headerlink" title="2.3.0 seen和updated"></a>2.3.0 seen和updated</h5><ul>
+<li>seen是窗口时间内广告的查看次数</li>
+<li>updated是（窗口最后一次更新时间 - 窗口初始时间），作为延时</li>
+</ul>
+<h5 id="2-3-1-Spark的Executor绑核"><a href="#2-3-1-Spark的Executor绑核" class="headerlink" title="2.3.1 Spark的Executor绑核"></a>2.3.1 Spark的Executor绑核</h5><ul>
+<li>10000并发起，延时就维持在20s+的高水平</li>
+<li>控制Spark组件Executor的个数，15000并发能控制延时维持在10～11s左右</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Spark自定义测试脚本</li>
+        <li><strong>Author:</strong> XXK</li>
+        <li><strong>Created at:</strong> 2023-09-14 18:12:45</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2024-02-04 15:37:04
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://xixiangkun.github.io/2023/09/14/Spark自定义测试脚本/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Spark/">#Spark</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/07/22/PremierePro2024-24-1-MAC%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PremierePro2024-24.1 MAC破解</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/08/18/Spark%20+%20Kafka%E8%BF%9B%E9%98%B6%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%9F%E4%BA%A7%E8%80%85%E3%80%81%E6%B6%88%E8%B4%B9%E8%80%85%E8%AE%A1%E7%AE%97%E5%BB%B6%E6%97%B6%EF%BC%89/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Spark + Kafka进阶（自定义生产者、消费者计算延时）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://xkwaline-repository-87iybfce2-xixiangkun.vercel.app/',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Spark自定义测试脚本</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC%EF%BC%88%E5%9F%BA%E4%BA%8EYahoo%E7%9A%84Streaming-benchmarks%EF%BC%89"><span class="nav-text">Spark自定义测试脚本（基于Yahoo的Streaming-benchmarks）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Yahoo%E7%9A%84%E5%B7%A5%E5%85%B7%E9%80%BB%E8%BE%91"><span class="nav-text">1. Yahoo的工具逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%87%8D%E6%95%B4%E5%90%8E%E7%9A%84%E9%93%BE%E8%B7%AF"><span class="nav-text">2. 重整后的链路</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">XXK</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.3.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.on("pageView", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+<script src="/js/layouts/categoryList.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+</body>
+</html>
