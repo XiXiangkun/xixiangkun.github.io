@@ -26,7 +26,7 @@
 <meta property="og:description" content="服务器UCE（Uncorrect Error）处理静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-10T10:12:45.000Z">
-<meta property="article:modified_time" content="2024-03-04T05:30:19.288Z">
+<meta property="article:modified_time" content="2024-08-13T07:53:50.749Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="UCE">
 <meta name="twitter:card" content="summary">
@@ -315,8 +315,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-03-04 13:30:19</span>
-            <span class="mobile">2024-03-04 13:30:19</span>
+            <span class="desktop">2024-08-13 15:53:50</span>
+            <span class="mobile">2024-08-13 15:53:50</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -376,7 +376,7 @@
 <p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
 <p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
 <p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
-<h4 id="X86的MCA机制"><a href="#X86的MCA机制" class="headerlink" title="X86的MCA机制"></a><strong>X86的MCA机制</strong></h4><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
+<h3 id="1-X86的MCA机制"><a href="#1-X86的MCA机制" class="headerlink" title="1. X86的MCA机制"></a>1. <strong>X86的MCA机制</strong></h3><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
 <p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
 
@@ -386,11 +386,11 @@
 
 <p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
 <p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
-<h4 id="KP的RAS故障处理"><a href="#KP的RAS故障处理" class="headerlink" title="KP的RAS故障处理"></a><strong>KP的RAS故障处理</strong></h4><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
+<h3 id="2-KP的RAS故障处理"><a href="#2-KP的RAS故障处理" class="headerlink" title="2. KP的RAS故障处理"></a>2. <strong>KP的RAS故障处理</strong></h3><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
 <p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
 <p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
 <p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
-<h4 id="更粗暴的处理方式"><a href="#更粗暴的处理方式" class="headerlink" title="更粗暴的处理方式"></a><strong>更粗暴的处理方式</strong></h4><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
+<h3 id="3-更粗暴的处理方式"><a href="#3-更粗暴的处理方式" class="headerlink" title="3. 更粗暴的处理方式"></a>3. <strong>更粗暴的处理方式</strong></h3><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
 
         </div>
 
@@ -403,7 +403,7 @@
         <li><strong>Created at:</strong> 2023-05-10 18:12:45</li>
         
             <li>
-                <strong>Updated at:</strong> 2024-03-04 13:30:19
+                <strong>Updated at:</strong> 2024-08-13 15:53:50
             </li>
         
         <li>
@@ -506,7 +506,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">服务器UCE（Uncorrect Error）处理</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-text">服务器UCE（Uncorrect Error）处理</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-text">服务器UCE（Uncorrect Error）处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-X86%E7%9A%84MCA%E6%9C%BA%E5%88%B6"><span class="nav-text">1. X86的MCA机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-KP%E7%9A%84RAS%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86"><span class="nav-text">2. KP的RAS故障处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%B4%E7%B2%97%E6%9A%B4%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-text">3. 更粗暴的处理方式</span></a></li></ol></li></ol>
 
     </div>
 </div>

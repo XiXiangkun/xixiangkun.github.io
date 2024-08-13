@@ -12,7 +12,7 @@
 <p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
 <p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
 <p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
-<h4 id="X86的MCA机制"><a href="#X86的MCA机制" class="headerlink" title="X86的MCA机制"></a><strong>X86的MCA机制</strong></h4><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
+<h3 id="1-X86的MCA机制"><a href="#1-X86的MCA机制" class="headerlink" title="1. X86的MCA机制"></a>1. <strong>X86的MCA机制</strong></h3><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
 <p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
 
@@ -22,11 +22,11 @@
 
 <p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
 <p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
-<h4 id="KP的RAS故障处理"><a href="#KP的RAS故障处理" class="headerlink" title="KP的RAS故障处理"></a><strong>KP的RAS故障处理</strong></h4><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
+<h3 id="2-KP的RAS故障处理"><a href="#2-KP的RAS故障处理" class="headerlink" title="2. KP的RAS故障处理"></a>2. <strong>KP的RAS故障处理</strong></h3><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
 <p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
 <p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
 <p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
-<h4 id="更粗暴的处理方式"><a href="#更粗暴的处理方式" class="headerlink" title="更粗暴的处理方式"></a><strong>更粗暴的处理方式</strong></h4><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
+<h3 id="3-更粗暴的处理方式"><a href="#3-更粗暴的处理方式" class="headerlink" title="3. 更粗暴的处理方式"></a>3. <strong>更粗暴的处理方式</strong></h3><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
 ]]></content>
       <categories>
         <category>Server</category>
@@ -67,27 +67,27 @@
   <entry>
     <title>电视剧资源</title>
     <url>/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<h3 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h3><ol>
-<li><h4 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h4></li>
+    <content><![CDATA[<h2 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h2><ol>
+<li><h3 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h3></li>
 </ol>
 <p>​	<code>链接: https://pan.baidu.com/s/1waGijwFk0rXSwEIZCIW-1g 提取码: 2f3z</code></p>
 <ol start="2">
-<li><h4 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h4><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
+<li><h3 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h3><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
 </li>
-<li><h4 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h4><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
+<li><h3 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h3><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
 </li>
-<li><h4 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h4><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
+<li><h3 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h3><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
 </li>
-<li><h4 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h4><ul>
+<li><h3 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h3><ul>
 <li>第一季1<code>链接: https://pan.baidu.com/s/1q9guhdPSB4ypsNQpkD0tmA 提取码: duxq</code></li>
 <li>第二季<code>链接: https://pan.baidu.com/s/1-1WGDhk0c6JLMipkpxpuvw 提取码: rxey</code></li>
 </ul>
 </li>
-<li><h4 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h4><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
+<li><h3 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h3><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
 </li>
-<li><h4 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h4><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
+<li><h3 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h3><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
 </li>
-<li><h4 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h4></li>
+<li><h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3></li>
 </ol>
 ]]></content>
       <tags>
@@ -97,15 +97,14 @@
   <entry>
     <title>Linux环境无缝Windows应用</title>
     <url>/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>[toc]</p>
-<p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
+    <content><![CDATA[<p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
 <p>在Linux环境中无缝运行Windows应用程序，本质上是通过映射虚拟机内部运行的应用程序窗口实现的。</p>
 <p>主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。</p>
-<h4 id="1-环境（Qemu-4-2-1）"><a href="#1-环境（Qemu-4-2-1）" class="headerlink" title="1. 环境（Qemu 4.2.1）"></a>1. 环境（Qemu 4.2.1）</h4><h5 id="1-1-宿主机（Linux）"><a href="#1-1-宿主机（Linux）" class="headerlink" title="1.1 宿主机（Linux）"></a>1.1 宿主机（Linux）</h5><ul>
+<h2 id="1-环境（Qemu-4-2-1）"><a href="#1-环境（Qemu-4-2-1）" class="headerlink" title="1. 环境（Qemu 4.2.1）"></a>1. 环境（Qemu 4.2.1）</h2><h3 id="1-1-宿主机（Linux）"><a href="#1-1-宿主机（Linux）" class="headerlink" title="1.1 宿主机（Linux）"></a>1.1 宿主机（Linux）</h3><ul>
 <li>配置4455端口自启动服务，通过服务启动虚拟机（需要sudo权限实现自动启动或重启）</li>
 <li>使用的是qcow2文件的虚拟机环境</li>
 </ul>
-<h5 id="1-2-虚拟机（Windows）"><a href="#1-2-虚拟机（Windows）" class="headerlink" title="1.2 虚拟机（Windows）"></a>1.2 虚拟机（Windows）</h5><ul>
+<h3 id="1-2-虚拟机（Windows）"><a href="#1-2-虚拟机（Windows）" class="headerlink" title="1.2 虚拟机（Windows）"></a>1.2 虚拟机（Windows）</h3><ul>
 <li>环境设置<ul>
 <li>虚拟机需要在<code>此电脑——属性——高级系统设置——远程</code>中，关闭“允许远程协助连接这台计算机”和“仅允许运行使用网路级别身份验证的远程桌面的计算机连接”</li>
 <li>【SMB】挂载宿主机的主目录到宿主机总，让宿主机和虚拟机的文件资源互通，方便后续直接在虚拟机中执行放在Linux环境下的Windows应用程序，如exe安装等。SMB的数据传输速度也远优于XfreeRDP自带的映射功能，速度提升大概在15～20倍。</li>
@@ -126,19 +125,19 @@
 </ul>
 </li>
 </ul>
-<h4 id="2-XfreeRDP（3-6-4）"><a href="#2-XfreeRDP（3-6-4）" class="headerlink" title="2. XfreeRDP（3.6.4）"></a>2. XfreeRDP（3.6.4）</h4><h5 id="2-1-使用命令："><a href="#2-1-使用命令：" class="headerlink" title="2.1 使用命令："></a>2.1 使用命令：</h5><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">xfreerdp /v:127.0.0.1:3389 /u:Administrator /p:****** +auto-reconnect +clipboard /log-level:DEBUG /sound:sys:alsa /cert:ignore /app:program:&quot;Edge&quot;</span><br></pre></td></tr></table></figure></div>
+<h2 id="2-XfreeRDP（3-6-4）"><a href="#2-XfreeRDP（3-6-4）" class="headerlink" title="2. XfreeRDP（3.6.4）"></a>2. XfreeRDP（3.6.4）</h2><h3 id="2-1-使用命令："><a href="#2-1-使用命令：" class="headerlink" title="2.1 使用命令："></a>2.1 使用命令：</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">xfreerdp /v:127.0.0.1:3389 /u:Administrator /p:****** +auto-reconnect +clipboard /log-level:DEBUG /sound:sys:alsa /cert:ignore /app:program:&quot;Edge&quot;</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="2-2-缺陷"><a href="#2-2-缺陷" class="headerlink" title="2.2 缺陷"></a>2.2 缺陷</h5><ul>
+<h3 id="2-2-缺陷"><a href="#2-2-缺陷" class="headerlink" title="2.2 缺陷"></a>2.2 缺陷</h3><ul>
 <li><p>XfreeRDP源码不支持窗口右、下和右下方向的拉伸效果，可以通过注释xf_rail_adjust_position函数中，对于LMS_NOT_ACTIVE相关的逻辑判断；不支持窗口最大化效果也可以修改源码位置进行修复，代码位置忘记了。</p>
 </li>
 <li><p>xfreerdp通过RDP协议远程捕获虚拟机上的窗口属性，然后映射到本地桌面。对于使用标准窗口管理的应用，都可以被RDP捕获从而让xfreerdp无缝映射。但是对于那些使用自定义绘图或者特殊事件处理逻辑的应用程序而言，不同的窗口属性和事件处理方式让RDP不能捕获到这些窗口的部分状态，最直观的表现就是<strong>窗口内容渲染的不完整</strong>、<strong>复杂的窗口结构出现重叠或者位置错误</strong>等现象。实际测试过程中，XMind无法进行窗口管理、AutoCAD窗口始终置顶且“A”图样的窗口脱离主程序。</p>
 </li>
 </ul>
-<h4 id="3-Rdesktop"><a href="#3-Rdesktop" class="headerlink" title="3. Rdesktop"></a>3. Rdesktop</h4><p>Rdesktop（RDP客户端）需要结合seamless使用才能实现无缝模式，seamless是无缝模式的英文，是一种虚拟化远程桌面的功能模式，但是有自己的开源实现。</p>
+<h2 id="3-Rdesktop"><a href="#3-Rdesktop" class="headerlink" title="3. Rdesktop"></a>3. Rdesktop</h2><p>Rdesktop（RDP客户端）需要结合seamless使用才能实现无缝模式，seamless是无缝模式的英文，是一种虚拟化远程桌面的功能模式，但是有自己的开源实现。</p>
 <p>在使用Rdesktop连接虚拟机时，需要启动seamless的执行程序才能实现真正意义上的无缝应用，seamless的程序只要启动一次就可以多次复用。</p>
-<h5 id="3-1-启动命令"><a href="#3-1-启动命令" class="headerlink" title="3.1 启动命令"></a>3.1 启动命令</h5><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">rdesktop -u Administrator -p ****** 127.0.0.1:3389 -A &#x27;C:\\Program Files(x86)\\Tie\\seamlessrdpshell.exe&#x27; -s &#x27;&#x27; -M</span><br></pre></td></tr></table></figure></div>
+<h3 id="3-1-启动命令"><a href="#3-1-启动命令" class="headerlink" title="3.1 启动命令"></a>3.1 启动命令</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">rdesktop -u Administrator -p ****** 127.0.0.1:3389 -A &#x27;C:\\Program Files(x86)\\Tie\\seamlessrdpshell.exe&#x27; -s &#x27;&#x27; -M</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="3-2-问题及解决"><a href="#3-2-问题及解决" class="headerlink" title="3.2 问题及解决"></a>3.2 问题及解决</h5><ul>
+<h3 id="3-2-问题及解决"><a href="#3-2-问题及解决" class="headerlink" title="3.2 问题及解决"></a>3.2 问题及解决</h3><ul>
 <li>rdesktop命令执行后，出现虚拟机的远程桌面，并不是完整的无缝模式<ul>
 <li>在弹出的虚拟机远程桌面中运行seamlessrdpshell.exe程序</li>
 </ul>
@@ -160,16 +159,16 @@
 </ul>
 </li>
 </ul>
-<h5 id="3-3-缺陷"><a href="#3-3-缺陷" class="headerlink" title="3.3 缺陷"></a>3.3 缺陷</h5><ul>
+<h3 id="3-3-缺陷"><a href="#3-3-缺陷" class="headerlink" title="3.3 缺陷"></a>3.3 缺陷</h3><ul>
 <li>在文件资源管理器中右键目录或文件时，会因为窗口大小的问题遮挡住部分上下文菜单的内容，没有到影响使用的级别</li>
 <li>测试过程中，部分机器上的BOB、BOC应用无法无缝使用</li>
 </ul>
-<h4 id="4-附"><a href="#4-附" class="headerlink" title="4. 附"></a>4. 附</h4><h5 id="4-1-虚拟机启动命令"><a href="#4-1-虚拟机启动命令" class="headerlink" title="4.1 虚拟机启动命令"></a>4.1 虚拟机启动命令</h5><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">/opt/tie/bin/qemu-system-x86_64 \</span><br><span class="line">  -name guest=windows10cxy \</span><br><span class="line">  -uuid 386cfb6f-e0bc-4dc3-b7c2-51adfe69c2fe \</span><br><span class="line">  -smp $&#123;virt_cores&#125;,sockets=1,cores=$&#123;virt_cores&#125;,threads=1 -m 4096 \</span><br><span class="line">  -cpu host \</span><br><span class="line">  -machine type=pc-i440fx-focal,accel=kvm \</span><br><span class="line">  -boot order=c \</span><br><span class="line">  -device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2 \</span><br><span class="line">  -device usb-tablet,id=input0,bus=usb.0,port=1 \</span><br><span class="line">  -drive file=/opt/win10.qcow2,format=qcow2,if=none,id=drive-ide0-0-0 \</span><br><span class="line">  -device ide-hd,bus=ide.0,unit=0,drive=drive-ide0-0-0,id=ide0-0-0 \</span><br><span class="line">  -netdev user,id=net0,hostfwd=tcp::3389-:3389,hostfwd=tcp::18080-:18080 -device e1000,netdev=net0 \</span><br><span class="line">  -vnc :0 \</span><br><span class="line">  -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x7 \</span><br><span class="line">  -device ich9-usb-ehci1,id=usb-ehci1,bus=pci.0,addr=0x6.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=0,bus=pci.0,addr=0x8.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=2,bus=pci.0,addr=0x9.0x0 \</span><br><span class="line">  -device ich9-intel-hda,id=sound0,bus=pci.0,addr=0x5.0x0 \</span><br><span class="line">  -device virtio-vga,id=video0,bus=pci.0,addr=0x3.0x0 \</span><br><span class="line">  -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0xa.0x0 \</span><br><span class="line">  -chardev pty,id=charserial0 \</span><br><span class="line">  -device isa-serial,chardev=charserial0,id=serial0 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev1,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev1,id=redir1 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev2,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev2,id=redir2 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci0,bus=pci.0,addr=0xb.0x0 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci1,bus=pci.0,addr=0xc.0x0 \</span><br><span class="line">  -monitor telnet:127.0.0.1:4444,server,nowait</span><br></pre></td></tr></table></figure></div>
+<h2 id="4-附"><a href="#4-附" class="headerlink" title="4. 附"></a>4. 附</h2><h3 id="4-1-虚拟机启动命令"><a href="#4-1-虚拟机启动命令" class="headerlink" title="4.1 虚拟机启动命令"></a>4.1 虚拟机启动命令</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">/opt/tie/bin/qemu-system-x86_64 \</span><br><span class="line">  -name guest=windows10cxy \</span><br><span class="line">  -uuid 386cfb6f-e0bc-4dc3-b7c2-51adfe69c2fe \</span><br><span class="line">  -smp $&#123;virt_cores&#125;,sockets=1,cores=$&#123;virt_cores&#125;,threads=1 -m 4096 \</span><br><span class="line">  -cpu host \</span><br><span class="line">  -machine type=pc-i440fx-focal,accel=kvm \</span><br><span class="line">  -boot order=c \</span><br><span class="line">  -device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2 \</span><br><span class="line">  -device usb-tablet,id=input0,bus=usb.0,port=1 \</span><br><span class="line">  -drive file=/opt/win10.qcow2,format=qcow2,if=none,id=drive-ide0-0-0 \</span><br><span class="line">  -device ide-hd,bus=ide.0,unit=0,drive=drive-ide0-0-0,id=ide0-0-0 \</span><br><span class="line">  -netdev user,id=net0,hostfwd=tcp::3389-:3389,hostfwd=tcp::18080-:18080 -device e1000,netdev=net0 \</span><br><span class="line">  -vnc :0 \</span><br><span class="line">  -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x7 \</span><br><span class="line">  -device ich9-usb-ehci1,id=usb-ehci1,bus=pci.0,addr=0x6.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=0,bus=pci.0,addr=0x8.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=2,bus=pci.0,addr=0x9.0x0 \</span><br><span class="line">  -device ich9-intel-hda,id=sound0,bus=pci.0,addr=0x5.0x0 \</span><br><span class="line">  -device virtio-vga,id=video0,bus=pci.0,addr=0x3.0x0 \</span><br><span class="line">  -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0xa.0x0 \</span><br><span class="line">  -chardev pty,id=charserial0 \</span><br><span class="line">  -device isa-serial,chardev=charserial0,id=serial0 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev1,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev1,id=redir1 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev2,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev2,id=redir2 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci0,bus=pci.0,addr=0xb.0x0 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci1,bus=pci.0,addr=0xc.0x0 \</span><br><span class="line">  -monitor telnet:127.0.0.1:4444,server,nowait</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="4-2-qemu挂载USB设备"><a href="#4-2-qemu挂载USB设备" class="headerlink" title="4.2 qemu挂载USB设备"></a>4.2 qemu挂载USB设备</h5><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">sleep 1</span><br><span class="line">echo &quot;device_add usb-host,vendorid=0x0781,productid=0x558b,id=cxy0781558b&quot;</span><br><span class="line">sleep 1</span><br><span class="line">&#125; | telnet 127.0.0.1 4444</span><br></pre></td></tr></table></figure></div>
+<h3 id="4-2-qemu挂载USB设备"><a href="#4-2-qemu挂载USB设备" class="headerlink" title="4.2 qemu挂载USB设备"></a>4.2 qemu挂载USB设备</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">sleep 1</span><br><span class="line">echo &quot;device_add usb-host,vendorid=0x0781,productid=0x558b,id=cxy0781558b&quot;</span><br><span class="line">sleep 1</span><br><span class="line">&#125; | telnet 127.0.0.1 4444</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="4-3-Linux桌面添加exe右键启动方式exeInstall"><a href="#4-3-Linux桌面添加exe右键启动方式exeInstall" class="headerlink" title="4.3 Linux桌面添加exe右键启动方式exeInstall"></a>4.3 Linux桌面添加exe右键启动方式exeInstall</h5><p>本质上是在Windows虚拟机环境中运行exe程序。当右键选择启动exeInstall时，exeInstall会将目标文件链接到固定的磁盘位置（如在虚拟机中已经做好固定映射的Z目录），通过rdesktop启动映射进去的exe程序就可以安装了。</p>
-<h5 id="4-5-AppImage打包"><a href="#4-5-AppImage打包" class="headerlink" title="4.5 AppImage打包"></a>4.5 AppImage打包</h5><p>AppImage将应用程序和所有依赖项打包在一个文件中，AppImage实际上是一个压缩的文件系统映像，包含了可执行文件恶化依赖库等必要资源。</p>
+<h3 id="4-3-Linux桌面添加exe右键启动方式exeInstall"><a href="#4-3-Linux桌面添加exe右键启动方式exeInstall" class="headerlink" title="4.3 Linux桌面添加exe右键启动方式exeInstall"></a>4.3 Linux桌面添加exe右键启动方式exeInstall</h3><p>本质上是在Windows虚拟机环境中运行exe程序。当右键选择启动exeInstall时，exeInstall会将目标文件链接到固定的磁盘位置（如在虚拟机中已经做好固定映射的Z目录），通过rdesktop启动映射进去的exe程序就可以安装了。</p>
+<h3 id="4-5-AppImage打包"><a href="#4-5-AppImage打包" class="headerlink" title="4.5 AppImage打包"></a>4.5 AppImage打包</h3><p>AppImage将应用程序和所有依赖项打包在一个文件中，AppImage实际上是一个压缩的文件系统映像，包含了可执行文件恶化依赖库等必要资源。</p>
 <p>参考打包过程如下：</p>
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">cp ./virtualmanager ./client</span><br><span class="line">app=&quot;client&quot;</span><br><span class="line">./linuxdeployqt-x86 $app -appimage;</span><br><span class="line">echo &quot;Categories=Application&quot;&gt;&gt;default.desktop</span><br><span class="line">cd ..</span><br><span class="line">./appimagetool-x86 $app</span><br><span class="line">mv Application-x86.AppImage /opt/tie/client</span><br></pre></td></tr></table></figure></div>
 
