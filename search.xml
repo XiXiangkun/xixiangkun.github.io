@@ -95,11 +95,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux环境无缝Windows应用</title>
-    <url>/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%E5%BA%94%E7%94%A8/</url>
+    <title>Qt</title>
+    <url>/2024/08/12/Qt/</url>
+    <content><![CDATA[<ol>
+<li><h4 id="界面控件"><a href="#界面控件" class="headerlink" title="界面控件"></a>界面控件</h4></li>
+<li><h4 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h4></li>
+<li><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4></li>
+<li><h4 id="图形绘制"><a href="#图形绘制" class="headerlink" title="图形绘制"></a>图形绘制</h4></li>
+<li><h4 id="QT自绘空间"><a href="#QT自绘空间" class="headerlink" title="QT自绘空间"></a>QT自绘空间</h4></li>
+<li><h4 id="OSS样式表"><a href="#OSS样式表" class="headerlink" title="OSS样式表"></a>OSS样式表</h4></li>
+<li><h4 id="OT布局"><a href="#OT布局" class="headerlink" title="OT布局"></a>OT布局</h4></li>
+<li><h4 id="STL开发"><a href="#STL开发" class="headerlink" title="STL开发"></a>STL开发</h4></li>
+<li><h4 id="qml"><a href="#qml" class="headerlink" title="qml"></a>qml</h4></li>
+<li><h4 id="curl和DuiLib"><a href="#curl和DuiLib" class="headerlink" title="curl和DuiLib"></a>curl和DuiLib</h4></li>
+<li><h4 id="QtLocation"><a href="#QtLocation" class="headerlink" title="QtLocation"></a>QtLocation</h4></li>
+<li><h4 id="json、protobuffer、"><a href="#json、protobuffer、" class="headerlink" title="json、protobuffer、"></a>json、protobuffer、</h4></li>
+<li><h4 id="https、socket"><a href="#https、socket" class="headerlink" title="https、socket"></a>https、socket</h4></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux环境无缝Windows（应用）</title>
+    <url>/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/</url>
     <content><![CDATA[<p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
 <p>在Linux环境中无缝运行Windows应用程序，本质上是通过映射虚拟机内部运行的应用程序窗口实现的。</p>
-<p>主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。</p>
+<p>主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的窗口缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。</p>
 <h2 id="1-环境（Qemu-4-2-1）"><a href="#1-环境（Qemu-4-2-1）" class="headerlink" title="1. 环境（Qemu 4.2.1）"></a>1. 环境（Qemu 4.2.1）</h2><h3 id="1-1-宿主机（Linux）"><a href="#1-1-宿主机（Linux）" class="headerlink" title="1.1 宿主机（Linux）"></a>1.1 宿主机（Linux）</h3><ul>
 <li>配置4455端口自启动服务，通过服务启动虚拟机（需要sudo权限实现自动启动或重启）</li>
 <li>使用的是qcow2文件的虚拟机环境</li>
@@ -178,23 +198,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Qt</title>
-    <url>/2024/08/12/Qt/</url>
-    <content><![CDATA[<ol>
-<li><h4 id="界面控件"><a href="#界面控件" class="headerlink" title="界面控件"></a>界面控件</h4></li>
-<li><h4 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h4></li>
-<li><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4></li>
-<li><h4 id="图形绘制"><a href="#图形绘制" class="headerlink" title="图形绘制"></a>图形绘制</h4></li>
-<li><h4 id="QT自绘空间"><a href="#QT自绘空间" class="headerlink" title="QT自绘空间"></a>QT自绘空间</h4></li>
-<li><h4 id="OSS样式表"><a href="#OSS样式表" class="headerlink" title="OSS样式表"></a>OSS样式表</h4></li>
-<li><h4 id="OT布局"><a href="#OT布局" class="headerlink" title="OT布局"></a>OT布局</h4></li>
-<li><h4 id="STL开发"><a href="#STL开发" class="headerlink" title="STL开发"></a>STL开发</h4></li>
-<li><h4 id="qml"><a href="#qml" class="headerlink" title="qml"></a>qml</h4></li>
-<li><h4 id="curl和DuiLib"><a href="#curl和DuiLib" class="headerlink" title="curl和DuiLib"></a>curl和DuiLib</h4></li>
-<li><h4 id="QtLocation"><a href="#QtLocation" class="headerlink" title="QtLocation"></a>QtLocation</h4></li>
-<li><h4 id="json、protobuffer、"><a href="#json、protobuffer、" class="headerlink" title="json、protobuffer、"></a>json、protobuffer、</h4></li>
-<li><h4 id="https、socket"><a href="#https、socket" class="headerlink" title="https、socket"></a>https、socket</h4></li>
-</ol>
+    <title>Linux环境无缝Windows（打印）</title>
+    <url>/2024/08/19/abc/</url>
+    <content><![CDATA[<p>某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。</p>
+<p>无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。</p>
+<p>简单介绍一下无缝打印的工作原理和准备工作。</p>
+<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><ul>
+<li><p>Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailarguments，而具体的文件数据会被处理为ps文件数据流放到stdin中。</p>
+</li>
+<li><p>在宿主机通过服务抓取stdin的数据流，发送给虚拟机。</p>
+</li>
+<li><p>虚拟机使用gsprint通过默认打印设备打印文件，就可以完成无缝打印的工作。</p>
+</li>
+</ul>
+<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2. 准备"></a>2. 准备</h2><h3 id="2-1-虚拟机"><a href="#2-1-虚拟机" class="headerlink" title="2.1 虚拟机"></a>2.1 虚拟机</h3><ul>
+<li>Windows虚拟机添加了正常的打印设备，并且能够正常打印。（没有正常设备也可以使用Microsoft Print to PDF进行尝试）</li>
+<li>Windows虚拟机安装了gsprint.exe（参考使用gsv50w32.exe和gs923w32.exe）</li>
+<li>自定义服务端口18081，接收宿主机传送过来的ps文件数据流，通过gsprint.exe完成打印</li>
+</ul>
+<h3 id="2-2-宿主机"><a href="#2-2-宿主机" class="headerlink" title="2.2 宿主机"></a>2.2 宿主机</h3><ul>
+<li>自定义打印机服务，可以在打印选项中选择</li>
+<li>服务将获取到的stdin的ps文件数据流传给虚拟机的18081端口</li>
+</ul>
 ]]></content>
+      <tags>
+        <tag>RDP</tag>
+      </tags>
   </entry>
 </search>
