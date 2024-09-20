@@ -1,71 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>服务器UCE（Uncorrect Error）处理</title>
-    <url>/2023/05/10/%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<h2 id="服务器UCE（Uncorrect-Error）处理"><a href="#服务器UCE（Uncorrect-Error）处理" class="headerlink" title="服务器UCE（Uncorrect Error）处理"></a>服务器UCE（Uncorrect Error）处理</h2><p>静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配合巡检任务，定期读取磁盘上的宏块做校验。</p>
-<p>举例来说，在单机部署数据库的情况下，打开表对应的数据文件，对数据文件中表字段数据进行修改后，保存数据内容。启动数据库，数据库可以正常启动，数据库无法校验数据内容已被修改。但是表内数据已被人为修改，静默异常已经发生（问题如果出现在金融场景，影响会十分恶劣）。通过check工具检查数据文件，也不能发现错误。因为check工具不能检查用户实际数据的正确性，如果数据文件被手动人为修改，且修改到的是用户数据部分，是检查不出来的。当然，如果是索引数据被修改，数据库确实会进入异常状态。</p>
-<p>数据库场景下出现该类内存（如data poision）相关的问题时，原则上数据是不可以写入磁盘的。对于服务器而言，内存数据出现问题，后续的数据恢复处理一般是没有操作办法的。</p>
-<p>针对此类UCE问题，大方向可以有两种处理方式：异步中断、同步中断，简单介绍一下。</p>
-<p>异常（同步中断）：除0、缺页等CPU执行特定指令过程时产生的异常。</p>
-<p>中断（异步中断）：硬件设备生成的电信号，一般用中断请求（IRQ）来区分。</p>
-<p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
-<p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
-<p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
-<h3 id="1-X86的MCA机制"><a href="#1-X86的MCA机制" class="headerlink" title="1. X86的MCA机制"></a>1. <strong>X86的MCA机制</strong></h3><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
-<p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
-
-<p>阅读源码，int 18号异常（MCE，Machine Check Exception）的异常处理函数为do_machine_check，执行在NMI上下文中。按照程序流程，mce_gather_info()函数会读取MCE发送时的现场信息，比如所在CPU、时间、MSR寄存器数值等内容保存到mce结构体中。mce_no_way_out会遍历所有的banks，检查cpu是否需要Panic，它通过mce_serverity()函数判断错误等级，找到错误发生的位置，在内核空间会直接导致Panic，在用户空间则走进一步的逻辑判断。</p>
-<p>kill_it为受mcgstatus 寄存器中的MCG_STATUS_RIPV影响的变量。</p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"> <span class="meta"># https:<span class="comment">//github.com/AmpereComputing/ampere-lts-kernel/blob/linux-5.4.y/arch/x86/kernel/cpu/mce/core.c源码</span></span></span><br><span class="line"> mce_gather_info(&amp;m, regs);</span><br><span class="line">m.tsc = rdtsc();</span><br><span class="line"></span><br><span class="line">final = this_cpu_ptr(&amp;mces_seen);</span><br><span class="line">*final = m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(valid_banks, <span class="number">0</span>, <span class="keyword">sizeof</span>(valid_banks));</span><br><span class="line">no_way_out = mce_no_way_out(&amp;m, &amp;msg, valid_banks, regs);</span><br><span class="line"></span><br><span class="line">barrier();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * When no restart IP might need to kill or panic.</span></span><br><span class="line"><span class="comment"> * Assume the worst for now, but if we find the</span></span><br><span class="line"><span class="comment"> * severity is MCE_AR_SEVERITY we have other options.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (!(m.mcgstatus &amp; MCG_STATUS_RIPV))</span><br><span class="line">	kill_it = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Check if this MCE is signaled to only this logical processor,</span></span><br><span class="line"><span class="comment"> * on Intel only.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (m.cpuvendor == X86_VENDOR_INTEL)</span><br><span class="line">	lmce = m.mcgstatus &amp; MCG_STATUS_LMCES;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Local machine check may already know that we have to panic.</span></span><br><span class="line"><span class="comment"> * Broadcast machine check begins rendezvous in mce_start()</span></span><br><span class="line"><span class="comment"> * Go through all banks in exclusion of the other CPUs. This way we</span></span><br><span class="line"><span class="comment"> * don&#x27;t report duplicated events on shared banks because the first one</span></span><br><span class="line"><span class="comment"> * to see it will clear it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (lmce) &#123;</span><br><span class="line">	<span class="keyword">if</span> (no_way_out)</span><br><span class="line">		mce_panic(<span class="string">&quot;Fatal local machine check&quot;</span>, &amp;m, msg);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	order = mce_start(&amp;no_way_out);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
-
-<p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
-<p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
-<h3 id="2-KP的RAS故障处理"><a href="#2-KP的RAS故障处理" class="headerlink" title="2. KP的RAS故障处理"></a>2. <strong>KP的RAS故障处理</strong></h3><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
-<p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
-<p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
-<p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
-<h3 id="3-更粗暴的处理方式"><a href="#3-更粗暴的处理方式" class="headerlink" title="3. 更粗暴的处理方式"></a>3. <strong>更粗暴的处理方式</strong></h3><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
-]]></content>
-      <categories>
-        <category>Server</category>
-      </categories>
-      <tags>
-        <tag>UCE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电视剧资源</title>
-    <url>/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<h2 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h2><ol>
-<li><h3 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h3></li>
-</ol>
-<p>​	<code>链接: https://pan.baidu.com/s/1waGijwFk0rXSwEIZCIW-1g 提取码: 2f3z</code></p>
-<ol start="2">
-<li><h3 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h3><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
-</li>
-<li><h3 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h3><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
-</li>
-<li><h3 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h3><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
-</li>
-<li><h3 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h3><ul>
-<li>第一季1<code>链接: https://pan.baidu.com/s/1q9guhdPSB4ypsNQpkD0tmA 提取码: duxq</code></li>
-<li>第二季<code>链接: https://pan.baidu.com/s/1-1WGDhk0c6JLMipkpxpuvw 提取码: rxey</code></li>
-</ul>
-</li>
-<li><h3 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h3><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
-</li>
-<li><h3 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h3><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
-</li>
-<li><h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>电视剧</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux环境无缝Windows（应用）</title>
     <url>/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/</url>
     <content><![CDATA[<p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
@@ -215,9 +150,74 @@
       </tags>
   </entry>
   <entry>
+    <title>电视剧资源</title>
+    <url>/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/</url>
+    <content><![CDATA[<h2 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h2><ol>
+<li><h3 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h3></li>
+</ol>
+<p>​	<code>链接: https://pan.baidu.com/s/1waGijwFk0rXSwEIZCIW-1g 提取码: 2f3z</code></p>
+<ol start="2">
+<li><h3 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h3><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
+</li>
+<li><h3 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h3><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
+</li>
+<li><h3 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h3><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
+</li>
+<li><h3 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h3><ul>
+<li>第一季1<code>链接: https://pan.baidu.com/s/1q9guhdPSB4ypsNQpkD0tmA 提取码: duxq</code></li>
+<li>第二季<code>链接: https://pan.baidu.com/s/1-1WGDhk0c6JLMipkpxpuvw 提取码: rxey</code></li>
+</ul>
+</li>
+<li><h3 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h3><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
+</li>
+<li><h3 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h3><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
+</li>
+<li><h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>电视剧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器UCE（Uncorrect Error）处理</title>
+    <url>/2023/05/10/%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h2 id="服务器UCE（Uncorrect-Error）处理"><a href="#服务器UCE（Uncorrect-Error）处理" class="headerlink" title="服务器UCE（Uncorrect Error）处理"></a>服务器UCE（Uncorrect Error）处理</h2><p>静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配合巡检任务，定期读取磁盘上的宏块做校验。</p>
+<p>举例来说，在单机部署数据库的情况下，打开表对应的数据文件，对数据文件中表字段数据进行修改后，保存数据内容。启动数据库，数据库可以正常启动，数据库无法校验数据内容已被修改。但是表内数据已被人为修改，静默异常已经发生（问题如果出现在金融场景，影响会十分恶劣）。通过check工具检查数据文件，也不能发现错误。因为check工具不能检查用户实际数据的正确性，如果数据文件被手动人为修改，且修改到的是用户数据部分，是检查不出来的。当然，如果是索引数据被修改，数据库确实会进入异常状态。</p>
+<p>数据库场景下出现该类内存（如data poision）相关的问题时，原则上数据是不可以写入磁盘的。对于服务器而言，内存数据出现问题，后续的数据恢复处理一般是没有操作办法的。</p>
+<p>针对此类UCE问题，大方向可以有两种处理方式：异步中断、同步中断，简单介绍一下。</p>
+<p>异常（同步中断）：除0、缺页等CPU执行特定指令过程时产生的异常。</p>
+<p>中断（异步中断）：硬件设备生成的电信号，一般用中断请求（IRQ）来区分。</p>
+<p><font size=2>（异常或者中断处理期间，CPU会自动关闭中断，防止外部干扰。但是像网卡一类的设备数据处理量很大，且不能等待太长时间。所以中断也才被分为上下两部分，上半部完成紧要工作，下半部进入调度。另外，中断分为可屏蔽和不可屏蔽（NMI）。可屏蔽中断一般来自于IO设备，需要处理器保存现场后进入内核开始处理。不可屏蔽中断直接通过NMI到总线，需要处理器尽快处理此类中断。）</font></p>
+<p><strong>同步中断（异常）的方式会阻塞data poision的扩散</strong>，异步中断不同，data poision仍有扩散甚至写入磁盘的可能。</p>
+<p>明显，异步中断的方式不适用于UCE问题的上报、处理。</p>
+<h3 id="1-X86的MCA机制"><a href="#1-X86的MCA机制" class="headerlink" title="1. X86的MCA机制"></a>1. <strong>X86的MCA机制</strong></h3><p>MAC（Machine Check Architecture），是Intel从奔腾4开始添加的一种机制，用来检测硬件错误如系统总线错误、ECC错误。MCA可以通过CPUID指令查看开启状态。</p>
+<p>当处理器检测到Machine Check Error后，触发Machine Check Exception，读取MSR相关的错误信息，杀掉进程或者重启系统。根据Intel的官方手册，Machine Check Exception对应18号异常。对于X86的服务器而言，未开启MC机制时遇到MCE问题会导致处理器进入shutdown状态。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">If the machine-check mechanism is not enabled(the MCE flag in control register CR4 is clear), a machine-check exception causes the processor to enter the shutdown state. </span><br></pre></td></tr></table></figure></div>
+
+<p>阅读源码，int 18号异常（MCE，Machine Check Exception）的异常处理函数为do_machine_check，执行在NMI上下文中。按照程序流程，mce_gather_info()函数会读取MCE发送时的现场信息，比如所在CPU、时间、MSR寄存器数值等内容保存到mce结构体中。mce_no_way_out会遍历所有的banks，检查cpu是否需要Panic，它通过mce_serverity()函数判断错误等级，找到错误发生的位置，在内核空间会直接导致Panic，在用户空间则走进一步的逻辑判断。</p>
+<p>kill_it为受mcgstatus 寄存器中的MCG_STATUS_RIPV影响的变量。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"> <span class="meta"># https:<span class="comment">//github.com/AmpereComputing/ampere-lts-kernel/blob/linux-5.4.y/arch/x86/kernel/cpu/mce/core.c源码</span></span></span><br><span class="line"> mce_gather_info(&amp;m, regs);</span><br><span class="line">m.tsc = rdtsc();</span><br><span class="line"></span><br><span class="line">final = this_cpu_ptr(&amp;mces_seen);</span><br><span class="line">*final = m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(valid_banks, <span class="number">0</span>, <span class="keyword">sizeof</span>(valid_banks));</span><br><span class="line">no_way_out = mce_no_way_out(&amp;m, &amp;msg, valid_banks, regs);</span><br><span class="line"></span><br><span class="line">barrier();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * When no restart IP might need to kill or panic.</span></span><br><span class="line"><span class="comment"> * Assume the worst for now, but if we find the</span></span><br><span class="line"><span class="comment"> * severity is MCE_AR_SEVERITY we have other options.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (!(m.mcgstatus &amp; MCG_STATUS_RIPV))</span><br><span class="line">	kill_it = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Check if this MCE is signaled to only this logical processor,</span></span><br><span class="line"><span class="comment"> * on Intel only.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (m.cpuvendor == X86_VENDOR_INTEL)</span><br><span class="line">	lmce = m.mcgstatus &amp; MCG_STATUS_LMCES;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Local machine check may already know that we have to panic.</span></span><br><span class="line"><span class="comment"> * Broadcast machine check begins rendezvous in mce_start()</span></span><br><span class="line"><span class="comment"> * Go through all banks in exclusion of the other CPUs. This way we</span></span><br><span class="line"><span class="comment"> * don&#x27;t report duplicated events on shared banks because the first one</span></span><br><span class="line"><span class="comment"> * to see it will clear it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (lmce) &#123;</span><br><span class="line">	<span class="keyword">if</span> (no_way_out)</span><br><span class="line">		mce_panic(<span class="string">&quot;Fatal local machine check&quot;</span>, &amp;m, msg);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	order = mce_start(&amp;no_way_out);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>tolertant为MCA机制的容忍度，0最为严格，3最为宽松。tolerant小于3时，如果kill_it等于0，就会标记该进程使用do_memory_failure()函数进行处理，否则杀掉该进程。容忍程度记录在&#x2F;sys&#x2F;devices&#x2F;system&#x2F;machinecheck&#x2F;machinecheck文件中。</p>
+<p>早期的可纠正错误（CE）由定时器或者中断处理器轮询获得，后期引入CMCI处理机制，将软件轮询变成了硬件中断触发。一定时间内的少量可纠正错误能被接受。</p>
+<h3 id="2-KP的RAS故障处理"><a href="#2-KP的RAS故障处理" class="headerlink" title="2. KP的RAS故障处理"></a>2. <strong>KP的RAS故障处理</strong></h3><p>单独介绍下鲲鹏服务器上的处理逻辑。当服务器消费到不可纠正错误的数据之后，CPU核会触发SEA（Synchronous External Abort，同步外部中断）或者SEI，进入异常状态，并执行故障处理流程。</p>
+<p>如果SEA上报的错误对应的指令地址是精确的，异常发生在用户态，可根据记录的物理地址进行应用级修复，或者直接kill 受影响的进程；如果发生在内核态，则由Linux内核主动执行panic操作，避免错误数据被使用，流程与X86下的MCE机制类似。</p>
+<p>当SEI上报的错误对应的指令地址是不精确的，无法判断影响范围，不知道出错的数据是否已经扩散，只能由Linux内核主动执行panic，避免出现更严重问题。</p>
+<p>鲲鹏的Linux内核支持对内存不可纠正错误的后处理，即memory_failure处理。该处理会尝试把出错内存对应的进程kill掉，并把该内存Page标记为poisoned，以避免该内存再被分配和使用。</p>
+<h3 id="3-更粗暴的处理方式"><a href="#3-更粗暴的处理方式" class="headerlink" title="3. 更粗暴的处理方式"></a>3. <strong>更粗暴的处理方式</strong></h3><p>可以采用CPU硬复位（固件控制）的方式强制服务器不消费poision数据，但在多核服务器上要保证所有核都被复位，从而都不会消费该数据。</p>
+]]></content>
+      <categories>
+        <category>Server</category>
+      </categories>
+      <tags>
+        <tag>UCE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>表里山海开发记录</title>
     <url>/2024/08/19/%E8%A1%A8%E9%87%8C%E5%B1%B1%E6%B5%B7%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="1-介绍页面"><a href="#1-介绍页面" class="headerlink" title="1. 介绍页面"></a>1. 介绍页面</h2><p><a href="../shanhaijing.html">介绍页面</a></p>
+    <content><![CDATA[<h2 id="1-介绍页面"><a href="#1-介绍页面" class="headerlink" title="1. 介绍页面"></a>1. 介绍页面</h2><p><a href="/shanhaijing.html">介绍页面</a></p>
 <h2 id="2-物品"><a href="#2-物品" class="headerlink" title="2. 物品"></a>2. 物品</h2><p>补充山海经书页</p>
 <h2 id="3-地形"><a href="#3-地形" class="headerlink" title="3. 地形"></a>3. 地形</h2><h3 id="3-1-昆仑龙脉"><a href="#3-1-昆仑龙脉" class="headerlink" title="3.1 昆仑龙脉"></a>3.1 昆仑龙脉</h3><p>海洋上随机生成的龙行地图。龙爪上方的龙珠岛屿守护着宝藏“息壤”</p>
 <h3 id="3-2-悬河秘境"><a href="#3-2-悬河秘境" class="headerlink" title="3.2 悬河秘境"></a>3.2 悬河秘境</h3><p>开局不会生成，需要使用特定道具后翻新世界，在海上随机生成</p>
