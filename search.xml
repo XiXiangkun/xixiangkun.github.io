@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux环境无缝Windows（打印）</title>
+    <url>/2024/08/19/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E6%89%93%E5%8D%B0%EF%BC%89/</url>
+    <content><![CDATA[<p>某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。</p>
+<p>无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。</p>
+<p>简单介绍一下无缝打印的工作原理和准备工作。</p>
+<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><ul>
+<li><p>Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailarguments，而具体的文件数据会被处理为ps文件数据流放到stdin中。</p>
+</li>
+<li><p>在宿主机通过服务抓取stdin的数据流，发送给虚拟机。</p>
+</li>
+<li><p>虚拟机使用gsprint通过默认打印设备打印文件，就可以完成无缝打印的工作。</p>
+</li>
+</ul>
+<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2. 准备"></a>2. 准备</h2><h3 id="2-1-虚拟机"><a href="#2-1-虚拟机" class="headerlink" title="2.1 虚拟机"></a>2.1 虚拟机</h3><ul>
+<li>Windows虚拟机添加了正常的打印设备，并且能够正常打印。（没有正常设备也可以使用Microsoft Print to PDF进行尝试）</li>
+<li>Windows虚拟机安装了gsprint.exe（参考使用gsv50w32.exe和gs923w32.exe）</li>
+<li>自定义服务端口18081，接收宿主机传送过来的ps文件数据流，通过gsprint.exe完成打印</li>
+</ul>
+<h3 id="2-2-宿主机"><a href="#2-2-宿主机" class="headerlink" title="2.2 宿主机"></a>2.2 宿主机</h3><ul>
+<li>自定义打印机服务，可以在打印选项中选择</li>
+<li>服务将获取到的stdin的ps文件数据流传给虚拟机的18081端口</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>RDP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux环境无缝Windows（应用）</title>
     <url>/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/</url>
     <content><![CDATA[<p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
@@ -84,34 +112,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux环境无缝Windows（打印）</title>
-    <url>/2024/08/19/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E6%89%93%E5%8D%B0%EF%BC%89/</url>
-    <content><![CDATA[<p>某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。</p>
-<p>无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。</p>
-<p>简单介绍一下无缝打印的工作原理和准备工作。</p>
-<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><ul>
-<li><p>Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailarguments，而具体的文件数据会被处理为ps文件数据流放到stdin中。</p>
-</li>
-<li><p>在宿主机通过服务抓取stdin的数据流，发送给虚拟机。</p>
-</li>
-<li><p>虚拟机使用gsprint通过默认打印设备打印文件，就可以完成无缝打印的工作。</p>
-</li>
-</ul>
-<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2. 准备"></a>2. 准备</h2><h3 id="2-1-虚拟机"><a href="#2-1-虚拟机" class="headerlink" title="2.1 虚拟机"></a>2.1 虚拟机</h3><ul>
-<li>Windows虚拟机添加了正常的打印设备，并且能够正常打印。（没有正常设备也可以使用Microsoft Print to PDF进行尝试）</li>
-<li>Windows虚拟机安装了gsprint.exe（参考使用gsv50w32.exe和gs923w32.exe）</li>
-<li>自定义服务端口18081，接收宿主机传送过来的ps文件数据流，通过gsprint.exe完成打印</li>
-</ul>
-<h3 id="2-2-宿主机"><a href="#2-2-宿主机" class="headerlink" title="2.2 宿主机"></a>2.2 宿主机</h3><ul>
-<li>自定义打印机服务，可以在打印选项中选择</li>
-<li>服务将获取到的stdin的ps文件数据流传给虚拟机的18081端口</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>RDP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PS、PR软件MAC破解</title>
     <url>/2024/07/22/PS%E3%80%81PR%E8%BD%AF%E4%BB%B6MAC%E7%A0%B4%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="PremierePro2024-24-1"><a href="#PremierePro2024-24-1" class="headerlink" title="PremierePro2024-24.1"></a>PremierePro2024-24.1</h2><h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p>链接: <a class="link"   href="https://pan.baidu.com/s/1dTDDs0RXdyyV8MR9FkYIhg" >https://pan.baidu.com/s/1dTDDs0RXdyyV8MR9FkYIhg <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 提取码: qevz</p>
@@ -150,36 +150,6 @@
       </tags>
   </entry>
   <entry>
-    <title>电视剧资源</title>
-    <url>/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<h2 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h2><ol>
-<li><h3 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h3></li>
-</ol>
-<p>​	<code>链接: https://pan.baidu.com/s/1waGijwFk0rXSwEIZCIW-1g 提取码: 2f3z</code></p>
-<ol start="2">
-<li><h3 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h3><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
-</li>
-<li><h3 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h3><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
-</li>
-<li><h3 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h3><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
-</li>
-<li><h3 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h3><ul>
-<li>第一季1<code>链接: https://pan.baidu.com/s/1q9guhdPSB4ypsNQpkD0tmA 提取码: duxq</code></li>
-<li>第二季<code>链接: https://pan.baidu.com/s/1-1WGDhk0c6JLMipkpxpuvw 提取码: rxey</code></li>
-</ul>
-</li>
-<li><h3 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h3><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
-</li>
-<li><h3 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h3><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
-</li>
-<li><h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>电视剧</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>服务器UCE（Uncorrect Error）处理</title>
     <url>/2023/05/10/%E6%9C%8D%E5%8A%A1%E5%99%A8UCE%EF%BC%88Uncorrect-Error%EF%BC%89%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h2 id="服务器UCE（Uncorrect-Error）处理"><a href="#服务器UCE（Uncorrect-Error）处理" class="headerlink" title="服务器UCE（Uncorrect Error）处理"></a>服务器UCE（Uncorrect Error）处理</h2><p>静默错误（Silent Data Error）指是在访问数据时发现错误，但是实际上在未发现时数据其实已经出错的问题。像是发生在磁盘、内存、网络中的比特位翻转（Bit Flip）。静默错误产生的影响一般较为严重。业界一般使用校验码算法（如XOR、CRC、LDPC）来检测故障，使用数据冗余修复、数据备份修复来修复故障。为了更早的发现静默错误，一般还会配合巡检任务，定期读取磁盘上的宏块做校验。</p>
@@ -215,263 +185,41 @@
       </tags>
   </entry>
   <entry>
+    <title>电视剧资源</title>
+    <url>/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/</url>
+    <content><![CDATA[<h2 id="电视剧"><a href="#电视剧" class="headerlink" title="电视剧"></a>电视剧</h2><ol>
+<li><h3 id="武林外传"><a href="#武林外传" class="headerlink" title="武林外传"></a>武林外传</h3></li>
+</ol>
+<p>​	<code>链接: https://pan.baidu.com/s/1waGijwFk0rXSwEIZCIW-1g 提取码: 2f3z</code></p>
+<ol start="2">
+<li><h3 id="甄嬛传"><a href="#甄嬛传" class="headerlink" title="甄嬛传"></a>甄嬛传</h3><p><code>链接: https://pan.baidu.com/s/11AIjJaLEjY9aG7JAVZg_OQ 提取码: ahd6</code></p>
+</li>
+<li><h3 id="老友记"><a href="#老友记" class="headerlink" title="老友记"></a>老友记</h3><p><code>链接: https://pan.baidu.com/s/1dppoZvsZW3USiGzuzm4vHQ 提取码: gpun</code></p>
+</li>
+<li><h3 id="暗黑"><a href="#暗黑" class="headerlink" title="暗黑"></a>暗黑</h3><p><code>链接: https://pan.baidu.com/s/1EC58fnOL6L2l7_uALvqZgg 提取码: 74eq</code></p>
+</li>
+<li><h3 id="怪诞小镇"><a href="#怪诞小镇" class="headerlink" title="怪诞小镇"></a>怪诞小镇</h3><ul>
+<li>第一季1<code>链接: https://pan.baidu.com/s/1q9guhdPSB4ypsNQpkD0tmA 提取码: duxq</code></li>
+<li>第二季<code>链接: https://pan.baidu.com/s/1-1WGDhk0c6JLMipkpxpuvw 提取码: rxey</code></li>
+</ul>
+</li>
+<li><h3 id="纸牌屋-1-4"><a href="#纸牌屋-1-4" class="headerlink" title="纸牌屋 1-4"></a>纸牌屋 1-4</h3><p><code>链接: https://pan.baidu.com/s/1FN4wRqxjDIJQ4cNexlyFSw 提取码: d618</code></p>
+</li>
+<li><h3 id="想见你"><a href="#想见你" class="headerlink" title="想见你"></a>想见你</h3><p><code>链接: https://pan.baidu.com/s/1JlL9Nc9WibFHPKbcb4zHKA 提取码: r61w</code></p>
+</li>
+<li><h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>电视剧</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>表里山海开发记录</title>
     <url>/2024/08/19/%E8%A1%A8%E9%87%8C%E5%B1%B1%E6%B5%B7%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="1-介绍页面"><a href="#1-介绍页面" class="headerlink" title="1. 介绍页面"></a>1. 介绍页面</h2><p><a href="/shanhaijing.html">介绍页面</a></p>
-<h2 id="2-物品"><a href="#2-物品" class="headerlink" title="2. 物品"></a>2. 物品</h2><p>补充山海经书页</p>
-<h2 id="3-地形"><a href="#3-地形" class="headerlink" title="3. 地形"></a>3. 地形</h2><h3 id="3-1-昆仑龙脉"><a href="#3-1-昆仑龙脉" class="headerlink" title="3.1 昆仑龙脉"></a>3.1 昆仑龙脉</h3><p>海洋上随机生成的龙行地图。龙爪上方的龙珠岛屿守护着宝藏“息壤”</p>
-<h3 id="3-2-悬河秘境"><a href="#3-2-悬河秘境" class="headerlink" title="3.2 悬河秘境"></a>3.2 悬河秘境</h3><p>开局不会生成，需要使用特定道具后翻新世界，在海上随机生成</p>
-<h2 id="4-事件"><a href="#4-事件" class="headerlink" title="4. 事件"></a>4. 事件</h2><h3 id="4-1-远古遗骸"><a href="#4-1-远古遗骸" class="headerlink" title="4.1 远古遗骸"></a>4.1 远古遗骸</h3><p>给予远古遗骸“句芒印记”，赋予它生命力，换取一份小小的奖励</p>
-<h3 id="4-2-采集息壤"><a href="#4-2-采集息壤" class="headerlink" title="4.2 采集息壤"></a>4.2 采集息壤</h3><p>釜底抽薪，会怎样？</p>
-<h3 id="4-3-山参精"><a href="#4-3-山参精" class="headerlink" title="4.3 山参精"></a>4.3 山参精</h3><p>我看到一只参精在山水间嬉戏，但是我抓不到它 —— W</p>
-<h3 id="4-4-海底暗影"><a href="#4-4-海底暗影" class="headerlink" title="4.4 海底暗影"></a>4.4 海底暗影</h3><p>海底的神秘生物对你的船只有着不散的怨恨，小心吧</p>
-<p>幸存者会给予你惨痛的一击，但这说不准是个误会</p>
-<h3 id="4-5-悬河灵龟"><a href="#4-5-悬河灵龟" class="headerlink" title="4.5 悬河灵龟"></a>4.5 悬河灵龟</h3><p>爱听音乐的灵龟，100%的防御！</p>
-<h2 id="料理"><a href="#料理" class="headerlink" title="料理"></a>料理</h2><h3 id="山海烧仙草："><a href="#山海烧仙草：" class="headerlink" title="山海烧仙草："></a>山海烧仙草：</h3><ul>
-<li>30 hun 55 san 10 hea</li>
-<li>Receipe：<ul>
-<li>pearl</li>
-<li>xiancao</li>
-<li>ice * 2</li>
-</ul>
-</li>
-</ul>
-<h3 id="灵气粥"><a href="#灵气粥" class="headerlink" title="灵气粥"></a>灵气粥</h3><ul>
-<li>60 hun 20 san 15 hea</li>
-<li>Receipe：<ul>
-<li>qingmu fruit * 2</li>
-<li>xian cao</li>
-<li>veggie</li>
-</ul>
-</li>
-</ul>
-<h3 id="龟蛋羹"><a href="#龟蛋羹" class="headerlink" title="龟蛋羹"></a>龟蛋羹</h3><ul>
-<li>55 hun 15 san 40 hea</li>
-<li>Receipe：<ul>
-<li>tortoise egg * 2</li>
-<li>xian cao</li>
-<li>ice</li>
-</ul>
-</li>
-</ul>
-<h3 id="ling-fish-soup"><a href="#ling-fish-soup" class="headerlink" title="ling fish soup"></a>ling fish soup</h3><ul>
-<li>40 hun 35 san 60 hea</li>
-<li>Receipe：<ul>
-<li>ling fish *2</li>
-<li>xian cao</li>
-<li>ice</li>
-</ul>
-</li>
-<li>immune humid</li>
-</ul>
-<h3 id="magma-animal-meat"><a href="#magma-animal-meat" class="headerlink" title="magma animal meat"></a>magma animal meat</h3><ul>
-<li>80 hun 15 san 35 hea</li>
-<li>Receipe：<ul>
-<li>ling fish </li>
-<li>megma meat *2</li>
-<li>xian cao</li>
-</ul>
-</li>
-<li>immune hot</li>
-</ul>
-<h3 id="kunlun-secret-receipe"><a href="#kunlun-secret-receipe" class="headerlink" title="kunlun secret receipe"></a>kunlun secret receipe</h3><ul>
-<li>100 hun 100 san 100 hea</li>
-<li>Receipe：<ul>
-<li>baize cao</li>
-<li>xian cao * 2</li>
-<li>bee la</li>
-</ul>
-</li>
-</ul>
-<h2 id="TECH"><a href="#TECH" class="headerlink" title="TECH"></a>TECH</h2><h3 id="Gem-Oblation："><a href="#Gem-Oblation：" class="headerlink" title="Gem Oblation："></a>Gem Oblation：</h3><ul>
-<li>Call KP</li>
-<li>Receipe<ul>
-<li>Special gem<ul>
-<li>Kill Milue</li>
-<li>Drop far away seeds</li>
-<li>Plant seeds</li>
-</ul>
-</li>
-<li>Dark smell</li>
-<li>Dark dream</li>
-</ul>
-</li>
-</ul>
-<h3 id="ZhenFa"><a href="#ZhenFa" class="headerlink" title="ZhenFa"></a>ZhenFa</h3><ul>
-<li>Bone, Be attacked by times, Success: add somewhere? </li>
-<li>Rceipe<ul>
-<li>Bone</li>
-<li>Special gem</li>
-</ul>
-</li>
-</ul>
-<h3 id="AnimalsKing"><a href="#AnimalsKing" class="headerlink" title="AnimalsKing"></a>AnimalsKing</h3><ul>
-<li>Attrack dogs</li>
-<li>Receipe<ul>
-<li>Mons’ teeth</li>
-<li>Alive wood</li>
-</ul>
-</li>
-</ul>
-<h3 id="Keepalive"><a href="#Keepalive" class="headerlink" title="Keepalive"></a>Keepalive</h3><ul>
-<li>eat to be young, decrease damage, hunger </li>
-<li>Receipe<ul>
-<li>Null keepalive</li>
-<li>Confused glass</li>
-</ul>
-</li>
-</ul>
-<h3 id="Stock"><a href="#Stock" class="headerlink" title="Stock"></a>Stock</h3><ul>
-<li>knock，can be decorated</li>
-<li>Receipe<ul>
-<li>Xirang</li>
-</ul>
-</li>
-</ul>
-<h3 id="lingmu-fazhang"><a href="#lingmu-fazhang" class="headerlink" title="lingmu fazhang"></a>lingmu fazhang</h3><ul>
-<li>release lighting</li>
-</ul>
-<h3 id="lingmu-hufu"><a href="#lingmu-hufu" class="headerlink" title="lingmu hufu"></a>lingmu hufu</h3><ul>
-<li>to be safe in red moon</li>
-</ul>
-<h2 id="Items"><a href="#Items" class="headerlink" title="Items"></a>Items</h2><h3 id="建木-朱果"><a href="#建木-朱果" class="headerlink" title="建木 朱果"></a>建木 朱果</h3><h3 id="扶桑建筑"><a href="#扶桑建筑" class="headerlink" title="扶桑建筑"></a>扶桑建筑</h3><p>青木果 青木树</p>
-<p>文茎果 文茎草</p>
-<p>樗里叶 樗里</p>
-<h3 id="qingmu-fruit"><a href="#qingmu-fruit" class="headerlink" title="qingmu fruit"></a>qingmu fruit</h3><ul>
-<li>pick from qingmu</li>
-</ul>
-<h3 id="magma-meat"><a href="#magma-meat" class="headerlink" title="magma meat"></a>magma meat</h3><ul>
-<li>drop by magma monster</li>
-</ul>
-<h3 id="xiancao"><a href="#xiancao" class="headerlink" title="xiancao"></a>xiancao</h3><ul>
-<li>pick up</li>
-</ul>
-<h3 id="ling-fish"><a href="#ling-fish" class="headerlink" title="ling fish"></a>ling fish</h3><ul>
-<li>fished from tian pool</li>
-</ul>
-<h3 id="tortoise-egg"><a href="#tortoise-egg" class="headerlink" title="tortoise egg"></a>tortoise egg</h3><ul>
-<li>steal from tortoise home</li>
-</ul>
-<h3 id="baize-cao"><a href="#baize-cao" class="headerlink" title="baize cao"></a>baize cao</h3><ul>
-<li>pick up rarely</li>
-</ul>
-<h3 id="Faraway-seeds"><a href="#Faraway-seeds" class="headerlink" title="Faraway seeds"></a>Faraway seeds</h3><ul>
-<li>Kill Milue</li>
-<li>Drop far away seeds</li>
-</ul>
-<h3 id="Special-gem"><a href="#Special-gem" class="headerlink" title="Special gem"></a>Special gem</h3><ul>
-<li><p>Plant special seeds</p>
-<ul>
-<li><p>Normal Plant</p>
-</li>
-<li><p>Special Plant</p>
-<ul>
-<li>Grow up with stock<ul>
-<li>Break by diu axe</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Confused-glass"><a href="#Confused-glass" class="headerlink" title="Confused glass"></a>Confused glass</h3><ul>
-<li>eat to heal self</li>
-</ul>
-<h3 id="Xirang"><a href="#Xirang" class="headerlink" title="Xirang"></a>Xirang</h3><ul>
-<li>be found by “cang hai yue ming zhu you lei”</li>
-<li>make stock</li>
-</ul>
-<h2 id="Prefab"><a href="#Prefab" class="headerlink" title="Prefab"></a>Prefab</h2><h3 id="ling-fox"><a href="#ling-fox" class="headerlink" title="ling fox"></a>ling fox</h3><ul>
-<li>drop fox skin、meat</li>
-<li>daozaicong chasing rabbit</li>
-<li>glass area</li>
-</ul>
-<h3 id="magma-vine"><a href="#magma-vine" class="headerlink" title="magma vine"></a>magma vine</h3><ul>
-<li>attack player、structure</li>
-<li>drop magma meat</li>
-<li>I thought it’s plant</li>
-</ul>
-<h3 id="tortoise"><a href="#tortoise" class="headerlink" title="tortoise"></a>tortoise</h3><ul>
-<li>tian pool</li>
-<li>100% defense</li>
-<li>san-1 dead get gui bei</li>
-</ul>
-<h3 id="ling-tree"><a href="#ling-tree" class="headerlink" title="ling tree"></a>ling tree</h3><ul>
-<li>ling stick， for make magic</li>
-<li>fruit，to eat or cuisine</li>
-<li>drop seed</li>
-</ul>
-<h3 id="K-Whale"><a href="#K-Whale" class="headerlink" title="K Whale"></a>K Whale</h3><ul>
-<li>Island home</li>
-<li>hide from skyroad</li>
-<li>Hold a shell to pretend being a snake</li>
-<li>Knock out grangm’s island</li>
-<li>Leave a special gem, it shows up, touch to follow<ul>
-<li>Help to void dead skill and be killed</li>
-<li>rescured by FH’s feather</li>
-</ul>
-</li>
-<li>somewhere near brother to abandon</li>
-</ul>
-<h3 id="Coin-Mons"><a href="#Coin-Mons" class="headerlink" title="Coin Mons"></a>Coin Mons</h3><ul>
-<li>Structure</li>
-<li>Add gold and every kinf of gem to release</li>
-</ul>
-<h3 id="Time-Mons"><a href="#Time-Mons" class="headerlink" title="Time Mons"></a>Time Mons</h3><ul>
-<li>Open and close Eyes to set dayornight</li>
-<li>Kill Wanda</li>
-<li>Reborn</li>
-<li>Four stage<ul>
-<li>Spring: frog rain and storm</li>
-<li>Summer: heal faster and volcano、land break</li>
-<li>Automn: interstella、bone</li>
-<li>Winter: cold faster and slip and nap</li>
-</ul>
-</li>
-</ul>
-<h3 id="KPeng"><a href="#KPeng" class="headerlink" title="KPeng"></a>KPeng</h3><ul>
-<li>colded by don’t know what</li>
-<li>called by Gem Oblation</li>
-<li>stage two: turn to a Peng, only peaced by k whale</li>
-<li>eat dragon skin</li>
-</ul>
-<h3 id="FH"><a href="#FH" class="headerlink" title="FH"></a>FH</h3><ul>
-<li>Plant Wutong</li>
-<li>burn to reborn</li>
-<li>call every kind of bird</li>
-<li>Eat and drink</li>
-<li>drop blueprint of FH to decorate</li>
-</ul>
-<h3 id="YZ"><a href="#YZ" class="headerlink" title="YZ"></a>YZ</h3><ul>
-<li>small: hold with gem&#x2F;stone<ul>
-<li>interstella</li>
-<li>magic</li>
-</ul>
-</li>
-<li>steal time * hard</li>
-</ul>
-<h3 id="Ninetailfox"><a href="#Ninetailfox" class="headerlink" title="Ninetailfox"></a>Ninetailfox</h3><ul>
-<li>pretend everything</li>
-<li>click to check</li>
-<li>turn to fox and force player into sleep</li>
-</ul>
-<h2 id="EVENT"><a href="#EVENT" class="headerlink" title="EVENT"></a>EVENT</h2><h3 id="god-eat-moon"><a href="#god-eat-moon" class="headerlink" title="god eat moon"></a>god eat moon</h3><h3 id="moon-red-event"><a href="#moon-red-event" class="headerlink" title="moon red event"></a>moon red event</h3><ul>
-<li>demon attack</li>
-<li>ling wood hufu to be safe</li>
-</ul>
-<h3 id="ling-spring-water"><a href="#ling-spring-water" class="headerlink" title="ling spring water"></a>ling spring water</h3><ul>
-<li>glass cup to pick</li>
-<li>use to call one monster</li>
-</ul>
-<h3 id="shou-chao"><a href="#shou-chao" class="headerlink" title="shou chao"></a>shou chao</h3><ul>
-<li>5 times attack and chiyou shows up</li>
-</ul>
-<h3 id="huan-shu"><a href="#huan-shu" class="headerlink" title="huan shu"></a>huan shu</h3><ul>
-<li>have great rewards but a lot fake things</li>
-</ul>
-<h2 id="DEST"><a href="#DEST" class="headerlink" title="DEST"></a>DEST</h2><p>Collect all the book</p>
-<p><a href="test.html">具体介绍页</a></p>
+    <content><![CDATA[<h2 id="1-介绍页面"><a href="#1-介绍页面" class="headerlink" title="1. 介绍页面"></a>1. 介绍页面</h2><p><a href="/shanhaijing.html">介绍页面</a> 仍在完善中，如有浏览BUG、优化建议，请联系作者</p>
+<h2 id="2-背景"><a href="#2-背景" class="headerlink" title="2. 背景"></a>2. 背景</h2><p>补充山海经书页</p>
+<h2 id="3-开发日志"><a href="#3-开发日志" class="headerlink" title="3. 开发日志"></a>3. 开发日志</h2><h3 id="2024-09-20-添加该页面"><a href="#2024-09-20-添加该页面" class="headerlink" title="2024.09.20 添加该页面"></a>2024.09.20 添加该页面</h3><p>- </p>
 ]]></content>
       <tags>
         <tag>DST</tag>
