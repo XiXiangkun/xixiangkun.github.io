@@ -13,22 +13,21 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/08/19/abc/"/>
+    <link rel="canonical" href="http://example.com/2024/09/20/shanhaijing/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。 无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。 简单介绍一下无缝打印的工作原理和准备工作。 1. 原理 Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailar">
+        <meta name="description" content="Image Gallery with Background              body {             margin: 0;             display: flex;             justify-content: center;             align-items: center;             h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux环境无缝Windows（打印）">
-<meta property="og:url" content="http://example.com/2024/08/19/abc/index.html">
+<meta property="og:title" content="Theme Redefine">
+<meta property="og:url" content="http://example.com/2024/09/20/shanhaijing/index.html">
 <meta property="og:site_name" content="Theme Redefine">
-<meta property="og:description" content="某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。 无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。 简单介绍一下无缝打印的工作原理和准备工作。 1. 原理 Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailar">
+<meta property="og:description" content="Image Gallery with Background              body {             margin: 0;             display: flex;             justify-content: center;             align-items: center;             h">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-19T03:14:32.000Z">
-<meta property="article:modified_time" content="2024-08-19T03:31:27.863Z">
+<meta property="article:published_time" content="2024-09-20T01:51:12.427Z">
+<meta property="article:modified_time" content="2024-09-20T05:45:28.069Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="RDP">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,8 +39,6 @@
     <!--- Page Info-->
     
     <title>
-        
-            Linux环境无缝Windows（打印） -
         
         XXK&#39;s 据点
     </title>
@@ -286,7 +283,7 @@
 
         <div class="article-title">
             
-                <h1 class="article-title-regular">Linux环境无缝Windows（打印）</h1>
+                <h1 class="article-title-regular"></h1>
             
             </div>
             
@@ -301,38 +298,27 @@
                     <div class="author">
                         <span class="name">XXK</span>
                         
-                            <span class="author-label">Lv1</span>
+                            <span class="author-label">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-08-19 11:14:32</span>
-        <span class="mobile">2024-08-19 11:14:32</span>
+        <span class="desktop">2024-09-20 09:51:12</span>
+        <span class="mobile">2024-09-20 09:51:12</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-19 11:31:27</span>
-            <span class="mobile">2024-08-19 11:31:27</span>
+            <span class="desktop">2024-09-20 13:45:28</span>
+            <span class="mobile">2024-09-20 13:45:28</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/RDP/">RDP</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
@@ -351,26 +337,146 @@
         
 
         <div class="article-content markdown-body">
-            <p>某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。</p>
-<p>无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。</p>
-<p>简单介绍一下无缝打印的工作原理和准备工作。</p>
-<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><ul>
-<li><p>Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailarguments，而具体的文件数据会被处理为ps文件数据流放到stdin中。</p>
-</li>
-<li><p>在宿主机通过服务抓取stdin的数据流，发送给虚拟机。</p>
-</li>
-<li><p>虚拟机使用gsprint通过默认打印设备打印文件，就可以完成无缝打印的工作。</p>
-</li>
-</ul>
-<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2. 准备"></a>2. 准备</h2><h3 id="2-1-虚拟机"><a href="#2-1-虚拟机" class="headerlink" title="2.1 虚拟机"></a>2.1 虚拟机</h3><ul>
-<li>Windows虚拟机添加了正常的打印设备，并且能够正常打印。（没有正常设备也可以使用Microsoft Print to PDF进行尝试）</li>
-<li>Windows虚拟机安装了gsprint.exe（参考使用gsv50w32.exe和gs923w32.exe）</li>
-<li>自定义服务端口18081，接收宿主机传送过来的ps文件数据流，通过gsprint.exe完成打印</li>
-</ul>
-<h3 id="2-2-宿主机"><a href="#2-2-宿主机" class="headerlink" title="2.2 宿主机"></a>2.2 宿主机</h3><ul>
-<li>自定义打印机服务，可以在打印选项中选择</li>
-<li>服务将获取到的stdin的ps文件数据流传给虚拟机的18081端口</li>
-</ul>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery with Background</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .item {
+            position: absolute;
+            transition: transform 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.1); /* 略微放大效果 */
+        }
+
+        .item svg image {
+            transition: filter 0.3s; /* 平滑过渡效果 */
+        }
+
+        .item:hover svg image {
+            filter: url(#white-outline-effect);
+        }
+
+        .info {
+            position: absolute;
+            display: none; /* 默认不显示 */
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+        }
+
+        .line {
+            position: absolute;
+            border-top: 2px solid black; /* 连接线 */
+            display: none; /* 默认不显示 */
+        }
+    </style>
+</head>
+<body>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="white-outline-effect" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+                <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="expanded"/>
+                <feFlood flood-color="white" result="color"/>
+                <feComposite in="color" in2="expanded" operator="in" result="outline"/>
+                <feComposite in="SourceGraphic" in2="outline" operator="over"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="gallery"></div>
+    <div class="info" id="infoBox">
+        <p id="infoText">鼠标点击图片以查看相关信息。</p>
+    </div>
+    <div class="line" id="infoLine"></div> <!-- 连接线元素 -->
+
+    <script>
+        fetch('./shanhaijing/strings/shj.json')
+        .then(response => response.json())
+        .then(data => {
+            document.body.style.backgroundImage = `url('${data.background}')`;
+
+            const gallery = document.querySelector('.gallery');
+            data.items.forEach(item => {
+                const imgElement = document.createElement('div');
+                imgElement.className = 'item';
+                imgElement.style.top = item.position.top;
+                imgElement.style.left = item.position.left;
+                imgElement.innerHTML = `<svg width="${item.width}" height="${item.height}"><image href="${item.src}" width="100%" height="100%"/></svg>`;
+
+                gallery.appendChild(imgElement);
+
+                imgElement.addEventListener('mouseover', function() {
+                    showInfo(this, item);
+                });
+
+                imgElement.addEventListener('mouseout', function() {
+                    hideInfo();
+                });
+            });
+        })
+        .catch(error => console.error('Failed to load images data:', error));
+
+        function showInfo(target, item) {
+            const infoBox = document.getElementById('infoBox');
+            const infoText = document.getElementById('infoText');
+            const infoLine = document.getElementById('infoLine');
+
+            infoText.innerHTML = `<strong>${item.name}</strong><br>${item.description}`;
+            infoBox.style.display = 'block';
+            infoBox.style.width = 'auto';
+            infoBox.style.height = 'auto';
+
+            let imgRect = target.getBoundingClientRect();
+            let infoRect = infoBox.getBoundingClientRect();
+
+            let leftPos = imgRect.right + 10;
+            let topPos = imgRect.top + (imgRect.height - infoRect.height) / 2;
+
+            if (leftPos + infoRect.width > window.innerWidth) {
+                leftPos = imgRect.left - infoRect.width - 10;
+            }
+
+            infoBox.style.left = `${leftPos}px`;
+            infoBox.style.top = `${topPos}px`;
+
+            infoLine.style.width = `${Math.abs(leftPos - imgRect.right)}px`;
+            infoLine.style.top = `${imgRect.top + imgRect.height / 2}px`;
+            infoLine.style.left = `${Math.min(imgRect.right, leftPos) + 5}px`;
+            infoLine.style.display = 'block';
+        }
+
+        function hideInfo() {
+            const infoBox = document.getElementById('infoBox');
+            const infoLine = document.getElementById('infoLine');
+            infoBox.style.display = 'none';
+            infoLine.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
 
         </div>
 
@@ -378,16 +484,16 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Linux环境无缝Windows（打印）</li>
+        <li><strong>Title:</strong> </li>
         <li><strong>Author:</strong> XXK</li>
-        <li><strong>Created at:</strong> 2024-08-19 11:14:32</li>
+        <li><strong>Created at:</strong> 2024-09-20 09:51:12</li>
         
             <li>
-                <strong>Updated at:</strong> 2024-08-19 11:31:27
+                <strong>Updated at:</strong> 2024-09-20 13:45:28
             </li>
         
         <li>
-            <strong>Link:</strong> https://xixiangkun.github.io/2024/08/19/abc/
+            <strong>Link:</strong> https://xixiangkun.github.io/2024/09/20/shanhaijing/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -399,14 +505,6 @@
         
 
         
-            <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/RDP/">#RDP</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
 
         
 
@@ -416,13 +514,13 @@
                     <div class="article-prev">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/08/19/%E5%B1%B1%E6%B5%B7MOD%E9%A2%84%E8%AE%BE/"
+                        href="/2024/09/20/shanhaijing/strings/shj/"
                         >
                             <span class="left arrow-icon flex-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">山海MOD</span>
+                                <span class="post-nav-title-item"></span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -432,10 +530,10 @@
                     <div class="article-next">
                         <a class="next"
                         rel="next"
-                        href="/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/"
+                        href="/2024/08/19/%E8%A1%A8%E9%87%8C%E5%B1%B1%E6%B5%B7%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Linux环境无缝Windows（应用）</span>
+                                <span class="post-nav-title-item">表里山海开发记录</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -500,8 +598,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Linux环境无缝Windows（打印）</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%9F%E7%90%86"><span class="nav-text">1. 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87"><span class="nav-text">2. 准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text">2.1 虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%BF%E4%B8%BB%E6%9C%BA"><span class="nav-text">2.2 宿主机</span></a></li></ol></li></ol>
+        <div class="page-title"></div>
+        
 
     </div>
 </div>
