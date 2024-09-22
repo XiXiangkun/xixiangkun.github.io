@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/08/19/linux环境无缝windows（打印）/"/>
+    <link rel="canonical" href="http://example.com/2024/08/12/linux环境无缝windows（应用）/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。 无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。 简单介绍一下无缝打印的工作原理和准备工作。 1. 原理 Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailar">
+        <meta name="description" content="RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。 在Linux环境中无缝运行Windows应用程序，本质上是通过映射虚拟机内部运行的应用程序窗口实现的。 主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的窗口缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。 1. 环境（Qemu 4.2.1）1.1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux环境无缝Windows（打印）">
-<meta property="og:url" content="http://example.com/2024/08/19/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E6%89%93%E5%8D%B0%EF%BC%89/index.html">
+<meta property="og:title" content="Linux环境无缝Windows（应用）">
+<meta property="og:url" content="http://example.com/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/index.html">
 <meta property="og:site_name" content="Theme Redefine">
-<meta property="og:description" content="某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。 无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。 简单介绍一下无缝打印的工作原理和准备工作。 1. 原理 Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailar">
+<meta property="og:description" content="RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。 在Linux环境中无缝运行Windows应用程序，本质上是通过映射虚拟机内部运行的应用程序窗口实现的。 主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的窗口缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。 1. 环境（Qemu 4.2.1）1.1">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-19T03:14:32.000Z">
-<meta property="article:modified_time" content="2024-08-22T09:30:45.813Z">
+<meta property="article:published_time" content="2024-08-12T05:19:51.000Z">
+<meta property="article:modified_time" content="2024-08-19T03:13:48.401Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="RDP">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <title>
         
-            Linux环境无缝Windows（打印） -
+            Linux环境无缝Windows（应用） -
         
         XXK&#39;s 据点
     </title>
@@ -286,7 +286,7 @@
 
         <div class="article-title">
             
-                <h1 class="article-title-regular">Linux环境无缝Windows（打印）</h1>
+                <h1 class="article-title-regular">Linux环境无缝Windows（应用）</h1>
             
             </div>
             
@@ -308,15 +308,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-08-19 11:14:32</span>
-        <span class="mobile">2024-08-19 11:14:32</span>
+        <span class="desktop">2024-08-12 13:19:51</span>
+        <span class="mobile">2024-08-12 13:19:51</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-22 17:30:45</span>
-            <span class="mobile">2024-08-22 17:30:45</span>
+            <span class="desktop">2024-08-19 11:13:48</span>
+            <span class="mobile">2024-08-19 11:13:48</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -351,26 +351,81 @@
         
 
         <div class="article-content markdown-body">
-            <p>某些老旧、或者没有适配的打印机设备无法使用Linux终端完成打印任务，但是可以使用Windows虚拟机完成打印工作。</p>
-<p>无缝的目的是在Linux上选择指定打印设备后可以直接借助Windows虚拟机完成打印。</p>
-<p>简单介绍一下无缝打印的工作原理和准备工作。</p>
-<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><ul>
-<li><p>Linux宿主机上选择打印机确认后，打印机服务会收到一些参数，包括job-id、user、filename、copies、detailarguments，而具体的文件数据会被处理为ps文件数据流放到stdin中。</p>
+            <p>RDP（Remote Desktop Protocol）远程桌面协议，可以实现远程计算机之间的图形界面连接。</p>
+<p>在Linux环境中无缝运行Windows应用程序，本质上是通过映射虚拟机内部运行的应用程序窗口实现的。</p>
+<p>主要涉及XfreeRDP和Rdesktop，其中XfreeRDP的窗口缺陷比较致命最终被弃用，Rdesktop需要结合seamless一起使用。</p>
+<h2 id="1-环境（Qemu-4-2-1）"><a href="#1-环境（Qemu-4-2-1）" class="headerlink" title="1. 环境（Qemu 4.2.1）"></a>1. 环境（Qemu 4.2.1）</h2><h3 id="1-1-宿主机（Linux）"><a href="#1-1-宿主机（Linux）" class="headerlink" title="1.1 宿主机（Linux）"></a>1.1 宿主机（Linux）</h3><ul>
+<li>配置4455端口自启动服务，通过服务启动虚拟机（需要sudo权限实现自动启动或重启）</li>
+<li>使用的是qcow2文件的虚拟机环境</li>
+</ul>
+<h3 id="1-2-虚拟机（Windows）"><a href="#1-2-虚拟机（Windows）" class="headerlink" title="1.2 虚拟机（Windows）"></a>1.2 虚拟机（Windows）</h3><ul>
+<li>环境设置<ul>
+<li>虚拟机需要在<code>此电脑——属性——高级系统设置——远程</code>中，关闭“允许远程协助连接这台计算机”和“仅允许运行使用网路级别身份验证的远程桌面的计算机连接”</li>
+<li>【SMB】挂载宿主机的主目录到宿主机总，让宿主机和虚拟机的文件资源互通，方便后续直接在虚拟机中执行放在Linux环境下的Windows应用程序，如exe安装等。SMB的数据传输速度也远优于XfreeRDP自带的映射功能，速度提升大概在15～20倍。</li>
+</ul>
 </li>
-<li><p>在宿主机通过服务抓取stdin的数据流，发送给虚拟机。</p>
+<li>虚拟机配置<ul>
+<li>【qemu】实际实现过程中，使用virsh命令通过xml文件的形式启动和加载虚拟机更简单，但是libvirt相关的依赖环境打包比较烦碎，后更换为qemu</li>
+<li>【127.0.0.1:3389】使用端口转发的配置方式，规避网桥、网络模式带来的问题</li>
+<li>【参数预留】脚本方式启动，预留smp参数位置给动态调整（需要重启虚拟机）</li>
+<li>【设备添加】添加device设备支持USB2.0、USB3.0设备，特别是固态的USB3.0设备</li>
+<li>【监听端口】虚拟机监听4444端口，以动态挂载、卸载USB设备</li>
+<li>启动命令见附4.1</li>
+</ul>
 </li>
-<li><p>虚拟机使用gsprint通过默认打印设备打印文件，就可以完成无缝打印的工作。</p>
+<li>虚拟机中自定义18080服务<ul>
+<li>虚拟机自启动的服务需要完成与客户端的交互，获应用列表、获取应用图标、自动注销登录用户、启动seamless程序等功能；</li>
+<li>虚拟机启动时，将SMB挂载进来的目录配置为Z盘</li>
+</ul>
 </li>
 </ul>
-<h2 id="2-准备"><a href="#2-准备" class="headerlink" title="2. 准备"></a>2. 准备</h2><h3 id="2-1-虚拟机"><a href="#2-1-虚拟机" class="headerlink" title="2.1 虚拟机"></a>2.1 虚拟机</h3><ul>
-<li>Windows虚拟机添加了正常的打印设备，并且能够正常打印。（没有正常设备也可以使用Microsoft Print to PDF进行尝试）</li>
-<li>Windows虚拟机安装了gsprint.exe（参考使用gsv50w32.exe和gs923w32.exe）</li>
-<li>自定义服务端口18081，接收宿主机传送过来的ps文件数据流，通过gsprint.exe完成打印</li>
+<h2 id="2-XfreeRDP（3-6-4）"><a href="#2-XfreeRDP（3-6-4）" class="headerlink" title="2. XfreeRDP（3.6.4）"></a>2. XfreeRDP（3.6.4）</h2><h3 id="2-1-使用命令："><a href="#2-1-使用命令：" class="headerlink" title="2.1 使用命令："></a>2.1 使用命令：</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfreerdp /v:127.0.0.1:3389 /u:Administrator /p:****** +auto-reconnect +clipboard /log-level:DEBUG /sound:sys:alsa /cert:ignore /app:program:&quot;Edge&quot;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-2-缺陷"><a href="#2-2-缺陷" class="headerlink" title="2.2 缺陷"></a>2.2 缺陷</h3><ul>
+<li><p>XfreeRDP源码不支持窗口右、下和右下方向的拉伸效果，可以通过注释xf_rail_adjust_position函数中，对于LMS_NOT_ACTIVE相关的逻辑判断；不支持窗口最大化效果也可以修改源码位置进行修复，代码位置忘记了。</p>
+</li>
+<li><p>xfreerdp通过RDP协议远程捕获虚拟机上的窗口属性，然后映射到本地桌面。对于使用标准窗口管理的应用，都可以被RDP捕获从而让xfreerdp无缝映射。但是对于那些使用自定义绘图或者特殊事件处理逻辑的应用程序而言，不同的窗口属性和事件处理方式让RDP不能捕获到这些窗口的部分状态，最直观的表现就是<strong>窗口内容渲染的不完整</strong>、<strong>复杂的窗口结构出现重叠或者位置错误</strong>等现象。实际测试过程中，XMind无法进行窗口管理、AutoCAD窗口始终置顶且“A”图样的窗口脱离主程序。</p>
+</li>
 </ul>
-<h3 id="2-2-宿主机"><a href="#2-2-宿主机" class="headerlink" title="2.2 宿主机"></a>2.2 宿主机</h3><ul>
-<li>自定义打印机服务，可以在打印选项中选择</li>
-<li>服务将获取到的stdin的ps文件数据流传给虚拟机的18081端口</li>
+<h2 id="3-Rdesktop"><a href="#3-Rdesktop" class="headerlink" title="3. Rdesktop"></a>3. Rdesktop</h2><p>Rdesktop（RDP客户端）需要结合seamless使用才能实现无缝模式，seamless是无缝模式的英文，是一种虚拟化远程桌面的功能模式，但是有自己的开源实现。</p>
+<p>在使用Rdesktop连接虚拟机时，需要启动seamless的执行程序才能实现真正意义上的无缝应用，seamless的程序只要启动一次就可以多次复用。</p>
+<h3 id="3-1-启动命令"><a href="#3-1-启动命令" class="headerlink" title="3.1 启动命令"></a>3.1 启动命令</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdesktop -u Administrator -p ****** 127.0.0.1:3389 -A &#x27;C:\\Program Files(x86)\\Tie\\seamlessrdpshell.exe&#x27; -s &#x27;&#x27; -M</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-2-问题及解决"><a href="#3-2-问题及解决" class="headerlink" title="3.2 问题及解决"></a>3.2 问题及解决</h3><ul>
+<li>rdesktop命令执行后，出现虚拟机的远程桌面，并不是完整的无缝模式<ul>
+<li>在弹出的虚拟机远程桌面中运行seamlessrdpshell.exe程序</li>
 </ul>
+</li>
+<li>无缝模式下出现的不止目标应用窗口，还有Windows 输入体验、Program Manager等窗口<ul>
+<li>修改seamlessrdp&#x2F;ServerExe&#x2F;main.c，指定过滤窗口</li>
+</ul>
+</li>
+<li>无缝模式下，屏幕上侧出现黑色的条纹遮挡远程桌面<ul>
+<li>修改rdesktop&#x2F;seamless.c源码，destroy包含指定名称的窗口</li>
+</ul>
+</li>
+<li>ARM平台上运行Rdesktop时，部分应用只能在已有的窗口范围内移动<ul>
+<li>ARM平台下seamless相关的hook缺失，无法获取和展示窗口的状态，需要修改seamless的源码，借助llvm-mingw重新编译指定平台下的程序</li>
+</ul>
+</li>
+<li>文件浏览器内右键和菜单上下文不能正常使用<ul>
+<li>表现为小窗口的闪退、无响应，需要修改seamlessrdp&#x2F;ServerExe&#x2F;main.c，注释g_zchange_fn和g_focus_fn函数使用，让菜单上下文不会focus out或者zchange</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-缺陷"><a href="#3-3-缺陷" class="headerlink" title="3.3 缺陷"></a>3.3 缺陷</h3><ul>
+<li>在文件资源管理器中右键目录或文件时，会因为窗口大小的问题遮挡住部分上下文菜单的内容，没有到影响使用的级别</li>
+<li>测试过程中，部分机器上的BOB、BOC应用无法无缝使用</li>
+</ul>
+<h2 id="4-附"><a href="#4-附" class="headerlink" title="4. 附"></a>4. 附</h2><h3 id="4-1-虚拟机启动命令"><a href="#4-1-虚拟机启动命令" class="headerlink" title="4.1 虚拟机启动命令"></a>4.1 虚拟机启动命令</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/opt/tie/bin/qemu-system-x86_64 \</span><br><span class="line">  -name guest=windows10cxy \</span><br><span class="line">  -uuid 386cfb6f-e0bc-4dc3-b7c2-51adfe69c2fe \</span><br><span class="line">  -smp $&#123;virt_cores&#125;,sockets=1,cores=$&#123;virt_cores&#125;,threads=1 -m 4096 \</span><br><span class="line">  -cpu host \</span><br><span class="line">  -machine type=pc-i440fx-focal,accel=kvm \</span><br><span class="line">  -boot order=c \</span><br><span class="line">  -device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2 \</span><br><span class="line">  -device usb-tablet,id=input0,bus=usb.0,port=1 \</span><br><span class="line">  -drive file=/opt/win10.qcow2,format=qcow2,if=none,id=drive-ide0-0-0 \</span><br><span class="line">  -device ide-hd,bus=ide.0,unit=0,drive=drive-ide0-0-0,id=ide0-0-0 \</span><br><span class="line">  -netdev user,id=net0,hostfwd=tcp::3389-:3389,hostfwd=tcp::18080-:18080 -device e1000,netdev=net0 \</span><br><span class="line">  -vnc :0 \</span><br><span class="line">  -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x7 \</span><br><span class="line">  -device ich9-usb-ehci1,id=usb-ehci1,bus=pci.0,addr=0x6.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=0,bus=pci.0,addr=0x8.0x0 \</span><br><span class="line">  -device ich9-usb-uhci1,masterbus=usb-ehci1.0,firstport=2,bus=pci.0,addr=0x9.0x0 \</span><br><span class="line">  -device ich9-intel-hda,id=sound0,bus=pci.0,addr=0x5.0x0 \</span><br><span class="line">  -device virtio-vga,id=video0,bus=pci.0,addr=0x3.0x0 \</span><br><span class="line">  -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0xa.0x0 \</span><br><span class="line">  -chardev pty,id=charserial0 \</span><br><span class="line">  -device isa-serial,chardev=charserial0,id=serial0 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev1,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev1,id=redir1 \</span><br><span class="line">  -chardev spicevmc,id=usbredirdev2,name=usbredir \</span><br><span class="line">  -device usb-redir,chardev=usbredirdev2,id=redir2 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci0,bus=pci.0,addr=0xb.0x0 \</span><br><span class="line">  -device nec-usb-xhci,id=xhci1,bus=pci.0,addr=0xc.0x0 \</span><br><span class="line">  -monitor telnet:127.0.0.1:4444,server,nowait</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="4-2-qemu挂载USB设备"><a href="#4-2-qemu挂载USB设备" class="headerlink" title="4.2 qemu挂载USB设备"></a>4.2 qemu挂载USB设备</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">sleep 1</span><br><span class="line">echo &quot;device_add usb-host,vendorid=0x0781,productid=0x558b,id=cxy0781558b&quot;</span><br><span class="line">sleep 1</span><br><span class="line">&#125; | telnet 127.0.0.1 4444</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="4-3-Linux桌面添加exe右键启动方式exeInstall"><a href="#4-3-Linux桌面添加exe右键启动方式exeInstall" class="headerlink" title="4.3 Linux桌面添加exe右键启动方式exeInstall"></a>4.3 Linux桌面添加exe右键启动方式exeInstall</h3><p>本质上是在Windows虚拟机环境中运行exe程序。当右键选择启动exeInstall时，exeInstall会将目标文件链接到固定的磁盘位置（如在虚拟机中已经做好固定映射的Z目录），通过rdesktop启动映射进去的exe程序就可以安装了。</p>
+<h3 id="4-5-AppImage打包"><a href="#4-5-AppImage打包" class="headerlink" title="4.5 AppImage打包"></a>4.5 AppImage打包</h3><p>AppImage将应用程序和所有依赖项打包在一个文件中，AppImage实际上是一个压缩的文件系统映像，包含了可执行文件恶化依赖库等必要资源。</p>
+<p>参考打包过程如下：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp ./virtualmanager ./client</span><br><span class="line">app=&quot;client&quot;</span><br><span class="line">./linuxdeployqt-x86 $app -appimage;</span><br><span class="line">echo &quot;Categories=Application&quot;&gt;&gt;default.desktop</span><br><span class="line">cd ..</span><br><span class="line">./appimagetool-x86 $app</span><br><span class="line">mv Application-x86.AppImage /opt/tie/client</span><br></pre></td></tr></table></figure></div>
+
 
         </div>
 
@@ -378,16 +433,16 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Linux环境无缝Windows（打印）</li>
+        <li><strong>Title:</strong> Linux环境无缝Windows（应用）</li>
         <li><strong>Author:</strong> XXK</li>
-        <li><strong>Created at:</strong> 2024-08-19 11:14:32</li>
+        <li><strong>Created at:</strong> 2024-08-12 13:19:51</li>
         
             <li>
-                <strong>Updated at:</strong> 2024-08-22 17:30:45
+                <strong>Updated at:</strong> 2024-08-19 11:13:48
             </li>
         
         <li>
-            <strong>Link:</strong> https://xixiangkun.github.io/2024/08/19/Linux环境无缝Windows（打印）/
+            <strong>Link:</strong> https://xixiangkun.github.io/2024/08/12/Linux环境无缝Windows（应用）/
         </li>
         <li>
             <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
@@ -416,13 +471,13 @@
                     <div class="article-prev">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/08/19/%E3%80%8A%E5%B1%B1%E6%B5%B7%E8%A1%A8%E9%87%8C%E3%80%8B%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"
+                        href="/2024/08/19/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E6%89%93%E5%8D%B0%EF%BC%89/"
                         >
                             <span class="left arrow-icon flex-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">《山海表里》开发记录</span>
+                                <span class="post-nav-title-item">Linux环境无缝Windows（打印）</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -432,10 +487,10 @@
                     <div class="article-next">
                         <a class="next"
                         rel="next"
-                        href="/2024/08/12/Linux%E7%8E%AF%E5%A2%83%E6%97%A0%E7%BC%9DWindows%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89/"
+                        href="/2024/07/24/%E7%94%B5%E8%A7%86%E5%89%A7%E8%B5%84%E6%BA%90/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Linux环境无缝Windows（应用）</span>
+                                <span class="post-nav-title-item">电视剧资源</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -500,8 +555,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Linux环境无缝Windows（打印）</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%9F%E7%90%86"><span class="nav-text">1. 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87"><span class="nav-text">2. 准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text">2.1 虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%BF%E4%B8%BB%E6%9C%BA"><span class="nav-text">2.2 宿主机</span></a></li></ol></li></ol>
+        <div class="page-title">Linux环境无缝Windows（应用）</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%EF%BC%88Qemu-4-2-1%EF%BC%89"><span class="nav-text">1. 环境（Qemu 4.2.1）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%AE%BF%E4%B8%BB%E6%9C%BA%EF%BC%88Linux%EF%BC%89"><span class="nav-text">1.1 宿主机（Linux）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88Windows%EF%BC%89"><span class="nav-text">1.2 虚拟机（Windows）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-XfreeRDP%EF%BC%883-6-4%EF%BC%89"><span class="nav-text">2. XfreeRDP（3.6.4）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">2.1 使用命令：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%BC%BA%E9%99%B7"><span class="nav-text">2.2 缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Rdesktop"><span class="nav-text">3. Rdesktop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">3.1 启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3"><span class="nav-text">3.2 问题及解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BC%BA%E9%99%B7"><span class="nav-text">3.3 缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%99%84"><span class="nav-text">4. 附</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">4.1 虚拟机启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-qemu%E6%8C%82%E8%BD%BDUSB%E8%AE%BE%E5%A4%87"><span class="nav-text">4.2 qemu挂载USB设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Linux%E6%A1%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0exe%E5%8F%B3%E9%94%AE%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8FexeInstall"><span class="nav-text">4.3 Linux桌面添加exe右键启动方式exeInstall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-AppImage%E6%89%93%E5%8C%85"><span class="nav-text">4.5 AppImage打包</span></a></li></ol></li></ol>
 
     </div>
 </div>
